@@ -4,10 +4,21 @@
 
 This is the working area for the [IETF CCAMP](https://datatracker.ietf.org/wg/ccamp/documents/) WG Internet-Draft, "A YANG Data Model for Transport Network Client Signals".
 
-This technology-specific topology YANG model augments/uses:
-* [RFC8345](https://tools.ietf.org/html/rfc8345): A YANG Data Model for Network Topologies (module ietf-network-topology)
-* [draft-ietf-teas-yang-te-types](https://datatracker.ietf.org/doc/draft-ietf-teas-yang-te-types/): Traffic Engineering Common YANG Types (module ietf-te-types)
-* [draft-ietf-teas-yang-te-topo](https://datatracker.ietf.org/doc/draft-ietf-teas-yang-te-topo/): YANG Data Model for Traffic Engineering (TE) Topologies (module ietf-te-topology)
+## Abstract
+
+   A transport network is a server-layer network to provide connectivity
+   services to its client.  The topology and tunnel information in the
+   transport layer has already been defined by generic Traffic-
+   engineered models and technology-specific models (e.g., OTN, WSON).
+   However, how the client signals are accessing to the network has not
+   been described.  These information is necessary to both client and
+   provider.
+
+   This draft describes how the client signals are carried over
+   transport network and defines YANG data models which are required
+   during configuration procedure.  More specifically, several client
+   signal (of transport network) models including ETH, STM-n, FC and so
+   on, are defined in this draft.
 
 ## Contributing
 
