@@ -2,7 +2,7 @@
 
 ## Scope
 
-This is the working area for the [IETF CCAMP](https://datatracker.ietf.org/wg/ccamp/documents/) WG Internet-Draft, "A YANG Data Model for Transport Network Client Signals".
+This is the working area for the [IETF CCAMP](https://datatracker.ietf.org/wg/ccamp/documents/) WG Internet-Draft, "[A YANG Data Model for Transport Network Client Signals](https://datatracker.ietf.org/doc/draft-ietf-ccamp-client-signal-yang/)".
 
 ## Abstract
 
@@ -51,5 +51,3 @@ technical issues needs to occur on the mailing list.
 
 You might also like to familiarize yourself with other
 [working group documents](https://datatracker.ietf.org/wg/ccamp/documents/).
-
-The IETF datatracker information for this draft is avilable at: https://datatracker.ietf.org/doc/draft-ietf-ccamp-client-signal-yang/
