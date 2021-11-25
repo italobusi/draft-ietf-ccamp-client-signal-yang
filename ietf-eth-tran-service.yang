@@ -3,7 +3,6 @@ module ietf-eth-tran-service {
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
   prefix "ethtsvc";
-
   import ietf-yang-types {
     prefix "yang";
     reference "RFC 6991 - Common YANG Data Types";
@@ -19,7 +18,7 @@ module ietf-eth-tran-service {
     reference "RFC XXXX - A YANG Data Model for Transport
                Network Client Signals";
   }
-  
+
   import ietf-routing-types {
     prefix "rt-types";
     reference "RFC 8294 - Common YANG Data Types for the
@@ -29,7 +28,7 @@ module ietf-eth-tran-service {
 
   import ietf-te {
     prefix "te";
-    reference "RFC YYYY - A YANG Data Model for Traffic 
+    reference "RFC YYYY - A YANG Data Model for Traffic
                Engineering Tunnels and Interfaces";
   }
 
@@ -53,9 +52,9 @@ module ietf-eth-tran-service {
 
   description
     "This module defines a YANG data model for describing
-     the Ethernet services. The model fully conforms to the 
+     the Ethernet services. The model fully conforms to the
      Network Management Datastore Architecture (NMDA).
-     
+
      Copyright (c) 2021 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
@@ -81,7 +80,7 @@ module ietf-eth-tran-service {
 
   grouping vlan-classification {
     description
-      "A grouping which represents classification 
+      "A grouping which represents classification
       on an 802.1Q VLAN tag.";
 
     leaf tag-type {
@@ -196,7 +195,6 @@ module ietf-eth-tran-service {
 
         description
           "The second outermost VLAN tag to push/swap.";
-
         uses vlan-write;
       }
     }
@@ -291,14 +289,14 @@ module ietf-eth-tran-service {
       description
         "Indicate the role of access, e.g., working or protection. ";
     }
-    
+
     container pm-config {
       uses pm-config-grouping;
-      description 
-      "This grouping is used to set the threshold value for 
+      description
+      "This grouping is used to set the threshold value for
       performance monitoring. ";
     }
-    
+
     container state {
       config false;
       description
@@ -307,29 +305,28 @@ module ietf-eth-tran-service {
         type identityref {
           base te-types:tunnel-state-type;
         }
-        description 
+        description
         "Indicating the operational state of client signal. ";
       }
       leaf provisioning-state {
         type identityref {
           base te-types:lsp-state-type;
         }
-        description 
-        "Indicating the provisional state of client signal, 
+        description
+        "Indicating the provisional state of client signal,
         especially when there is a change, i.e., revise, create. ";
       }
     }
-    
+
     leaf performance {
       type identityref {
         base etht-types:performance;
       }
       config false;
       description
-        "Performance Monitoring for the service. "; 
+        "Performance Monitoring for the service. ";
     }
 
-    
   }
 
   grouping etht-svc-tunnel-parameters {
@@ -347,7 +344,7 @@ module ietf-eth-tran-service {
         list eth-tunnels {
           key name;
           description
-            "ETH Tunnel list in native Ethernet scenario.";          
+            "ETH Tunnel list in native Ethernet scenario.";
           uses tunnels-grouping;
         }
       }
@@ -356,7 +353,7 @@ module ietf-eth-tran-service {
         list otn-tunnels {
           key name;
           description
-            "OTN Tunnel list in Frame-based scenario.";          
+            "OTN Tunnel list in Frame-based scenario.";
           uses tunnels-grouping;
         }
       }
@@ -366,7 +363,7 @@ module ietf-eth-tran-service {
           description
             "Pseudowire information for Ethernet over MPLS-TP.";
           uses pw-segment-grouping;
-        }    
+        }
       }
     }
 
@@ -375,12 +372,12 @@ module ietf-eth-tran-service {
  */
     leaf src-split-horizon-group {
       type string;
-      description 
+      description
       "Identify a split horizon group at the Tunnel source TTP";
     }
     leaf dst-split-horizon-group {
       type string;
-      description 
+      description
       "Identify a split horizon group at the Tunnel destination TTP";
     }
   }
@@ -418,25 +415,25 @@ module ietf-eth-tran-service {
     leaf sending-rate-too-high {
       type uint32;
       description
-        "Counter that indicates the number of times the 
+        "Counter that indicates the number of times the
         sending rate is above the high threshold";
     }
     leaf sending-rate-too-low {
       type uint32;
       description
-        "Counter that indicates the number of times the 
+        "Counter that indicates the number of times the
         sending rate is below the low threshold";
     }
     leaf receiving-rate-too-high {
       type uint32;
       description
-        "Counter that indicates the number of times the 
+        "Counter that indicates the number of times the
         receiving rate is above the high threshold";
     }
     leaf receiving-rate-too-low {
       type uint32;
       description
-        "Counter that indicates the number of times the 
+        "Counter that indicates the number of times the
         receiving rate is below the low threshold";
     }
   }
@@ -485,19 +482,17 @@ module ietf-eth-tran-service {
     uses te-types:te-topology-identifier;
 
     uses resilience-grouping;
-    
     list etht-svc-end-points {
       key etht-svc-end-point-name;
       description
-        "The logical end point for the ETH service. "; 
+        "The logical end point for the ETH service. ";
       uses etht-svc-end-point-grouping;
     }
-    
-    
+
     container underlay {
       description
-        "The unterlay tunnel information that carrying the 
-        ETH service. "; 
+        "The unterlay tunnel information that carrying the
+        ETH service. ";
       uses etht-svc-tunnel-parameters;
     }
 
@@ -537,23 +532,23 @@ module ietf-eth-tran-service {
       description
         "Time of ETH service last update.";
     }
-    
+
     leaf created-by {
        type string;
-       description 
-         "The client signal is created by whom, 
+       description
+         "The client signal is created by whom,
           can be a system or staff ID.";
      }
      leaf last-updated-by {
        type string;
-       description 
-         "The client signal is last updated by whom, 
+       description
+         "The client signal is last updated by whom,
           can be a system or staff ID.";
      }
      leaf owned-by {
        type string;
-       description 
-         "The client signal is last updated by whom, 
+       description
+         "The client signal is last updated by whom,
           can be a system ID.";
      }
   }
@@ -576,7 +571,7 @@ module ietf-eth-tran-service {
            Ethernet services.";
 
         leaf bandwidth-profile-name {
-          type string; 
+          type string;
           description
             "Name of the bandwidth profile.";
         }
@@ -600,54 +595,54 @@ module ietf-eth-tran-service {
       }
     }
   }
-  
+
   grouping resilience-grouping {
     description
       "Grouping for resilience configuration. ";
     container resilience {
     description
-      "To configure the data plane protection parameters, 
+      "To configure the data plane protection parameters,
       currently a placeholder only, future candidate attributes
       include, Revert, WTR, Hold-off Timer, ...";
       uses te:protection-restoration-properties;
     }
   }
-  
+
   grouping etht-svc-end-point-grouping {
     description
       "Grouping for the end point configuration.";
     leaf etht-svc-end-point-name {
       type string;
-      description 
+      description
       "The name of the logical end point of ETH service. ";
     }
-    
+
     leaf etht-svc-end-point-id {
       type string;
-      description 
+      description
       "The identifier of the logical end point of ETH service.";
     }
-    
+
     leaf etht-svc-end-point-descr {
       type string;
-      description 
+      description
       "The description of the logical end point of ETH service. ";
     }
-    
+
     leaf topology-role {
       type identityref {
         base etht-types:topology-role;
       }
-      description 
-      "Indicating the underlay topology role, 
+      description
+      "Indicating the underlay topology role,
       e.g., hub,spoke, any-to-any ";
     }
-    
+
     container resilience {
-      description 
+      description
       "Placeholder for resilience configuration, for future study. ";
     }
-    
+
     list etht-svc-access-points {
       key access-point-id;
       min-elements "1";
@@ -666,7 +661,7 @@ module ietf-eth-tran-service {
       }
       uses etht-svc-access-parameters;
     }
-    
+
     leaf service-classification-type {
       type identityref {
         base etht-types:service-classification-type;
@@ -761,70 +756,70 @@ module ietf-eth-tran-service {
           }
         }
       }
-    }        
+    }
   }
-  
+
   grouping pm-config-grouping {
     description
       "Grouping used for Performance Monitoring Configuration. ";
     leaf pm-enable {
       type boolean;
-      description 
+      description
       "Whether to enable the performance monitoring.";
     }
-    
+
     leaf sending-rate-high {
       type uint64;
-      description 
+      description
       "The upperbound of sending rate.";
     }
-    
+
     leaf sending-rate-low {
       type uint64;
-      description 
+      description
       "The lowerbound of sending rate.";
     }
-    
+
     leaf receiving-rate-high {
       type uint64;
-      description 
+      description
       "The upperbound of receiving rate.";
     }
-    
+
     leaf receiving-rate-low {
       type uint64;
-      description 
+      description
       "The lowerbound of receiving rate.";
     }
   }
-  
+
   grouping pw-segment-grouping {
     description
       "Grouping used for PW configuration. ";
     leaf pw-id {
       type string;
-      description 
+      description
       "The Identifier information of pseudowire. ";
     }
-    
+
     leaf pw-name {
       type string;
-      description 
+      description
       "The name information of pseudowire.";
     }
-    
+
     leaf transmit-label {
       type rt-types:mpls-label;
-      description 
+      description
       "Transmit label information in PW. ";
     }
-    
+
     leaf receive-label {
       type rt-types:mpls-label;
-      description 
+      description
       "Receive label information in PW. ";
     }
-    
+
     leaf encapsulation-type {
       type identityref {
         base etht-types:encapsulation-type;
@@ -832,48 +827,48 @@ module ietf-eth-tran-service {
       description
         "The encapsulation type, raw or tag. ";
     }
-    
+
     leaf oper-status {
       type identityref {
         base te-types:tunnel-state-type;
       }
       config false;
-      description 
+      description
         "The operational state of the PW segment. ";
     }
-    
+
     container ingress-bandwidth-profile {
-      description 
-        "Bandwidth Profile for ingress. "; 
+      description
+        "Bandwidth Profile for ingress. ";
       uses pw-segment-named-or-value-bandwidth-profile;
     }
 
     list pw-paths {
       key path-id;
-      description 
-        "A list of pw paths. ";       
-      
+      description
+        "A list of pw paths. ";
+
       leaf path-id {
         type uint8;
-        description 
-          "The identifier of pw paths. "; 
-        
+        description
+          "The identifier of pw paths. ";
+
       }
-      
+
       list tp-tunnels {
         key name;
         description
-          "Names of TP Tunnel underlay";        
+          "Names of TP Tunnel underlay";
         leaf name {
           type string;
           description
-            "Names of TP Tunnel underlay";          
+            "Names of TP Tunnel underlay";
           }
       }
     }
-    
+
   }
-  
+
   grouping pw-segment-named-or-value-bandwidth-profile {
     description
       "A grouping to configure a bandwdith profile either by
@@ -902,7 +897,7 @@ module ietf-eth-tran-service {
       }
     }
   }
-  
+
   grouping tunnels-grouping {
     description
       "A group of tunnels. ";
