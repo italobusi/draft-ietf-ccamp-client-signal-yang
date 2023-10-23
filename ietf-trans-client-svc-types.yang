@@ -16,6 +16,7 @@ module ietf-trans-client-svc-types {
          Yang Zhao (zhaoyangyjy@chinamobile.com);
          Xufeng Liu (Xufeng_Liu@jabil.com);
          Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+         Chaode Yu (yuchaode@huawei.com);
      ";
 
    description
@@ -35,7 +36,7 @@ module ietf-trans-client-svc-types {
 	  This version of this YANG module is part of RFC XXXX; see
       the RFC itself for full legal notices.";
 
-   revision 2019-11-03 {
+   revision 2023-10-23 {
      description
        "version -01 as a WG document";
      reference
