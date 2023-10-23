@@ -58,7 +58,7 @@ module ietf-eth-tran-service {
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (xufeng.liu.ietf@gmail.com);
         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
-		Chaode Yu (yuchaode@huawei.com)
+	Chaode Yu (yuchaode@huawei.com);
     ";
 
   description
@@ -78,7 +78,7 @@ module ietf-eth-tran-service {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2023-10-21 {
+  revision 2023-10-23 {
     description
       "version -04 as an WG document";
     reference
