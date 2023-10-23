@@ -20,6 +20,7 @@ module ietf-eth-tran-types {
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (xufeng.liu.ietf@gmail.com);
         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+        Chaode Yu (yuchaode@huawei.com);
     ";
 
   description
