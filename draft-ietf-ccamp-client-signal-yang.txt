@@ -5,27 +5,20 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                                  A. Guo
-Expires: 25 April 2024                                         Futurewei
+Expires: 17 June 2024                                          Futurewei
                                                                  I. Busi
                                                      Huawei Technologies
                                                               A. Snitser
-                                                                  Sedona
+                                                                   Cisco
                                                               F. Lazzeri
                                                                 Ericsson
-                                                                   Y. Xu
-                                                                   CAICT
-                                                                 Y. Zhao
-                                                            China Mobile
-                                                                  X. Liu
-                                                          Volta Networks
-                                                             G. Fioccola
                                                                    C. Yu
                                                      Huawei Technologies
-                                                         23 October 2023
+                                                        15 December 2023
 
 
          A YANG Data Model for Transport Network Client Signals
-                 draft-ietf-ccamp-client-signal-yang-10
+                 draft-ietf-ccamp-client-signal-yang-11
 
 Abstract
 
@@ -48,16 +41,6 @@ Status of This Memo
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
 
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 1]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
@@ -68,7 +51,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 April 2024.
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 1]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+   This Internet-Draft will expire on 17 June 2024.
 
 Copyright Notice
 
@@ -88,11 +78,11 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
      1.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.2.  Prefixs in Model Names  . . . . . . . . . . . . . . . . .   4
+     1.2.  Prefixs in Model Names  . . . . . . . . . . . . . . . . .   3
    2.  Terminology and Notations . . . . . . . . . . . . . . . . . .   4
    3.  Transport Network Client Signal Overview  . . . . . . . . . .   4
      3.1.  Overview of Service Request and Network Configuration
-           Scenarios . . . . . . . . . . . . . . . . . . . . . . . .   5
+           Scenarios . . . . . . . . . . . . . . . . . . . . . . . .   4
      3.2.  Applicability of Proposed Model . . . . . . . . . . . . .   7
        3.2.1.  Identifier and Readable Information . . . . . . . . .   8
        3.2.2.  Unified Resource Identifiers  . . . . . . . . . . . .   9
@@ -100,36 +90,36 @@ Table of Contents
      3.3.  State data of Services  . . . . . . . . . . . . . . . . .  10
        3.3.1.  Generic Requirements  . . . . . . . . . . . . . . . .  10
        3.3.2.  Timestamp and Administrative information  . . . . . .  11
-       3.3.3.  performance monitoring status . . . . . . . . . . . .  11
-       3.3.4.  Error Message Report  . . . . . . . . . . . . . . . .  12
+       3.3.3.  performance monitoring status . . . . . . . . . . . .  12
+       3.3.4.  Error Message Report  . . . . . . . . . . . . . . . .  13
    4.  YANG Model for Transport Network Client Signal  . . . . . . .  13
      4.1.  YANG Tree for Ethernet Service  . . . . . . . . . . . . .  13
      4.2.  YANG Tree for other Transport Network Client Signal
-           Model . . . . . . . . . . . . . . . . . . . . . . . . . .  17
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 2]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
-   5.  YANG Code for Transport Network Client Signal . . . . . . . .  19
-     5.1.  The ETH Service YANG Code . . . . . . . . . . . . . . . .  19
-     5.2.  YANG Code for ETH type  . . . . . . . . . . . . . . . . .  40
-     5.3.  Other Client Signal YANG Code . . . . . . . . . . . . . .  49
-     5.4.  Other Client Signal Types YANG Code . . . . . . . . . . .  56
+           Model . . . . . . . . . . . . . . . . . . . . . . . . . .  18
+   5.  YANG Code for Transport Network Client Signal . . . . . . . .  20
+     5.1.  The ETH Service YANG Code . . . . . . . . . . . . . . . .  20
+     5.2.  YANG Code for ETH type  . . . . . . . . . . . . . . . . .  41
+     5.3.  Other Client Signal YANG Code . . . . . . . . . . . . . .  50
+     5.4.  Other Client Signal Types YANG Code . . . . . . . . . . .  57
    6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  58
      6.1.  Usage of the ETH Service YANG Model on ONAP . . . . . . .  59
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  59
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  60
    8.  Manageability Considerations  . . . . . . . . . . . . . . . .  61
    9.  Security Considerations . . . . . . . . . . . . . . . . . . .  61
-   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  61
-   11. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  61
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  61
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  61
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  63
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 2]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  62
+   11. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  62
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  62
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  62
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  64
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
 
 1.  Introduction
 
@@ -161,15 +151,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
    *  To receive notification with regard to the information change of
       the given service;
 
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 3]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    The YANG modules defined in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
@@ -179,6 +160,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
    are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, including [RFC6991], [RFC8294]
    and [I-D.ietf-ccamp-otn-tunnel-model], which are shown as follow.
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 3]
+
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
    +-------------+---------------------------+----------------------+
@@ -218,14 +207,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 3.  Transport Network Client Signal Overview
 
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 4]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
 3.1.  Overview of Service Request and Network Configuration Scenarios
 
    A global view of a multi-domain service can be described as the
@@ -237,6 +218,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
    required to support a customer service can be split into two
    different groups: CE-PE and PE-PE.  The CE-PE configuration deals
    with the client layer one-hop access link, while PE-PE configuration
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 4]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    deals with the server layer tunnel.  In Figure 1 we mark the
    intermediate nodes as 'P', which has same switching capability of PE
    but just not the 'end-point'.  In this example, the link P-P and PE-P
@@ -274,17 +263,23 @@ Internet-Draft          Client Signals YANG Model           October 2023
    separate manner rather than integratig with network configurations,
    which also enable the controllers to abstract/virtualize the network
    resource to make them visible to the customer and also easier to
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 5]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    manage.  In other words, the network knowledge is not necessary at
    CNC and CMI, which is seen in an abstracted form as shown in
    Figure 2.
+
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 5]
+
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
                               /---------\
@@ -328,16 +323,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      Figure 3: MDSC view of both Client Service and Network Abstraction
 
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 6]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    PNC is the controller that configure the physical devices, based on
    the network configuration received from the MDSC.  Each PNC has the
    detailed view of its own domain, the example of view from PNC in
@@ -345,6 +330,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
    information on PE and P nodes and on the intra-domain links.  The PNC
    configures the tunnel/tunnel segment within its domain based on the
    network configuration provided by the MDSC.  The PNC also configures
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 6]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    the network part of the CE-PE access links as well as the mapping of
    the client-layer traffic and the server-layer tunnels, based on the
    network configuration provided by the MDSC.  The interaction between
@@ -378,6 +371,29 @@ Internet-Draft          Client Signals YANG Model           October 2023
    this document provide the configuration on CE-PE when the provider
    server-layer network is TE-based technology.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 7]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    In the example of OTN as the server-layer transport network, a full
    list of G-PID was summarized in [RFC7139], which can be divided into
    a few categories.  The G-PID signals can be categorized into
@@ -386,14 +402,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
    approach the OTN devices is not aware of the client signal type, and
    this information is only necessary among the controllers.  Once the
    OTN tunnel is set up, there is no switching requested on the client
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 7]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    layer, and therefore only signal mapping is needed, without a client
    tunnel set up.  The models that supporting the configuration of
    transparent signals are defined in Section 4.2.  The other category
@@ -427,6 +435,21 @@ Internet-Draft          Client Signals YANG Model           October 2023
    alias of client signal service which is used to tag based on the
    maintenance requirement.
 
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 8]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    module: ietf-trans-client-service
       +--rw client-svc
          +--rw client-svc-instances* [client-svc-name]
@@ -435,20 +458,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
             +--rw user-label?               string
             +--rw client-svc-descr?         string
             ...................................
-
-
-
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 8]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
    module: ietf-eth-tran-service
       +--rw etht-svc-instances* [etht-svc-name]
@@ -485,6 +494,18 @@ Internet-Draft          Client Signals YANG Model           October 2023
                +--rw client-signal?     identityref
                ...................................
 
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                  [Page 9]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    module: ietf-eth-tran-service
       +--rw etht-svc
          +--rw etht-svc-instances* [etht-svc-name]
@@ -497,14 +518,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
                   +--rw access-ltp-uri?    nt:tp-id
                   +--rw access-role?       identityref
                   ...................................
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                 [Page 9]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
 3.2.3.  Threshold Configuration
 
@@ -536,6 +549,19 @@ Internet-Draft          Client Signals YANG Model           October 2023
    this document.  These states include the operational state and the
    provisioning state.
 
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 10]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    module: ietf-trans-client-service
       +--rw client-svc
          +--rw client-svc-instances* [client-svc-name]
@@ -550,17 +576,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
                +--ro operational-state?    identityref
                +--ro provisioning-state?   identityref
                ...................................
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 10]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
 3.3.2.  Timestamp and Administrative information
 
@@ -593,6 +608,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
             +--ro owned-by?                 string
             ...................................
 
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 11]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    module: ietf-eth-tran-service
       +--rw etht-svc
          +--rw etht-svc-instances* [etht-svc-name]
@@ -609,14 +634,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
    For the Operators, there are also some requirements to provide some
    PM data to the service users.  Especially some PM data are quite
    critical for users' experience.
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 11]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
    For example, one of the great advantage of client signal service is
    it can provide deterministic low latency.  Some industry users, e.g.
@@ -649,6 +666,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
                   +--ro latency?   uint32
                   ...................................
 
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 12]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
 3.3.4.  Error Message Report
 
    Once the processing of client signal service configuration, including
@@ -663,16 +688,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
    notifications and retrieval.  So this document defines an error
    container in the YANG data model to let the PNC to provide these
    messages.
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 12]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
    module: ietf-trans-client-service
       +--rw client-svc
@@ -699,241 +714,274 @@ Internet-Draft          Client Signals YANG Model           October 2023
 4.1.  YANG Tree for Ethernet Service
 
 module: ietf-eth-tran-service
-   +--rw etht-svc
-      +--rw globals
-      |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
-      |     +--rw bandwidth-profile-name    string
+  +--rw etht-svc
+     +--rw globals
+     |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
+     |     +--rw bandwidth-profile-name    string
       |     +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-      |     +--rw CIR?                      uint64
-      |     +--rw CBS?                      uint64
-      |     +--rw EIR?                      uint64
-      |     +--rw EBS?                      uint64
-      |     +--rw color-aware?              boolean
-      |     +--rw coupling-flag?            boolean
-      +--rw etht-svc-instances* [etht-svc-name]
-         +--rw etht-svc-name             string
-         +--rw etht-svc-title?           string
+     |     +--rw CIR?                      uint64
+     |     +--rw CBS?                      uint64
+     |     +--rw EIR?                      uint64
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 13]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+     |     +--rw EBS?                      uint64
+     |     +--rw color-aware?              boolean
+     |     +--rw coupling-flag?            boolean
+     +--rw etht-svc-instances* [etht-svc-name]
+        +--rw etht-svc-name             string
+        +--rw etht-svc-title?           string
          +--rw user-label?               string
-         +--rw etht-svc-descr?           string
-         +--rw etht-svc-customer?        string
-         +--rw etht-svc-type?            etht-types:service-type
-         +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
-         +--rw te-topology-identifier
+        +--rw etht-svc-descr?           string
+        +--rw etht-svc-customer?        string
+        +--rw etht-svc-type?            etht-types:service-type
+        +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
+        +--rw te-topology-identifier
          |  +--rw provider-id?   te-types:te-global-id
          |  +--rw client-id?     te-types:te-global-id
          |  +--rw topology-id?   te-types:te-topology-id
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 13]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
-         +--rw resilience
-         |  +--rw protection
-         |  |  +--rw protection-type?                identityref
-         |  |  +--rw protection-reversion-disable?   boolean
-         |  |  +--rw hold-off-time?                  uint32
-         |  |  +--rw wait-to-revert?                 uint16
-         |  |  +--rw aps-signal-id?                  uint8
-         |  +--rw restoration
-         |     +--rw restoration-type?                identityref
-         |     +--rw restoration-scheme?              identityref
-         |     +--rw restoration-reversion-disable?   boolean
-         |     +--rw hold-off-time?                   uint32
-         |     +--rw wait-to-restore?                 uint16
-         |     +--rw wait-to-revert?                  uint16
-         +--rw etht-svc-end-points* [etht-svc-end-point-name]
-         |  +--rw etht-svc-end-point-name             string
-         |  +--rw etht-svc-end-point-id?              string
-         |  +--rw etht-svc-end-point-descr?           string
+        +--rw resilience
+        |  +--rw protection
+        |  |  +--rw enable?                         boolean
+        |  |  +--rw protection-type?                identityref
+        |  |  +--rw protection-reversion-disable?   boolean
+        |  |  +--rw hold-off-time?                  uint32
+        |  |  +--rw wait-to-revert?                 uint16
+        |  |  +--rw aps-signal-id?                  uint8
+        |  +--rw restoration
+        |     +--rw enable?                          boolean
+        |     +--rw restoration-type?                identityref
+        |     +--rw restoration-scheme?              identityref
+        |     +--rw restoration-reversion-disable?   boolean
+        |     +--rw hold-off-time?                   uint32
+        |     +--rw wait-to-restore?                 uint16
+        |     +--rw wait-to-revert?                  uint16
+        +--rw etht-svc-end-points* [etht-svc-end-point-name]
+        |  +--rw etht-svc-end-point-name                   string
+        |  +--rw etht-svc-end-point-id?                    string
+        |  +--rw etht-svc-end-point-descr?                 string
          |  +--rw topology-role?                      identityref
-         |  +--rw resilience
-         |  +--rw etht-svc-access-points* [access-point-id]
-         |  |  +--rw access-point-id    string
-         |  |  +--rw access-node-id?    te-types:te-node-id
+        |  +--rw resilience
+        |  +--rw etht-svc-access-points* [access-point-id]
+        |  |  +--rw access-point-id    string
+        |  |  +--rw access-node-id?    te-types:te-node-id
          |  |  +--rw access-node-uri?   nw:node-id
-         |  |  +--rw access-ltp-id?     te-types:te-tp-id
+        |  |  +--rw access-ltp-id?     te-types:te-tp-id
          |  |  +--rw access-ltp-uri?    nt:tp-id
-         |  |  +--rw access-role?       identityref
-         |  |  +--rw pm-config
-         |  |  |  +--rw pm-enable?             boolean
-         |  |  |  +--rw sending-rate-high?     uint64
-         |  |  |  +--rw sending-rate-low?      uint64
-         |  |  |  +--rw receiving-rate-high?   uint64
-         |  |  |  +--rw receiving-rate-low?    uint64
-         |  |  +--ro state
-         |  |  |  +--ro operational-state?    identityref
-         |  |  |  +--ro provisioning-state?   identityref
-         |  |  +--ro performance?       identityref
-         |  +--rw service-classification-type?        identityref
-         |  +--rw (service-classification)?
-         |  |  +--:(port-classification)
-         |  |  +--:(vlan-classification)
-         |  |     +--rw outer-tag!
-         |  |     |  +--rw tag-type?     etht-types:eth-tag-classify
-         |  |     |  +--rw (individual-bundling-vlan)?
-         |  |     |     +--:(individual-vlan)
-         |  |     |     |  +--rw vlan-value?   etht-types:vlanid
-         |  |     |     +--:(vlan-bundling)
-         |  |     |        +--rw vlan-range?   etht-types:vid-range-type
+        |  |  +--rw access-role?       identityref
+        |  |  +--rw pm-config
+        |  |  |  +--rw pm-enable?             boolean
+        |  |  |  +--rw sending-rate-high?     uint64
+        |  |  |  +--rw sending-rate-low?      uint64
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 14]
+Zheng, et al.             Expires 17 June 2024                 [Page 14]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-         |  |     +--rw second-tag!
-         |  |        +--rw tag-type?     etht-types:eth-tag-classify
-         |  |        +--rw (individual-bundling-vlan)?
-         |  |           +--:(individual-vlan)
-         |  |           |  +--rw vlan-value?   etht-types:vlanid
-         |  |           +--:(vlan-bundling)
-         |  |              +--rw vlan-range?   etht-types:vid-range-type
-         |  +--rw split-horizon-group?                string
-         |  +--rw (direction)?
-         |  |  +--:(symmetrical)
-         |  |  |  +--rw ingress-egress-bandwidth-profile
-         |  |  |     +--rw (style)?
-         |  |  |        +--:(named)
-         |  |  |        |  +--rw bandwidth-profile-name?   leafref
-         |  |  |        +--:(value)
-         |  |  |           +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |  |           +--rw CIR?                      uint64
-         |  |  |           +--rw CBS?                      uint64
-         |  |  |           +--rw EIR?                      uint64
-         |  |  |           +--rw EBS?                      uint64
-         |  |  |           +--rw color-aware?              boolean
-         |  |  |           +--rw coupling-flag?            boolean
-         |  |  +--:(asymmetrical)
-         |  |     +--rw ingress-bandwidth-profile
-         |  |     |  +--rw (style)?
-         |  |     |     +--:(named)
-         |  |     |     |  +--rw bandwidth-profile-name?   leafref
-         |  |     |     +--:(value)
-         |  |     |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |     |        +--rw CIR?                      uint64
-         |  |     |        +--rw CBS?                      uint64
-         |  |     |        +--rw EIR?                      uint64
-         |  |     |        +--rw EBS?                      uint64
-         |  |     |        +--rw color-aware?              boolean
-         |  |     |        +--rw coupling-flag?            boolean
-         |  |     +--rw egress-bandwidth-profile
-         |  |        +--rw (style)?
-         |  |           +--:(named)
-         |  |           |  +--rw bandwidth-profile-name?   leafref
-         |  |           +--:(value)
-         |  |              +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |              +--rw CIR?                      uint64
-         |  |              +--rw CBS?                      uint64
-         |  |              +--rw EIR?                      uint64
-         |  |              +--rw EBS?                      uint64
-         |  |              +--rw color-aware?              boolean
-         |  |              +--rw coupling-flag?            boolean
-         |  +--rw vlan-operations
+        |  |  |  +--rw receiving-rate-high?   uint64
+        |  |  |  +--rw receiving-rate-low?    uint64
+        |  |  +--ro state
+        |  |  |  +--ro operational-state?    identityref
+        |  |  |  +--ro provisioning-state?   identityref
+        |  |  +--ro performance?       identityref
+        |  +--rw service-classification-type?
+        |  |       identityref
+        |  +--rw (service-classification)?
+        |  |  +--:(port-classification)
+        |  |  +--:(vlan-classification)
+        |  |     +--rw outer-tag!
+        |  |     |  +--rw tag-type?
+        |  |     |  |       etht-types:eth-tag-classify
+        |  |     |  +--rw (individual-bundling-vlan)?
+        |  |     |     +--:(individual-vlan)
+        |  |     |     |  +--rw vlan-value?   etht-types:vlanid
+        |  |     |     +--:(vlan-bundling)
+        |  |     |        +--rw vlan-range?
+        |  |     |                etht-types:vid-range-type
+        |  |     +--rw second-tag!
+        |  |        +--rw tag-type?
+        |  |        |       etht-types:eth-tag-classify
+        |  |        +--rw (individual-bundling-vlan)?
+        |  |           +--:(individual-vlan)
+        |  |           |  +--rw vlan-value?   etht-types:vlanid
+        |  |           +--:(vlan-bundling)
+        |  |              +--rw vlan-range?
+        |  |                      etht-types:vid-range-type
+        |  +--rw split-horizon-group?                      string
+        |  +--rw (direction)?
+        |  |  +--:(symmetrical)
+        |  |  |  +--rw ingress-egress-bandwidth-profile
+        |  |  |     +--rw (style)?
+        |  |  |        +--:(named)
+        |  |  |        |  +--rw bandwidth-profile-name?   leafref
+        |  |  |        +--:(value)
+        |  |  |           +--rw bandwidth-profile-type?
+        |  |  |           |       etht-types:bandwidth-profile-type
+        |  |  |           +--rw CIR?                      uint64
+        |  |  |           +--rw CBS?                      uint64
+        |  |  |           +--rw EIR?                      uint64
+        |  |  |           +--rw EBS?                      uint64
+        |  |  |           +--rw color-aware?              boolean
+        |  |  |           +--rw coupling-flag?            boolean
+        |  |  +--:(asymmetrical)
+        |  |     +--rw ingress-bandwidth-profile
+        |  |     |  +--rw (style)?
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 15]
+Zheng, et al.             Expires 17 June 2024                 [Page 15]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-         |     +--rw (direction)?
-         |        +--:(symmetrical)
-         |        |  +--rw symmetrical-operation
-         |        |     +--rw pop-tags?    uint8
-         |        |     +--rw push-tags
-         |        |        +--rw outer-tag!
-         |        |        |  +--rw tag-type?      etht-types:eth-tag-type
-         |        |        |  +--rw vlan-value?    etht-types:vlanid
-         |        |        |  +--rw default-pcp?   uint8
-         |        |        +--rw second-tag!
-         |        |           +--rw tag-type?      etht-types:eth-tag-type
-         |        |           +--rw vlan-value?    etht-types:vlanid
-         |        |           +--rw default-pcp?   uint8
-         |        +--:(asymmetrical)
-         |           +--rw asymmetrical-operation
-         |              +--rw ingress
-         |              |  +--rw pop-tags?    uint8
-         |              |  +--rw push-tags
-         |              |     +--rw outer-tag!
-         |              |     |  +--rw tag-type?      etht-types:eth-tag-type
-         |              |     |  +--rw vlan-value?    etht-types:vlanid
-         |              |     |  +--rw default-pcp?   uint8
-         |              |     +--rw second-tag!
-         |              |        +--rw tag-type?      etht-types:eth-tag-type
-         |              |        +--rw vlan-value?    etht-types:vlanid
-         |              |        +--rw default-pcp?   uint8
-         |              +--rw egress
-         |                 +--rw pop-tags?    uint8
-         |                 +--rw push-tags
-         |                    +--rw outer-tag!
-         |                    |  +--rw tag-type?      etht-types:eth-tag-type
-         |                    |  +--rw vlan-value?    etht-types:vlanid
-         |                    |  +--rw default-pcp?   uint8
-         |                    +--rw second-tag!
-         |                       +--rw tag-type?      etht-types:eth-tag-type
-         |                       +--rw vlan-value?    etht-types:vlanid
-         |                       +--rw default-pcp?   uint8
+        |  |     |     +--:(named)
+        |  |     |     |  +--rw bandwidth-profile-name?   leafref
+        |  |     |     +--:(value)
+        |  |     |        +--rw bandwidth-profile-type?
+        |  |     |        |       etht-types:bandwidth-profile-type
+        |  |     |        +--rw CIR?                      uint64
+        |  |     |        +--rw CBS?                      uint64
+        |  |     |        +--rw EIR?                      uint64
+        |  |     |        +--rw EBS?                      uint64
+        |  |     |        +--rw color-aware?              boolean
+        |  |     |        +--rw coupling-flag?            boolean
+        |  |     +--rw egress-bandwidth-profile
+        |  |        +--rw (style)?
+        |  |           +--:(named)
+        |  |           |  +--rw bandwidth-profile-name?   leafref
+        |  |           +--:(value)
+        |  |              +--rw bandwidth-profile-type?
+        |  |              |       etht-types:bandwidth-profile-type
+        |  |              +--rw CIR?                      uint64
+        |  |              +--rw CBS?                      uint64
+        |  |              +--rw EIR?                      uint64
+        |  |              +--rw EBS?                      uint64
+        |  |              +--rw color-aware?              boolean
+        |  |              +--rw coupling-flag?            boolean
+        |  +--rw vlan-operations
+        |     +--rw (direction)?
+        |        +--:(symmetrical)
+        |        |  +--rw symmetrical-operation
+        |        |     +--rw pop-tags?    uint8
+        |        |     +--rw push-tags
+        |        |        +--rw outer-tag!
+        |        |        |  +--rw tag-type?
+        |        |        |  |       etht-types:eth-tag-type
+        |        |        |  +--rw vlan-value?    etht-types:vlanid
+        |        |        |  +--rw default-pcp?   uint8
+        |        |        +--rw second-tag!
+        |        |           +--rw tag-type?
+        |        |           |       etht-types:eth-tag-type
+        |        |           +--rw vlan-value?    etht-types:vlanid
+        |        |           +--rw default-pcp?   uint8
+        |        +--:(asymmetrical)
+        |           +--rw asymmetrical-operation
+        |              +--rw ingress
+        |              |  +--rw pop-tags?    uint8
+        |              |  +--rw push-tags
+        |              |     +--rw outer-tag!
+        |              |     |  +--rw tag-type?
+        |              |     |  |       etht-types:eth-tag-type
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 16]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+        |              |     |  +--rw vlan-value?
+        |              |     |  |       etht-types:vlanid
+        |              |     |  +--rw default-pcp?   uint8
+        |              |     +--rw second-tag!
+        |              |        +--rw tag-type?
+        |              |        |       etht-types:eth-tag-type
+        |              |        +--rw vlan-value?
+        |              |        |       etht-types:vlanid
+        |              |        +--rw default-pcp?   uint8
+        |              +--rw egress
+        |                 +--rw pop-tags?    uint8
+        |                 +--rw push-tags
+        |                    +--rw outer-tag!
+        |                    |  +--rw tag-type?
+        |                    |  |       etht-types:eth-tag-type
+        |                    |  +--rw vlan-value?
+        |                    |  |       etht-types:vlanid
+        |                    |  +--rw default-pcp?   uint8
+        |                    +--rw second-tag!
+        |                       +--rw tag-type?
+        |                       |       etht-types:eth-tag-type
+        |                       +--rw vlan-value?
+        |                       |       etht-types:vlanid
+        |                       +--rw default-pcp?   uint8
          +--rw alarm-shreshold
          |  +--rw latency-threshold?   uint32
-         +--rw underlay
-         |  +--rw (technology)?
-         |  |  +--:(native-ethernet)
-         |  |  |  +--rw eth-tunnels* [name]
-         |  |  |     +--rw name              leafref
-         |  |  |     +--rw encoding?         identityref
-         |  |  |     +--rw switching-type?   identityref
-         |  |  +--:(frame-base)
-         |  |  |  +--rw otn-tunnels* [name]
+        +--rw underlay
+        |  +--rw (technology)?
+        |  |  +--:(native-ethernet)
+        |  |  |  +--rw eth-tunnels* [name]
+        |  |  |     +--rw name
+        |  |  |     |       -> /te:te/tunnels/tunnel/name
+        |  |  |     +--rw encoding?         identityref
+        |  |  |     +--rw switching-type?   identityref
+        |  |  +--:(frame-base)
+        |  |  |  +--rw otn-tunnels* [name]
+        |  |  |     +--rw name
+        |  |  |     |       -> /te:te/tunnels/tunnel/name
+        |  |  |     +--rw encoding?         identityref
+        |  |  |     +--rw switching-type?   identityref
+        |  |  +--:(mpls-tp)
+        |  |     +--rw pw
+        |  |        +--rw pw-id?                       string
+        |  |        +--rw pw-name?                     string
+        |  |        +--rw transmit-label?
+        |  |        |       rt-types:mpls-label
+        |  |        +--rw receive-label?
+        |  |        |       rt-types:mpls-label
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 16]
+Zheng, et al.             Expires 17 June 2024                 [Page 17]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-         |  |  |     +--rw name              leafref
-         |  |  |     +--rw encoding?         identityref
-         |  |  |     +--rw switching-type?   identityref
-         |  |  +--:(mpls-tp)
-         |  |     +--rw pw
-         |  |        +--rw pw-id?                       string
-         |  |        +--rw pw-name?                     string
-         |  |        +--rw transmit-label?              rt-types:mpls-label
-         |  |        +--rw receive-label?               rt-types:mpls-label
-         |  |        +--rw encapsulation-type?          identityref
-         |  |        +--ro oper-status?                 identityref
-         |  |        +--rw ingress-bandwidth-profile
-         |  |        |  +--rw (style)?
-         |  |        |     +--:(named)
-         |  |        |     |  +--rw bandwidth-profile-name?   leafref
-         |  |        |     +--:(value)
-         |  |        |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |        |        +--rw CIR?                      uint64
-         |  |        |        +--rw CBS?                      uint64
-         |  |        |        +--rw EIR?                      uint64
-         |  |        |        +--rw EBS?                      uint64
-         |  |        +--rw pw-paths* [path-id]
-         |  |           +--rw path-id       uint8
-         |  |           +--rw tp-tunnels* [name]
-         |  |              +--rw name    string
-         |  +--rw src-split-horizon-group?   string
-         |  +--rw dst-split-horizon-group?   string
-         +--rw admin-status?             identityref
-         +--ro state
-            +--ro operational-state?    identityref
-            +--ro provisioning-state?   identityref
-            +--ro creation-time?        yang:date-and-time
-            +--ro last-updated-time?    yang:date-and-time
-            +--ro created-by?           string
-            +--ro last-updated-by?      string
-            +--ro owned-by?             string
+        |  |        +--rw encapsulation-type?          identityref
+        |  |        +--ro oper-status?                 identityref
+        |  |        +--rw ingress-bandwidth-profile
+        |  |        |  +--rw (style)?
+        |  |        |     +--:(named)
+        |  |        |     |  +--rw bandwidth-profile-name?   leafref
+        |  |        |     +--:(value)
+        |  |        |        +--rw bandwidth-profile-type?
+        |  |        |        |       etht-types:bandwidth-profile-type
+        |  |        |        +--rw CIR?                      uint64
+        |  |        |        +--rw CBS?                      uint64
+        |  |        |        +--rw EIR?                      uint64
+        |  |        |        +--rw EBS?                      uint64
+        |  |        +--rw pw-paths* [path-id]
+        |  |           +--rw path-id       uint8
+        |  |           +--rw tp-tunnels* [name]
+        |  |              +--rw name    string
+        |  +--rw src-split-horizon-group?   string
+        |  +--rw dst-split-horizon-group?   string
+        +--rw admin-status?             identityref
+        +--ro state
+           +--ro operational-state?    identityref
+           +--ro provisioning-state?   identityref
+           +--ro creation-time?        yang:date-and-time
+           +--ro last-updated-time?    yang:date-and-time
+           +--ro created-by?           string
+           +--ro last-updated-by?      string
+           +--ro owned-by?             string
             +--ro pm-state
             |  +--ro latency?   uint32
             +--ro error-info
@@ -949,37 +997,45 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 17]
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 18]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
    module: ietf-trans-client-service
-      +--rw client-svc
-         +--rw client-svc-instances* [client-svc-name]
-            +--rw client-svc-name           string
-            +--rw client-svc-title?         string
+     +--rw client-svc
+        +--rw client-svc-instances* [client-svc-name]
+           +--rw client-svc-name           string
+           +--rw client-svc-title?         string
             +--rw user-label?               string
-            +--rw client-svc-descr?         string
-            +--rw client-svc-customer?      string
-            +--rw resilience
-            +--rw te-topology-identifier
-            |  +--rw provider-id?   te-types:te-global-id
-            |  +--rw client-id?     te-types:te-global-id
-            |  +--rw topology-id?   te-types:te-topology-id
-            +--rw admin-status?             identityref
-            +--rw src-access-ports
-            |  +--rw access-node-id?    te-types:te-node-id
+           +--rw client-svc-descr?         string
+           +--rw client-svc-customer?      string
+           +--rw resilience
+           +--rw te-topology-identifier
+           |  +--rw provider-id?   te-global-id
+           |  +--rw client-id?     te-global-id
+           |  +--rw topology-id?   te-topology-id
+           +--rw admin-status?             identityref
+           +--rw src-access-ports
+           |  +--rw access-node-id?   te-types:te-node-id
             |  +--rw access-node-uri?   nw:node-id
-            |  +--rw access-ltp-id?     te-types:te-tp-id
+           |  +--rw access-ltp-id?    te-types:te-tp-id
             |  +--rw access-ltp-uri?    nt:tp-id
-            |  +--rw client-signal?     identityref
-            +--rw dst-access-ports
-            |  +--rw access-node-id?    te-types:te-node-id
+           |  +--rw client-signal?    identityref
+           +--rw dst-access-ports
+           |  +--rw access-node-id?   te-types:te-node-id
             |  +--rw access-node-uri?   nw:node-id
-            |  +--rw access-ltp-id?     te-types:te-tp-id
+           |  +--rw access-ltp-id?    te-types:te-tp-id
             |  +--rw access-ltp-uri?    nt:tp-id
-            |  +--rw client-signal?     identityref
+           |  +--rw client-signal?    identityref
             +--ro pm-state
             |  +--ro latency?   uint32
             +--ro error-info
@@ -988,16 +1044,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
             |  +--ro error-timestamp?     yang:date-and-time
             +--rw alarm-shreshold
             |  +--rw latency-threshold?   uint32
-            +--rw direction?                identityref
-            +--rw svc-tunnels* [tunnel-name]
-            |  +--rw tunnel-name    string
-            +--ro operational-state?        identityref
-            +--ro provisioning-state?       identityref
-            +--ro creation-time?            yang:date-and-time
-            +--ro last-updated-time?        yang:date-and-time
-            +--ro created-by?               string
-            +--ro last-updated-by?          string
-            +--ro owned-by?                 string
+           +--rw direction?                identityref
+           +--rw svc-tunnels* [tunnel-name]
+           |  +--rw tunnel-name    string
+           +--ro operational-state?        identityref
+           +--ro provisioning-state?       identityref
+           +--ro creation-time?            yang:date-and-time
+           +--ro last-updated-time?        yang:date-and-time
+           +--ro created-by?               string
+           +--ro last-updated-by?          string
+           +--ro owned-by?                 string
 
 
 
@@ -1005,9 +1061,9 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 18]
+Zheng, et al.             Expires 17 June 2024                 [Page 19]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
 5.  YANG Code for Transport Network Client Signal
@@ -1017,12 +1073,13 @@ Internet-Draft          Client Signals YANG Model           October 2023
    This module imports typedefs and modules from [RFC6991], [RFC8294],
    [RFC8776].
 
-   <CODE BEGINS> file "ietf-eth-tran-service@2023-10-23.yang"
+   <CODE BEGINS> file "ietf-eth-tran-service@2023-12-15.yang"
    module ietf-eth-tran-service {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
      prefix "ethtsvc";
+
      import ietf-yang-types {
        prefix "yang";
        reference "RFC 6991 - Common YANG Data Types";
@@ -1032,12 +1089,10 @@ Internet-Draft          Client Signals YANG Model           October 2023
        prefix "nw";
        reference "RFC8345 - A YANG Data Model for Network Topologies";
      }
-
      import ietf-network-topology {
        prefix "nt";
        reference "RFC8345 - A YANG Data Model for Network Topologies";
      }
-
      import ietf-te-types {
        prefix "te-types";
        reference "RFC 8776 - Traffic Engineering Common YANG Types";
@@ -1058,15 +1113,15 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      import ietf-te {
        prefix "te";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 19]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        reference "RFC YYYY - A YANG Data Model for Traffic
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 20]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
                   Engineering Tunnels and Interfaces";
      }
 
@@ -1080,13 +1135,9 @@ Internet-Draft          Client Signals YANG Model           October 2023
            Haomian Zheng (zhenghaomian@huawei.com);
            Italo Busi (italo.busi@huawei.com);
            Aihua Guo (aihuaguo.ietf@gmail.com);
-           Anton Snitser (antons@sedonasys.com);0
+           Anton Snitser (asnizar@cisco.com);
            Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-           Yunbin Xu (xuyunbin@caict.ac.cn);
-           Yang Zhao (zhaoyangyjy@chinamobile.com);
-           Xufeng Liu (xufeng.liu.ietf@gmail.com);
-           Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
-           Chaode Yu (yuchaode@huawei.com)
+           Chaode Yu (yuchaode@huawei.com);
        ";
 
      description
@@ -1106,7 +1157,7 @@ Internet-Draft          Client Signals YANG Model           October 2023
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-     revision 2023-10-23 {
+     revision 2023-12-15 {
        description
          "version -04 as an WG document";
        reference
@@ -1114,19 +1165,19 @@ Internet-Draft          Client Signals YANG Model           October 2023
      }
 
      /*
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 20]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
       * Groupings
       */
 
      grouping vlan-classification {
        description
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 21]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          "A grouping which represents classification
          on an 802.1Q VLAN tag.";
 
@@ -1170,19 +1221,19 @@ Internet-Draft          Client Signals YANG Model           October 2023
        }
        leaf vlan-value {
          type etht-types:vlanid;
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 21]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          description
            "The VLAN ID value to push/swap.";
        }
    /*
     * To be added: this attribute is used when:
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 22]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
     * a) the ETH service has only one CoS (as in current version)
     * b) as a default when a mapping between a given CoS value
     *    and the PCP value is not defined (in future versions)
@@ -1226,19 +1277,19 @@ Internet-Draft          Client Signals YANG Model           October 2023
          container second-tag {
          must
            '../outer-tag/tag-type = "etht-types:s-vlan-tag-type" and ' +
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 22]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
            'tag-type = "etht-types:c-vlan-tag-type"'
            {
 
              error-message
                "
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 23]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
                  When pushing/swapping two tags, the outermost tag must
                  be specified and of S-VLAN type and the second
                  outermost tag must be of C-VLAN tag type.
@@ -1258,6 +1309,7 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
            description
              "The second outermost VLAN tag to push/swap.";
+
            uses vlan-write;
          }
        }
@@ -1282,18 +1334,18 @@ Internet-Draft          Client Signals YANG Model           October 2023
                 + "ethtsvc:bandwidth-profile-name";
                 }
              description
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 23]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
                "Name of the bandwidth profile.";
            }
          }
          case value {
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 24]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
            description
              "Bandwidth profile configured by value.";
            uses etht-types:etht-bandwidth-profiles;
@@ -1338,29 +1390,27 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      grouping etht-svc-access-parameters {
        description
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 24]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          "ETH services access parameters";
 
        leaf access-node-id {
          type te-types:te-node-id;
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 25]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          description
            "The identifier of the access node in
             the ETH TE topology.";
        }
-
        leaf access-node-uri {
          type nw:node-id;
          description
            "The identifier of the access node in the network.";
        }
-
        leaf access-ltp-id {
          type te-types:te-tp-id;
          description
@@ -1368,7 +1418,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
             together with access-node-id to identify the
             access LTP.";
        }
-
        leaf access-ltp-uri {
          type nt:tp-id;
          description
@@ -1376,7 +1425,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
            used together with access-node-uri to identify the
            access LTP.";
        }
-
        leaf access-role {
          type identityref {
            base etht-types:access-role;
@@ -1394,14 +1442,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
        container state {
          config false;
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 25]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          description
          "The state is used to monitor the status of service. ";
          leaf operational-state {
@@ -1410,6 +1450,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
            }
            description
            "Indicating the operational state of client signal. ";
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 26]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          }
          leaf provisioning-state {
            type identityref {
@@ -1429,6 +1477,7 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description
            "Performance Monitoring for the service. ";
        }
+
 
      }
 
@@ -1450,14 +1499,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
                "ETH Tunnel list in native Ethernet scenario.";
              uses tunnels-grouping;
            }
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 26]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          }
 
          case frame-base {
@@ -1465,6 +1506,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
              key name;
              description
                "OTN Tunnel list in Frame-based scenario.";
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 27]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
              uses tunnels-grouping;
            }
          }
@@ -1506,14 +1555,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          type uint64;
          description
            "Low threshold of packet sending rate in kbps.";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 27]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        }
        leaf receiving-rate-high {
          type uint64;
@@ -1521,6 +1562,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
            "High threshold of packet receiving rate in kbps.";
        }
        leaf receiving-rate-low {
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 28]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          type uint64;
          description
            "Low threshold of packet receiving rate in kbps.";
@@ -1562,14 +1611,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          "Configuraiton parameters for Ethernet services.";
 
        leaf etht-svc-name {
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 28]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          type string;
          description
            "Name of the ETH service.";
@@ -1577,10 +1618,17 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
        leaf etht-svc-title {
          type string;
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 29]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          description
            "The Identifier of the ETH service.";
        }
-
        leaf user-label {
          type string;
          description
@@ -1615,17 +1663,10 @@ Internet-Draft          Client Signals YANG Model           October 2023
        uses te-types:te-topology-identifier;
 
        uses resilience-grouping;
+
        list etht-svc-end-points {
          key etht-svc-end-point-name;
          description
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 29]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
            "The logical end point for the ETH service. ";
          uses etht-svc-end-point-grouping;
        }
@@ -1633,9 +1674,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
        container alarm-shreshold {
          description "threshold configuration for the E2E client signal";
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 30]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          uses alarm-shreshold-grouping;
        }
-
        container underlay {
          description
            "The unterlay tunnel information that carrying the
@@ -1674,14 +1722,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description
            "Time of ETH service creation.";
        }
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 30]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        leaf last-updated-time {
          type yang:date-and-time;
          description
@@ -1690,6 +1730,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
        leaf created-by {
           type string;
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 31]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
           description
             "The client signal is created by whom,
              can be a system or staff ID.";
@@ -1716,7 +1764,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
           uses error-info-grouping;
         }
      }
-
      grouping pm-state-grouping {
        leaf latency {
          description
@@ -1725,31 +1772,27 @@ Internet-Draft          Client Signals YANG Model           October 2023
          units microsecond;
        }
      }
-
      grouping error-info-grouping {
        leaf error-code {
          description "error code";
          type uint16;
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 31]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        }
-
        leaf error-description {
          description "detail message of error";
          type string;
        }
-
        leaf error-timestamp {
          description "the date and time error is happened";
          type yang:date-and-time;
        }
      }
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 32]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
 
      grouping alarm-shreshold-grouping {
        leaf latency-threshold {
@@ -1758,7 +1801,7 @@ Internet-Draft          Client Signals YANG Model           October 2023
          should be triggered.";
          type uint32;
          units microsecond;
-       }
+        }
      }
 
      /*
@@ -1787,13 +1830,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          }
        }
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 32]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        list etht-svc-instances {
          key etht-svc-name;
          description
@@ -1805,6 +1841,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
            config false;
            description
              "Ethernet Service states.";
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 33]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
 
            uses etht-svc-instance-state;
          }
@@ -1842,14 +1886,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          type string;
          description
          "The description of the logical end point of ETH service. ";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 33]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        }
 
        leaf topology-role {
@@ -1862,6 +1898,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
        }
 
        container resilience {
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 34]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          description
          "Placeholder for resilience configuration, for future study. ";
        }
@@ -1898,14 +1942,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
            "Access classification can be port-based or
             VLAN based.";
 
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 34]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          case port-classification {
            /* no additional information */
          }
@@ -1918,10 +1954,18 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
              uses vlan-classification;
            }
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 35]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
            container second-tag {
              must
-               '../outer-tag/tag-type = "etht-types:classify-s-vlan" and ' +
-               'tag-type = "etht-types:classify-c-vlan"'
+               '../outer-tag/tag-type = "etht-types:classify-s-vlan"' +
+               ' and tag-type = "etht-types:classify-c-vlan"'
              {
                error-message
                  "
@@ -1955,13 +1999,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description "Identify a split horizon group";
        }
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 35]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        uses bandwidth-profiles;
 
        container vlan-operations {
@@ -1973,6 +2010,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
               asymmetrical";
            case symmetrical {
              container symmetrical-operation {
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 36]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
                uses vlan-operations;
                description
                  "Symmetrical operations.
@@ -2010,14 +2055,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          type uint64;
          description
          "The upperbound of sending rate.";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 36]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        }
 
        leaf sending-rate-low {
@@ -2029,6 +2066,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
        leaf receiving-rate-high {
          type uint64;
          description
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 37]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          "The upperbound of receiving rate.";
        }
 
@@ -2066,14 +2111,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          "Receive label information in PW. ";
        }
 
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 37]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        leaf encapsulation-type {
          type identityref {
            base etht-types:encapsulation-type;
@@ -2085,6 +2122,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
        leaf oper-status {
          type identityref {
            base te-types:tunnel-state-type;
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 38]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          }
          config false;
          description
@@ -2123,13 +2168,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      }
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 38]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
      grouping pw-segment-named-or-value-bandwidth-profile {
        description
          "A grouping to configure a bandwdith profile either by
@@ -2140,6 +2178,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
            "Whether the bandwidth profile is named or defined by value";
          case named {
            description
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 39]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
              "Named bandwidth profile.";
            leaf bandwidth-profile-name {
              type leafref {
@@ -2178,14 +2224,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
        }
        leaf switching-type {
          type identityref {
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 39]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
            base te-types:switching-capabilities;
          }
          description "LSP switching type";
@@ -2195,12 +2233,21 @@ Internet-Draft          Client Signals YANG Model           October 2023
    }
    <CODE ENDS>
 
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 40]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
 5.2.  YANG Code for ETH type
 
    This module references a few documents including [RFC2697],
    [RFC2698], [RFC4115], [IEEE802.1ad], [IEEE802.1q] and [MEF10].
 
-   <CODE BEGINS> file "ietf-eth-tran-types@2023-10-23.yang"
+   <CODE BEGINS> file "ietf-eth-tran-types@2023-12-15.yang"
    module ietf-eth-tran-types {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-types";
@@ -2217,13 +2264,9 @@ Internet-Draft          Client Signals YANG Model           October 2023
            Haomian Zheng (zhenghaomian@huawei.com);
            Italo Busi (italo.busi@huawei.com);
            Aihua Guo (aihuaguo.ietf@gmail.com);
-           Anton Snitser (antons@sedonasys.com);
+           Anton Snitser (asnizar@cisco.com);
            Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-           Yunbin Xu (xuyunbin@caict.ac.cn);
-           Yang Zhao (zhaoyangyjy@chinamobile.com);
-           Xufeng Liu (xufeng.liu.ietf@gmail.com);
-           Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
-           Chaode Yu (yuchaode@huawei.com)
+           Chaode Yu (yuchaode@huawei.com);
        ";
 
      description
@@ -2234,14 +2277,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
         Copyright (c) 2019 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 40]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
         Redistribution and use in source and binary forms, with or
         without modification, is permitted pursuant to, and subject
         to the license terms contained in, the Simplified BSD License
@@ -2251,10 +2286,18 @@ Internet-Draft          Client Signals YANG Model           October 2023
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-     revision 2023-10-23 {
+     revision 2023-12-15 {
        description
          "version -05 as a WG draft";
        reference
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 41]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          "draft-ietf-ccamp-client-signal-yang";
      }
 
@@ -2290,14 +2333,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          "Port classification.";
      }
 
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 41]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
      identity vlan-classification {
        base service-classification-type;
        description
@@ -2311,6 +2346,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      identity classify-c-vlan {
        base eth-vlan-tag-classify;
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 42]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
        description
          "Classify 802.1Q Customer VLAN tag.
           Only C-tag type is accepted";
@@ -2347,13 +2390,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          "RFC 2697 Bandwidth Profile";
      }
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 42]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
      identity rfc-2698-bwp {
        base bandwidth-profile-type;
        description
@@ -2365,6 +2401,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
        description
          "RFC 4115 Bandwidth Profile";
      }
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 43]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
 
      identity service-type {
        description
@@ -2402,14 +2446,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      identity planned {
        base lifecycle-status;
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 43]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        description
          "Planned.";
      }
@@ -2422,6 +2458,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      /*
       * Type Definitions
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 44]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
       */
 
      typedef eth-tag-type {
@@ -2458,14 +2502,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
           ascending order, between 1 and 4094.
           This type is used to match an ordered list of VLAN Ids, or
           contiguous ranges of VLAN Ids. Valid VLAN Ids must be in the
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 44]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
           range 1 to 4094, and included in the list in non overlapping
           ascending order.
 
@@ -2478,6 +2514,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
        }
        description
          "Identifies a specific Bandwidth Profile type.";
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 45]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
      }
 
      typedef service-type {
@@ -2514,14 +2558,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description
            "Committed Information Rate in Kbps";
        }
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 45]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        leaf CBS {
          type uint64;
          description
@@ -2534,6 +2570,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
          must
            '../bw-profile-type = "mef-10-bwp" or ' +
            '../bw-profile-type = "rfc-2698-bwp" or ' +
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 46]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
            '../bw-profile-type = "rfc-4115-bwp"'
 
          must
@@ -2557,7 +2601,8 @@ Internet-Draft          Client Signals YANG Model           October 2023
        }
        leaf coupling-flag {
          type boolean;
-         /* Need to indicate that Coupling Flag is defined only for MEF 10
+         /* Need to indicate that Coupling Flag is defined only for
+            MEF 10
 
          must
            '../bw-profile-type = "mef-10-bwp"'
@@ -2570,14 +2615,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
      identity topology-role {
        description
          "The role of underlay topology: e.g., hub, spoke,
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 46]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          any-to-any.";
      }
 
@@ -2589,14 +2626,24 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      identity access-role {
        description
-       "Indicating whether the access is a working or protection access.";
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 47]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+       "Indicating whether the access is a working or protection
+       access.";
      }
 
      identity root-primary {
        base access-role;
        description
-         "Designates the primary root UNI of an E-Tree service, and may also
-              designates the UNI access role of E-LINE and E-LAN service.";
+         "Designates the primary root UNI of an E-Tree service, and may
+         also designates the UNI access role of E-LINE and E-LAN
+         service.";
      }
 
      identity root-backup {
@@ -2611,11 +2658,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          "Designates the leaf UNI of an E-Tree service.";
      }
 
-     identity leaf-edge {
-       base access-role;
-       description "";
-     }
-
      identity performance {
        description
        "Placeholder for performance information, for future study.";
@@ -2623,17 +2665,11 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      identity encapsulation-type {
        description
-       "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
+       "Indicating how the service is encapsulated (to PW), e.g, raw or
+       tag. ";
      }
+
      grouping pw-segement-bandwidth-profile-grouping {
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 47]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        description
          "bandwidth profile grouping for PW segment. ";
        leaf bandwidth-profile-type {
@@ -2646,6 +2682,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description
            "Committed Information Rate in Kbps";
        }
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 48]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
        leaf CBS {
          type uint64;
          description
@@ -2682,14 +2726,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
              range "0..10000000000";
            }
            units "Kbps";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 48]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
            description
              "Available bandwith value expressed in kilobits per second";
          }
@@ -2702,6 +2738,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
            type etht-types:eth-tag-type;
            description "VLAN tag type.";
          }
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 49]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          leaf priority {
            type uint8;
            description "priority.";
@@ -2739,151 +2783,144 @@ Internet-Draft          Client Signals YANG Model           October 2023
    This module imports typedefs and modules from [RFC6991],
    [I-D.ietf-ccamp-otn-tunnel-model], [RFC8776].
 
+   <CODE BEGINS> file "ietf-trans-client-service@2023-12-15.yang"
+    module ietf-trans-client-service {
+      /* TODO: FIXME */
+        yang-version 1.1;
 
-
-Zheng, et al.             Expires 25 April 2024                [Page 49]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
-   <CODE BEGINS> file "ietf-trans-client-service@2023-10-23.yang"
-   module ietf-trans-client-service {
-     /* TODO: FIXME */
-       yang-version 1.1;
-
-     namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-service";
-     prefix "clntsvc";
+      namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-service";
+      prefix "clntsvc";
 
      import ietf-network {
        prefix "nw";
        reference "RFC8345 - A YANG Data Model for Network Topologies";
-     }
 
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 50]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+     }
      import ietf-network-topology {
        prefix "nt";
        reference "RFC8345 - A YANG Data Model for Network Topologies";
      }
+      import ietf-te-types {
+        prefix "te-types";
+        reference "RFC 8776 - Traffic Engineering Common YANG Types";
+      }
 
-     import ietf-te-types {
-       prefix "te-types";
-       reference "RFC 8776 - Traffic Engineering Common YANG Types";
+      import ietf-layer1-types {
+        prefix "layer1-types";
+        reference "RFC ZZZZ - A YANG Data Model for Layer 1 Types";
+      }
+
+      import ietf-yang-types {
+        prefix "yang";
+        reference "RFC 6991 - Common YANG Data Types";
+      }
+
+     import ietf-trans-client-svc-types {
+       prefix "clntsvc-types";
+       reference "RFC XXXX - A YANG Data Model for
+                  Transport Network Client Signals";
      }
 
-     import ietf-layer1-types {
-       prefix "layer1-types";
-       reference "RFC ZZZZ - A YANG Data Model for Layer 1 Types";
-     }
+      organization
+        "Internet Engineering Task Force (IETF) CCAMP WG";
+      contact
+        "
+          ID-draft editor:
+            Haomian Zheng (zhenghaomian@huawei.com);
+            Aihua Guo (aihuaguo.ietf@gmail.com);
+            Italo Busi (italo.busi@huawei.com);
+            Anton Snitser (asnizar@cisco.com);
+            Francesco Lazzeri (francesco.lazzeri@ericsson.com);
+            Chaode Yu (yuchaode@huawei.com);
+        ";
 
-     import ietf-yang-types {
-       prefix "yang";
-       reference "RFC 6991 - Common YANG Data Types";
-     }
+      description
+        "This module defines a YANG data model for describing
+         transport network client services. The model fully conforms
+         to the Network Management Datastore Architecture (NMDA).
 
-    import ietf-trans-client-svc-types {
-      prefix "clntsvc-types";
-      reference "RFC XXXX - A YANG Data Model for
-                 Transport Network Client Signals";
-    }
+         Copyright (c) 2021 IETF Trust and the persons
+         identified as authors of the code.  All rights reserved.
 
-     organization
-       "Internet Engineering Task Force (IETF) CCAMP WG";
-     contact
-       "
-         ID-draft editor:
-           Haomian Zheng (zhenghaomian@huawei.com);
-           Aihua Guo (aihuaguo.ietf@gmail.com);
-           Italo Busi (italo.busi@huawei.com);
-           Anton Snitser (antons@sedonasys.com);
+         Redistribution and use in source and binary forms, with or
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 50]
+Zheng, et al.             Expires 17 June 2024                 [Page 51]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-           Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-           Yunbin Xu (xuyunbin@caict.ac.cn);
-           Yang Zhao (zhaoyangyjy@chinamobile.com);
-           Xufeng Liu (Xufeng_Liu@jabil.com);
-           Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
-           Chaode Yu (yuchaode@huawei.com);
-       ";
+         without modification, is permitted pursuant to, and subject
+         to the license terms contained in, the Simplified BSD License
+         set forth in Section 4.c of the IETF Trust's Legal Provisions
+         Relating to IETF Documents
+         (https://trustee.ietf.org/license-info).
+         This version of this YANG module is part of RFC XXXX; see
+         the RFC itself for full legal notices.";
 
-     description
-       "This module defines a YANG data model for describing
-        transport network client services. The model fully conforms
-        to the Network Management Datastore Architecture (NMDA).
+     revision 2023-12-15 {
+        description
+          "version -04 as a WG document";
+        reference
+          "draft-ietf-ccamp-client-signal-yang";
+      }
 
-        Copyright (c) 2021 IETF Trust and the persons
-        identified as authors of the code.  All rights reserved.
+      /*
+       * Groupings
+       */
+      grouping client-svc-access-parameters {
+        description
+          "Transport network client signals access parameters";
 
-        Redistribution and use in source and binary forms, with or
-        without modification, is permitted pursuant to, and subject
-        to the license terms contained in, the Simplified BSD License
-        set forth in Section 4.c of the IETF Trust's Legal Provisions
-        Relating to IETF Documents
-        (https://trustee.ietf.org/license-info).
-        This version of this YANG module is part of RFC XXXX; see
-        the RFC itself for full legal notices.";
-     revision 2023-10-23 {
-       description
-         "version -04 as a WG document";
-       reference
-         "draft-ietf-ccamp-client-signal-yang";
-     }
-
-     /*
-      * Groupings
-      */
-     grouping client-svc-access-parameters {
-       description
-         "Transport network client signals access parameters";
-
-       leaf access-node-id {
-         type te-types:te-node-id;
-         description
+        leaf access-node-id {
+          type te-types:te-node-id;
+          description
            "The identifier of the access node in the TE topology.";
        }
-
        leaf access-node-uri {
          type nw:node-id;
          description
            "The identifier of the access node in the network.";
+        }
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 51]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
-       }
-
-       leaf access-ltp-id {
-         type te-types:te-tp-id;
-         description
+        leaf access-ltp-id {
+          type te-types:te-tp-id;
+          description
            "The TE link termination point identifier in TE topology, used
            together with access-node-id to identify the access LTP.";
        }
-
        leaf access-ltp-uri {
          type nt:tp-id;
          description
            "The link termination point identifier in network topology,
-           used together with access-node-uri to identify the access LTP";
-       }
+           used together with access-node-uri to identify the access
+           LTP";
+        }
 
-       leaf client-signal {
-         type identityref {
-           base layer1-types:client-signal;
-         }
-         description
-           "Identify the client signal type associated with this port";
-       }
+        leaf client-signal {
 
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 52]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+          type identityref {
+            base layer1-types:client-signal;
+          }
+          description
+            "Identify the client signal type associated with this port";
+        }
      }
-
      grouping pm-state-grouping {
        leaf latency {
          description "latency value of the E2E client signal service";
@@ -2891,7 +2928,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
          units microsecond;
        }
      }
-
      grouping error-info-grouping {
        leaf error-code {
          description "error code";
@@ -2902,21 +2938,11 @@ Internet-Draft          Client Signals YANG Model           October 2023
          description "detail message of error";
          type string;
        }
-
        leaf error-timestamp {
          description "the date and time error is happened";
          type yang:date-and-time;
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 52]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
        }
      }
-
      grouping alarm-shreshold-grouping {
        leaf latency-threshold {
          description "a threshold for the E2E client signal service's
@@ -2925,220 +2951,213 @@ Internet-Draft          Client Signals YANG Model           October 2023
          type uint32;
          units microsecond;
        }
-     }
+      }
 
-     grouping client-svc-tunnel-parameters {
-       description
-         "Transport network client signals tunnel parameters";
+      grouping client-svc-tunnel-parameters {
+        description
+          "Transport network client signals tunnel parameters";
 
-       leaf tunnel-name {
-         type string;
-         description
-           "TE tunnel instance name.";
+        leaf tunnel-name {
+          type string;
+          description
+            "TE tunnel instance name.";
+        }
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 53]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+      }
+
+      grouping  client-svc-instance-config {
+        description
+          "Configuration parameters for client services.";
+        leaf client-svc-name {
+          type string;
+          description
+            "Identifier of the p2p transport network client signals.";
+        }
+
+        leaf client-svc-title {
+          type string;
+          description
+            "Name of the p2p transport network client signals.";
        }
-     }
-
-     grouping  client-svc-instance-config {
-       description
-         "Configuration parameters for client services.";
-       leaf client-svc-name {
-         type string;
-         description
-           "Identifier of the p2p transport network client signals.";
-       }
-
-       leaf client-svc-title {
-         type string;
-         description
-           "Name of the p2p transport network client signals.";
-       }
-
        leaf user-label {
          type string;
          description
            "Alias of the p2p transport network client signals.";
-       }
+        }
 
-       leaf client-svc-descr {
-         type string;
-         description
+        leaf client-svc-descr {
+          type string;
+          description
+            "Description of the transport network client signals.";
+        }
+
+        leaf client-svc-customer {
+          type string;
+          description
+            "Customer of the transport network client signals.";
+        }
+
+        container resilience {
+          description "Place holder for resilience functionalities";
+        }
+
+        uses te-types:te-topology-identifier;
+
+        leaf admin-status {
+          type identityref {
+            base te-types:tunnel-admin-state-type;
+          }
+          default te-types:tunnel-admin-state-up;
+          description "Client signals administrative state.";
+        }
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 53]
+
+Zheng, et al.             Expires 17 June 2024                 [Page 54]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-           "Description of the transport network client signals.";
-       }
+        container src-access-ports {
+          description
+            "Source access port of a client signal.";
+          uses client-svc-access-parameters;
+        }
 
-       leaf client-svc-customer {
-         type string;
-         description
-           "Customer of the transport network client signals.";
-       }
-
-       container resilience {
-         description "Place holder for resilience functionalities";
-       }
-
-       uses te-types:te-topology-identifier;
-
-       leaf admin-status {
-         type identityref {
-           base te-types:tunnel-admin-state-type;
-         }
-         default te-types:tunnel-admin-state-up;
-         description "Client signals administrative state.";
-       }
-
-       container src-access-ports {
-         description
-           "Source access port of a client signal.";
-         uses client-svc-access-parameters;
-       }
-       container dst-access-ports {
-         description
-           "Destination access port of a client signal.";
-         uses client-svc-access-parameters;
-       }
+        container dst-access-ports {
+          description
+            "Destination access port of a client signal.";
+          uses client-svc-access-parameters;
+        }
 
        container pm-state {
          config false;
          description "PM data of E2E client signal";
          uses pm-state-grouping;
        }
-
        container error-info {
          config false;
          description "error messages of configuration";
          uses error-info-grouping;
        }
-
        container alarm-shreshold {
          description "threshold configuration for the E2E client signal";
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 54]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          uses alarm-shreshold-grouping;
        }
+        leaf direction {
+          type identityref {
+            base clntsvc-types:direction;
+          }
+          description "Uni-dir or Bi-dir for the client signal.";
+        }
 
-       leaf direction {
-         type identityref {
-           base clntsvc-types:direction;
-         }
-         description "Uni-dir or Bi-dir for the client signal.";
-       }
+        list svc-tunnels {
+          key tunnel-name;
+          description
+            "List of the TE Tunnels supporting the client signal.";
+          uses client-svc-tunnel-parameters;
+        }
+      }
 
-       list svc-tunnels {
-         key tunnel-name;
-         description
-           "List of the TE Tunnels supporting the client signal.";
-         uses client-svc-tunnel-parameters;
-       }
-     }
-
-     grouping  client-svc-instance-state {
-       description
-         "State parameters for client services.";
-       leaf operational-state {
-         type identityref {
-               base te-types:tunnel-state-type;
-         }
-         config false;
-         description "Client signal operational state.";
-       }
-       leaf provisioning-state {
-         type identityref {
-               base te-types:lsp-state-type;
-         }
-         config false;
-         description "Client signal provisioning state.";
-       }
-       leaf creation-time {
-         type yang:date-and-time;
-         config false;
-         description "The time of the client signal be created.";
-       }
-       leaf last-updated-time {
-         type yang:date-and-time;
-         config false;
-         description "The time of the client signal's latest update.";
-       }
-       leaf created-by {
-         type string;
-         config false;
+      grouping  client-svc-instance-state {
+        description
+          "State parameters for client services.";
+        leaf operational-state {
+          type identityref {
+                base te-types:tunnel-state-type;
+          }
 
 
 
-Zheng, et al.             Expires 25 April 2024                [Page 55]
+Zheng, et al.             Expires 17 June 2024                 [Page 55]
 
-Internet-Draft          Client Signals YANG Model           October 2023
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
-         description
-           "The client signal is created by whom,
-            can be a system or staff ID.";
-       }
-       leaf last-updated-by {
-         type string;
-         config false;
-         description
-           "The client signal is last updated by whom,
-            can be a system or staff ID.";
-       }
-       leaf owned-by {
-         type string;
-         config false;
-         description
-           "The client signal is owned by whom,
-            can be a system ID.";
-       }
-     }
+          config false;
+          description "Client signal operational state.";
+        }
+        leaf provisioning-state {
+          type identityref {
+                base te-types:lsp-state-type;
+          }
+          config false;
+          description "Client signal provisioning state.";
+        }
+        leaf creation-time {
+          type yang:date-and-time;
+          config false;
+          description "The time of the client signal be created.";
+        }
+        leaf last-updated-time {
+          type yang:date-and-time;
+          config false;
+          description "The time of the client signal's latest update.";
+        }
+        leaf created-by {
+          type string;
+          config false;
+          description
+            "The client signal is created by whom,
+             can be a system or staff ID.";
+        }
+        leaf last-updated-by {
+          type string;
+          config false;
+          description
+            "The client signal is last updated by whom,
+             can be a system or staff ID.";
+        }
+        leaf owned-by {
+          type string;
+          config false;
+          description
+            "The client signal is owned by whom,
+             can be a system ID.";
+        }
+      }
 
-     /*
-      * Data nodes
-      */
+      /*
+       * Data nodes
+       */
 
-     container client-svc {
-       description
-         "Transport client services.";
+      container client-svc {
 
-       list client-svc-instances {
-         key client-svc-name;
-         description
-           "The list of p2p transport client service instances";
 
-             uses client-svc-instance-config;
-             uses client-svc-instance-state;
-       }
-     }
-   }
+
+Zheng, et al.             Expires 17 June 2024                 [Page 56]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
+        description
+          "Transport client services.";
+
+        list client-svc-instances {
+          key client-svc-name;
+          description
+            "The list of p2p transport client service instances";
+
+              uses client-svc-instance-config;
+              uses client-svc-instance-state;
+        }
+      }
+    }
    <CODE ENDS>
 
 5.4.  Other Client Signal Types YANG Code
 
    This module defines the types for other client signal types.
 
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 56]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
-   <CODE BEGINS> file "ietf-trans-client-svc-types@2023-10-23.yang"
+   <CODE BEGINS> file "ietf-trans-client-svc-types@2023-12-15.yang"
    module ietf-trans-client-svc-types {
      namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
      prefix "clntsvc-types";
@@ -3151,12 +3170,8 @@ Internet-Draft          Client Signals YANG Model           October 2023
             Haomian Zheng (zhenghaomian@huawei.com);
             Aihua Guo (aihuaguo.ietf@gmail.com);
             Italo Busi (italo.busi@huawei.com);
-            Anton Snitser (antons@sedonasys.com);
+            Anton Snitser (asnizar@cisco.com);
             Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-            Yunbin Xu (xuyunbin@caict.ac.cn);
-            Yang Zhao (zhaoyangyjy@chinamobile.com);
-            Xufeng Liu (Xufeng_Liu@jabil.com);
-            Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
             Chaode Yu (yuchaode@huawei.com);
         ";
 
@@ -3171,13 +3186,21 @@ Internet-Draft          Client Signals YANG Model           October 2023
          Redistribution and use in source and binary forms, with or
          without modification, is permitted pursuant to, and subject
          to the license terms contained in, the Simplified BSD License
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 57]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
          set forth in Section 4.c of the IETF Trust's Legal Provisions
          Relating to IETF Documents
          (https://trustee.ietf.org/license-info).
          This version of this YANG module is part of RFC XXXX; see
          the RFC itself for full legal notices.";
 
-      revision 2023-10-23 {
+      revision 2023-12-15 {
         description
           "version -01 as a WG document";
         reference
@@ -3186,14 +3209,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
      identity direction {
        description
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 57]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
          "Direction information of Client Signal.";
      }
 
@@ -3217,6 +3232,24 @@ Internet-Draft          Client Signals YANG Model           October 2023
    [Note to the RFC Editor - remove this section before publication, as
    well as remove the reference to RFC [RFC7942].]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 58]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    This section records the status of known implementations of the
    protocol defined by this specification at the time of posting of this
    Internet-Draft, and is based on a proposal described in [RFC7942].
@@ -3236,19 +3269,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
    and feedback that have made the implemented protocols more mature.
    It is up to the individual working groups to use this information as
    they see fit".
-
-
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 58]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
 6.1.  Usage of the ETH Service YANG Model on ONAP
 
@@ -3278,32 +3298,18 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
    *  Contact: henry.yu1@huawei.com
 
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 59]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
 7.  IANA Considerations
 
    It is proposed that IANA should assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 59]
-
-Internet-Draft          Client Signals YANG Model           October 2023
 
 
          URI: urn:ietf:params:xml:ns:yang:ietf-eth-tran-service
@@ -3325,6 +3331,35 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
    This document registers following YANG modules in the YANG Module
    Names registry [RFC6020].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 60]
+
+Internet-Draft          Client Signals YANG Model          December 2023
 
 
    name:         ietf-eth-tran-service
@@ -3352,16 +3387,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
                            Network Client Signals
 
 
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 60]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
 8.  Manageability Considerations
 
    TBD.
@@ -3383,6 +3408,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
    data nodes without proper protection can have a negative effect on
    network operations.
 
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 61]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
 10.  Acknowledgements
 
    We would like to thank Igor Bryskin and Daniel King for their
@@ -3390,7 +3425,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 11.  Contributors
 
-   Yanlei Zheng China Unicom Email: zhengyl@dimpt.com
+   Yunbin Xu CAICT Email: xuyunbin@caict.ac.cn
+
+   Yang Zhao China Mobile Email: zhaoyangyjy@chinamobile.com
+
+   Xufeng Liu Volta Networks Email: xufeng.liu.ietf@gmail.com
+
+   Giuseppe Fioccola Huawei Technologies Email:
+   giuseppe.fioccola@huawei.com
+
+   Yanlei Zheng China Unicom Email: zhengyanlei@chinaunicom.cn
 
    Zhe Liu Huawei Technologies, Email: liuzhe123@huawei.com
 
@@ -3403,20 +3447,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 12.  References
 
 12.1.  Normative References
-
-
-
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 61]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
    [I-D.ietf-ccamp-l1csm-yang]
               Lee, Y., Lee, K., Zheng, H., de Dios, O. G., and D.
@@ -3436,6 +3466,14 @@ Internet-Draft          Client Signals YANG Model           October 2023
    [I-D.ietf-ccamp-otn-topo-yang]
               Zheng, H., Busi, I., Liu, X., Belotti, S., and O. G. de
               Dios, "A YANG Data Model for Optical Transport Network
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 62]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
               Topology", Work in Progress, Internet-Draft, draft-ietf-
               ccamp-otn-topo-yang-17, 10 July 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
@@ -3444,9 +3482,9 @@ Internet-Draft          Client Signals YANG Model           October 2023
    [I-D.ietf-ccamp-otn-tunnel-model]
               Zheng, H., Busi, I., Belotti, S., Lopez, V., and Y. Xu,
               "OTN Tunnel YANG Model", Work in Progress, Internet-Draft,
-              draft-ietf-ccamp-otn-tunnel-model-19, 16 October 2023,
+              draft-ietf-ccamp-otn-tunnel-model-20, 24 November 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              otn-tunnel-model-19>.
+              otn-tunnel-model-20>.
 
    [ITU-T_G.875]
               International Telecommunication Union, "Optical transport
@@ -3463,16 +3501,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <https://www.rfc-editor.org/info/rfc6241>.
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 62]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
 
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
@@ -3491,6 +3519,16 @@ Internet-Draft          Client Signals YANG Model           October 2023
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 63]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
 
    [RFC8294]  Liu, X., Qu, Y., Lindem, A., Hopps, C., and L. Berger,
               "Common YANG Data Types for the Routing Area", RFC 8294,
@@ -3523,13 +3561,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
               Marker", RFC 2698, DOI 10.17487/RFC2698, September 1999,
               <https://www.rfc-editor.org/info/rfc2698>.
 
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 63]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/info/rfc3688>.
@@ -3543,6 +3574,17 @@ Internet-Draft          Client Signals YANG Model           October 2023
               Code: The Implementation Status Section", BCP 205,
               RFC 7942, DOI 10.17487/RFC7942, July 2016,
               <https://www.rfc-editor.org/info/rfc7942>.
+
+
+
+
+
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 64]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
 
    [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
               "YANG Data Model for L3VPN Service Delivery", RFC 8299,
@@ -3574,18 +3616,6 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 Authors' Addresses
 
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 64]
-
-Internet-Draft          Client Signals YANG Model           October 2023
-
-
    Haomian Zheng
    Huawei Technologies
    H1 XiliuBeipo Village, Songshan Lake
@@ -3605,41 +3635,21 @@ Internet-Draft          Client Signals YANG Model           October 2023
    Email: Italo.Busi@huawei.com
 
 
+
+
+Zheng, et al.             Expires 17 June 2024                 [Page 65]
+
+Internet-Draft          Client Signals YANG Model          December 2023
+
+
    Anton Snitser
-   Sedona
-   Email: antons@sedonasys.com
+   Cisco
+   Email: asnizar@cisco.com
 
 
    Francesco Lazzeri
    Ericsson
    Email: francesco.lazzeri@ericsson.com
-
-
-   Yunbin Xu
-   CAICT
-   Email: xuyunbin@caict.ac.cn
-
-
-   Yang Zhao
-   China Mobile
-   Email: zhaoyangyjy@chinamobile.com
-
-
-   Xufeng Liu
-   Volta Networks
-   Email: xufeng.liu.ietf@gmail.com
-
-
-   Giuseppe Fioccola
-   Huawei Technologies
-   Email: giuseppe.fioccola@huawei.com
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 65]
-
-Internet-Draft          Client Signals YANG Model           October 2023
 
 
    Chaode Yu
@@ -3683,14 +3693,4 @@ Internet-Draft          Client Signals YANG Model           October 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-Zheng, et al.             Expires 25 April 2024                [Page 66]
+Zheng, et al.             Expires 17 June 2024                 [Page 66]
