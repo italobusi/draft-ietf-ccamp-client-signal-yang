@@ -3,11 +3,20 @@ module ietf-eth-tran-service {
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
   prefix "ethtsvc";
+
   import ietf-yang-types {
     prefix "yang";
     reference "RFC 6991 - Common YANG Data Types";
   }
 
+  import ietf-network {
+    prefix "nw";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
+  import ietf-network-topology {
+    prefix "nt";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
   import ietf-te-types {
     prefix "te-types";
     reference "RFC 8776 - Traffic Engineering Common YANG Types";
@@ -42,12 +51,9 @@ module ietf-eth-tran-service {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo.ietf@gmail.com);
-        Anton Snitser (antons@sedonasys.com);0
+        Anton Snitser (asnizar@cisco.com);
         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Yunbin Xu (xuyunbin@caict.ac.cn);
-        Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (xufeng.liu.ietf@gmail.com);
-        Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+        Chaode Yu (yuchaode@huawei.com);
     ";
 
   description
@@ -67,7 +73,7 @@ module ietf-eth-tran-service {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2021-01-11 {
+  revision 2023-12-15 {
     description
       "version -04 as an WG document";
     reference
@@ -195,6 +201,7 @@ module ietf-eth-tran-service {
 
         description
           "The second outermost VLAN tag to push/swap.";
+
         uses vlan-write;
       }
     }
@@ -273,7 +280,12 @@ module ietf-eth-tran-service {
       type te-types:te-node-id;
       description
         "The identifier of the access node in
-         the ETH topology.";
+         the ETH TE topology.";
+    }
+    leaf access-node-uri {
+      type nw:node-id;
+      description
+        "The identifier of the access node in the network.";
     }
     leaf access-ltp-id {
       type te-types:te-tp-id;
@@ -281,6 +293,13 @@ module ietf-eth-tran-service {
         "The TE link termination point identifier, used
          together with access-node-id to identify the
          access LTP.";
+    }
+    leaf access-ltp-uri {
+      type nt:tp-id;
+      description
+        "The link termination point identifier in network topology,
+        used together with access-node-uri to identify the
+        access LTP.";
     }
     leaf access-role {
       type identityref {
@@ -326,6 +345,7 @@ module ietf-eth-tran-service {
       description
         "Performance Monitoring for the service. ";
     }
+
 
   }
 
@@ -453,6 +473,11 @@ module ietf-eth-tran-service {
       description
         "The Identifier of the ETH service.";
     }
+    leaf user-label {
+      type string;
+      description
+        "Alias of the ETH service.";
+    }
 
     leaf etht-svc-descr {
       type string;
@@ -482,6 +507,7 @@ module ietf-eth-tran-service {
     uses te-types:te-topology-identifier;
 
     uses resilience-grouping;
+
     list etht-svc-end-points {
       key etht-svc-end-point-name;
       description
@@ -489,6 +515,11 @@ module ietf-eth-tran-service {
       uses etht-svc-end-point-grouping;
     }
 
+
+    container alarm-shreshold {
+      description "threshold configuration for the E2E client signal";
+      uses alarm-shreshold-grouping;
+    }
     container underlay {
       description
         "The unterlay tunnel information that carrying the
@@ -550,6 +581,46 @@ module ietf-eth-tran-service {
        description
          "The client signal is last updated by whom,
           can be a system ID.";
+     }
+     container pm-state {
+       description
+         "PM data of E2E Ethernet service";
+       uses pm-state-grouping;
+     }
+     container error-info {
+       description "error messages of configuration";
+       uses error-info-grouping;
+     }
+  }
+  grouping pm-state-grouping {
+    leaf latency {
+      description
+        "latency value of the E2E Ethernet service";
+      type uint32;
+      units microsecond;
+    }
+  }
+  grouping error-info-grouping {
+    leaf error-code {
+      description "error code";
+      type uint16;
+    }
+    leaf error-description {
+      description "detail message of error";
+      type string;
+    }
+    leaf error-timestamp {
+      description "the date and time error is happened";
+      type yang:date-and-time;
+    }
+  }
+  grouping alarm-shreshold-grouping {
+    leaf latency-threshold {
+      description "a threshold for the E2E client signal service's
+      latency. Once the latency value exceed this threshold, an alarm
+      should be triggered.";
+      type uint32;
+      units microsecond;
      }
   }
 
@@ -689,8 +760,8 @@ module ietf-eth-tran-service {
         }
         container second-tag {
           must
-            '../outer-tag/tag-type = "etht-types:classify-s-vlan" and ' +
-            'tag-type = "etht-types:classify-c-vlan"'
+            '../outer-tag/tag-type = "etht-types:classify-s-vlan"' +
+            ' and tag-type = "etht-types:classify-c-vlan"'
           {
             error-message
               "

@@ -12,7 +12,7 @@
 <?rfc compact="yes"?> 
 <?rfc subcompact="no"?> 
 
-<rfc category="std" docName="draft-ietf-ccamp-client-signal-yang-05" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
+<rfc category="std" docName="draft-ietf-ccamp-client-signal-yang-11" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
  <front>
   <title abbrev="Client Signals YANG Model"> A YANG Data Model for Transport Network Client Signals </title> 
 
@@ -60,7 +60,7 @@
 
 
   <author initials="A." surname="Snitser" fullname="Anton Snitser">
-   <organization>Sedona</organization>
+   <organization>Cisco</organization>
    <address>
     <postal>
      <street></street>
@@ -69,7 +69,7 @@
      <code></code>
      <country></country>
     </postal>
-    <email>antons@sedonasys.com</email>
+    <email>asnizar@cisco.com</email>
    </address>
   </author>
 
@@ -86,48 +86,7 @@
     <email>francesco.lazzeri@ericsson.com</email>
    </address>
   </author> 
-   <author initials="Y." surname="Xu" fullname="Yunbin Xu">
-   <organization>CAICT</organization>
-   <address>
-    <postal>
-     <street></street>
-     <city></city>
-     <region></region>
-     <code></code>
-     <country></country>
-    </postal>
-    <email>xuyunbin@caict.ac.cn</email>
-   </address>
-  </author> 
-
-   <author initials="Y." surname="Zhao" fullname="Yang Zhao">
-   <organization>China Mobile</organization>
-   <address>
-    <postal>
-     <street></street>
-     <city></city>
-     <region></region>
-     <code></code>
-     <country></country>
-    </postal>
-    <email>zhaoyangyjy@chinamobile.com</email>
-   </address>
-  </author> 
-  <author initials="X." surname="Liu" fullname="Xufeng Liu">
-   <organization>Volta Networks</organization>
-   <address>
-    <postal>
-     <street></street>
-     <city></city>
-     <region></region>
-     <code></code>
-     <country></country>
-    </postal>
-    <email>xufeng.liu.ietf@gmail.com</email>
-   </address>
-  </author>
-
-  <author initials="G." surname="Fioccola" fullname="Giuseppe Fioccola">
+  <author initials="C." surname="Yu" fullname="Chaode Yu">
    <organization>Huawei Technologies</organization>
    <address>
     <postal>
@@ -137,11 +96,11 @@
      <code></code>
      <country></country>
     </postal>
-    <email>giuseppe.fioccola@huawei.com</email>
-   </address>
-  </author>
+    <email>yuchaode@huawei.com</email>
 
-  <date  month="July" day="09" year="2021" />
+   </address>
+  </author> 
+  <date  month="December" day="15" year="2023" />
   <workgroup>CCAMP Working Group</workgroup>
 
  <abstract>
@@ -334,12 +293,122 @@
   <t>
    It is also worth noting that some client signal can be carried over multiple types of networks. For example, the Ethernet services can be carried over either OTN or Ethernet TE tunnels (over optical or microwave networks). The model specified in this document allows the support from networks with different technologies. The list of identities for client signals are defined in <xref target="I-D.ietf-ccamp-layer1-types" />.
   </t>
+<section anchor="idandread" title="Identifier and Readable Information" toc="default">
+    <t>
+     Name:
+     The identifier of the client signal service can be configured or retrieved by the name information. The naming of this attribute is based on the requirements of unifying with TE tunnel models. It can be readable or unreadable. If it is readable, to make it unique, it is needed to specify a unified structure for all the PNC systems. It is hard to do that for the reason of a lot of customized requirements from different Operators. In the ICT technology, UUID format could be a good option.
+     Title:
+     The title of client signal service can be configured with its readable name. 
+     Description:
+     More detail information of client signal service, such as some administrative information or location information.
+     User-label:
+     An alias of client signal service which is used to tag based on the maintenance requirement.
+    </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--rw client-svc-name           string
+         +--rw client-svc-title?         string
+         +--rw user-label?               string
+         +--rw client-svc-descr?         string
+         ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc-instances* [etht-svc-name]
+         +--rw etht-svc-name             string
+         +--rw etht-svc-title?           string
+         +--rw user-label?               string
+         +--rw etht-svc-descr?           string
+         ...................................
+]]></artwork></figure>    
+    </section>
+    <section anchor="resouceid" title="Unified Resource Identifiers" toc="default">
+    <t>
+     In [draft-ietf-teas-rfc8776-update], it is recognized that if the used topology resource adopts TE modeling, there could be two identifier systems, one is the network modeling system and the other one from TE topology modeling.
+     The access ports of client signal service or end points of Ethernet service also adopt the TE topology resources. So two identifiers are both fine to specified in the configuration requests.
+    </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--rw src-access-ports
+         |  +--rw access-node-id?    te-types:te-node-id
+         |  +--rw access-node-uri?   nw:node-id
+         |  +--rw access-ltp-id?     te-types:te-tp-id
+         |  +--rw access-ltp-uri?    nt:tp-id
+         |  +--rw client-signal?     identityref
+         +--rw dst-access-ports
+            +--rw access-node-id?    te-types:te-node-id
+            +--rw access-node-uri?   nw:node-id
+            +--rw access-ltp-id?     te-types:te-tp-id
+            +--rw access-ltp-uri?    nt:tp-id
+            +--rw client-signal?     identityref
+            ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--rw etht-svc-end-points* [etht-svc-end-point-name]
+            +--rw etht-svc-access-points* [access-point-id]
+               +--rw access-point-id    string
+               +--rw access-node-id?    te-types:te-node-id
+               +--rw access-node-uri?   nw:node-id
+               +--rw access-ltp-id?     te-types:te-tp-id
+               +--rw access-ltp-uri?    nt:tp-id
+               +--rw access-role?       identityref
+               ...................................
+]]></artwork></figure>
+    </section>
+    <section anchor="threshold" title="Threshold Configuration" toc="default">
+     <t>
+      Some PM data are quite critical for client signal service users' experience, e.g. latency value. For the Operators, they can configure a service-oriented threshold for the PM data, to make the maintenance engineer recognize the network issues in time.
+     </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--rw alarm-shreshold
+            +--rw latency-threshold?   uint32
+            ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--rw alarm-shreshold
+            +--rw latency-threshold?   uint32
+            ...................................
+]]></artwork></figure>
+    </section>    
   </section>
   
-  <section anchor="State" title="State of Services" toc="default">
+  <section anchor="State" title="State data of Services" toc="default">
+   <section anchor="gerneric" title="Generic Requirements" toc="default">
    <t>
    States have been defined to retrieve the status of the delivered services. A few generic states defined in <xref target="RFC8776" /> are reused in this document. These states include the operational state and the provisioning state. 
    </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--ro operational-state?        identityref
+         +--ro provisioning-state?       identityref
+         ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--ro state    
+            +--ro operational-state?    identityref
+            +--ro provisioning-state?   identityref
+            ...................................
+]]></artwork></figure>    
+   </section>    
+   <section anchor="timestamp" title="Timestamp and Administrative information" toc="default">
    <t>
    A few other parameters are defined for the management of the services. Given the complicated labor division, the creation, update and maintainance may have different responsible systems. So the log of the service would be helpful and should be easy to retrived in a standard way as well. These information include, but not restricted to the following: 
   </t>
@@ -356,6 +425,86 @@
    </t>
   </list>
   </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--ro creation-time?            yang:date-and-time
+         +--ro last-updated-time?        yang:date-and-time
+         +--ro created-by?               string
+         +--ro last-updated-by?          string
+         +--ro owned-by?                 string
+         ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--ro state   
+            +--ro creation-time?        yang:date-and-time
+            +--ro last-updated-time?    yang:date-and-time
+            +--ro created-by?           string
+            +--ro last-updated-by?      string
+            +--ro owned-by?             string
+            ...................................
+]]></artwork></figure>    
+   </section>
+   <section anchor="pm" title="performance monitoring status" toc="default">
+    <t>
+    For the Operators, there are also some requirements to provide some PM data to the service users. Especially some PM data are quite critical for users' experience. 
+    </t>
+    <t>
+    For example, one of the great advantage of client signal service is it can provide deterministic low latency. Some industry users, e.g. stock trading company, have great demand of stable short latency service to ensure their high-frequency fast trading operations can be finished quickly and definitely. In addition to provision a low-latency client signal service, Operators can also provide some other differentiated services for these kinds of service users. For example latency visibility can be provided to the users, to let them monitor the latency values. 
+    </t>
+    <t>
+    The latency measurement mechanism can be referenced from sub-clause 7.10.1 of <xref target="ITU-T_G.875"/>. And PNC can provide a measurement latency after service is provisioned if the devices support this measurement mechanism. Otherwise providing an estimated value could be a workaround solution.
+    </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--ro pm-state
+            +--ro latency?   uint32
+            ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--ro state   
+            +--ro pm-state
+               +--ro latency?   uint32
+               ...................................
+]]></artwork></figure>        
+   </section>
+   <section anchor="errormsg" title="Error Message Report" toc="default">
+    <t>
+     Once the processing of client signal service configuration, including creation, updating, deletion, meets with some internal problems, such as no enough available bandwidth, or wrong client signal mapping .etc., the problems should be reported to the client system to make the issues read by the maintenance engineers.
+     Since these error messages are more technologies-specific, especially sometimes accurate location information is needed in these messages, it is hard to standardize these error messages by RESTCONF protocol errors. For the client systems, they would like to get these messages both from notifications and retrieval. So this document defines an error container in the YANG data model to let the PNC to provide these messages.
+    </t>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-trans-client-service
+   +--rw client-svc
+      +--rw client-svc-instances* [client-svc-name]
+         +--ro error-info
+            +--ro error-code?          uint16
+            +--ro error-description?   string
+            +--ro error-timestamp?     yang:date-and-time
+            ...................................
+]]></artwork></figure>
+<figure><artwork type="ascii-art"><![CDATA[
+module: ietf-eth-tran-service
+   +--rw etht-svc
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--rw etht-svc-end-points* [etht-svc-end-point-name]
+         +--ro state
+            +--ro error-info
+               +--ro error-code?          uint16
+               +--ro error-description?   string
+               +--ro error-timestamp?     yang:date-and-time
+               ...................................
+]]></artwork></figure>    
+    </section> 
   </section>
  </section>
  <!--  OTN Client Signal Overview END  -->
@@ -371,8 +520,7 @@ module: ietf-eth-tran-service
      +--rw globals
      |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
      |     +--rw bandwidth-profile-name    string
-     |     +--rw bandwidth-profile-type?
-     |     |       etht-types:bandwidth-profile-type
+      |     +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
      |     +--rw CIR?                      uint64
      |     +--rw CBS?                      uint64
      |     +--rw EIR?                      uint64
@@ -382,14 +530,15 @@ module: ietf-eth-tran-service
      +--rw etht-svc-instances* [etht-svc-name]
         +--rw etht-svc-name             string
         +--rw etht-svc-title?           string
+         +--rw user-label?               string
         +--rw etht-svc-descr?           string
         +--rw etht-svc-customer?        string
         +--rw etht-svc-type?            etht-types:service-type
         +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
         +--rw te-topology-identifier
-        |  +--rw provider-id?   te-global-id
-        |  +--rw client-id?     te-global-id
-        |  +--rw topology-id?   te-topology-id
+         |  +--rw provider-id?   te-types:te-global-id
+         |  +--rw client-id?     te-types:te-global-id
+         |  +--rw topology-id?   te-types:te-topology-id
         +--rw resilience
         |  +--rw protection
         |  |  +--rw enable?                         boolean
@@ -410,13 +559,14 @@ module: ietf-eth-tran-service
         |  +--rw etht-svc-end-point-name                   string
         |  +--rw etht-svc-end-point-id?                    string
         |  +--rw etht-svc-end-point-descr?                 string
-        |  +--rw topology-role?
-        |  |       identityref
+         |  +--rw topology-role?                      identityref
         |  +--rw resilience
         |  +--rw etht-svc-access-points* [access-point-id]
         |  |  +--rw access-point-id    string
         |  |  +--rw access-node-id?    te-types:te-node-id
+         |  |  +--rw access-node-uri?   nw:node-id
         |  |  +--rw access-ltp-id?     te-types:te-tp-id
+         |  |  +--rw access-ltp-uri?    nt:tp-id
         |  |  +--rw access-role?       identityref
         |  |  +--rw pm-config
         |  |  |  +--rw pm-enable?             boolean
@@ -542,6 +692,8 @@ module: ietf-eth-tran-service
         |                       +--rw vlan-value?
         |                       |       etht-types:vlanid
         |                       +--rw default-pcp?   uint8
+         +--rw alarm-shreshold
+         |  +--rw latency-threshold?   uint32
         +--rw underlay
         |  +--rw (technology)?
         |  |  +--:(native-ethernet)
@@ -592,7 +744,12 @@ module: ietf-eth-tran-service
            +--ro created-by?           string
            +--ro last-updated-by?      string
            +--ro owned-by?             string
-
+            +--ro pm-state
+            |  +--ro latency?   uint32
+            +--ro error-info
+               +--ro error-code?          uint16
+               +--ro error-description?   string
+               +--ro error-timestamp?     yang:date-and-time
 
 ]]> 
     </artwork>
@@ -611,6 +768,7 @@ module: ietf-trans-client-service
      +--rw client-svc-instances* [client-svc-name]
         +--rw client-svc-name           string
         +--rw client-svc-title?         string
+         +--rw user-label?               string
         +--rw client-svc-descr?         string
         +--rw client-svc-customer?      string
         +--rw resilience
@@ -621,12 +779,24 @@ module: ietf-trans-client-service
         +--rw admin-status?             identityref
         +--rw src-access-ports
         |  +--rw access-node-id?   te-types:te-node-id
+         |  +--rw access-node-uri?   nw:node-id
         |  +--rw access-ltp-id?    te-types:te-tp-id
+         |  +--rw access-ltp-uri?    nt:tp-id
         |  +--rw client-signal?    identityref
         +--rw dst-access-ports
         |  +--rw access-node-id?   te-types:te-node-id
+         |  +--rw access-node-uri?   nw:node-id
         |  +--rw access-ltp-id?    te-types:te-tp-id
+         |  +--rw access-ltp-uri?    nt:tp-id
         |  +--rw client-signal?    identityref
+         +--ro pm-state
+         |  +--ro latency?   uint32
+         +--ro error-info
+         |  +--ro error-code?          uint16
+         |  +--ro error-description?   string
+         |  +--ro error-timestamp?     yang:date-and-time
+         +--rw alarm-shreshold
+         |  +--rw latency-threshold?   uint32
         +--rw direction?                identityref
         +--rw svc-tunnels* [tunnel-name]
         |  +--rw tunnel-name    string
@@ -656,7 +826,7 @@ module: ietf-trans-client-service
   <figure anchor="ETHserviceYANGCode" title="" suppress-title="true" align="left" alt="" width="" height="">
     <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
  <![CDATA[ 
-<CODE BEGINS> file "ietf-eth-tran-service@2021-01-11.yang"
+<CODE BEGINS> file "ietf-eth-tran-service@2023-12-15.yang"
 module ietf-eth-tran-service {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
@@ -668,6 +838,14 @@ module ietf-eth-tran-service {
     reference "RFC 6991 - Common YANG Data Types";
   }
 
+  import ietf-network {
+    prefix "nw";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
+  import ietf-network-topology {
+    prefix "nt";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
   import ietf-te-types {
     prefix "te-types";
     reference "RFC 8776 - Traffic Engineering Common YANG Types";
@@ -702,12 +880,9 @@ module ietf-eth-tran-service {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo.ietf@gmail.com);
-        Anton Snitser (antons@sedonasys.com);0
+        Anton Snitser (asnizar@cisco.com);
         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Yunbin Xu (xuyunbin@caict.ac.cn);
-        Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (xufeng.liu.ietf@gmail.com);
-        Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+        Chaode Yu (yuchaode@huawei.com);
     ";
 
   description
@@ -727,7 +902,7 @@ module ietf-eth-tran-service {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2021-01-11 {
+  revision 2023-12-15 {
     description
       "version -04 as an WG document";
     reference
@@ -934,7 +1109,12 @@ module ietf-eth-tran-service {
       type te-types:te-node-id;
       description
         "The identifier of the access node in
-         the ETH topology.";
+         the ETH TE topology.";
+    }
+    leaf access-node-uri {
+      type nw:node-id;
+      description
+        "The identifier of the access node in the network.";
     }
     leaf access-ltp-id {
       type te-types:te-tp-id;
@@ -943,6 +1123,13 @@ module ietf-eth-tran-service {
          together with access-node-id to identify the
          access LTP.";
     }
+    leaf access-ltp-uri {
+      type nt:tp-id;
+      description
+        "The link termination point identifier in network topology, 
+        used together with access-node-uri to identify the 
+        access LTP.";
+    }    
     leaf access-role {
       type identityref {
         base etht-types:access-role;
@@ -1115,6 +1302,11 @@ module ietf-eth-tran-service {
       description
         "The Identifier of the ETH service.";
     }
+    leaf user-label {
+      type string;
+      description
+        "Alias of the ETH service.";
+    }
 
     leaf etht-svc-descr {
       type string;
@@ -1153,6 +1345,10 @@ module ietf-eth-tran-service {
     }
     
     
+    container alarm-shreshold {
+      description "threshold configuration for the E2E client signal";
+      uses alarm-shreshold-grouping;
+    }
     container underlay {
       description
         "The unterlay tunnel information that carrying the 
@@ -1214,6 +1410,46 @@ module ietf-eth-tran-service {
        description 
          "The client signal is last updated by whom, 
           can be a system ID.";
+     }
+     container pm-state {
+       description 
+         "PM data of E2E Ethernet service";
+       uses pm-state-grouping;
+     }
+     container error-info {
+       description "error messages of configuration";
+       uses error-info-grouping;
+     }
+  }
+  grouping pm-state-grouping {
+    leaf latency {
+      description 
+        "latency value of the E2E Ethernet service";
+      type uint32;
+      units microsecond;
+    }
+  }
+  grouping error-info-grouping {
+    leaf error-code {
+      description "error code";
+      type uint16;
+    }
+    leaf error-description {
+      description "detail message of error";
+      type string;
+    }
+    leaf error-timestamp {
+      description "the date and time error is happened";
+      type yang:date-and-time;
+    }
+  }
+  grouping alarm-shreshold-grouping {
+    leaf latency-threshold {
+      description "a threshold for the E2E client signal service's
+      latency. Once the latency value exceed this threshold, an alarm
+      should be triggered.";
+      type uint32;
+      units microsecond;
      }
   }
 
@@ -1353,8 +1589,8 @@ module ietf-eth-tran-service {
         }
         container second-tag {
           must
-            '../outer-tag/tag-type = "etht-types:classify-s-vlan" and ' +
-            'tag-type = "etht-types:classify-c-vlan"'
+            '../outer-tag/tag-type = "etht-types:classify-s-vlan"' +
+            ' and tag-type = "etht-types:classify-c-vlan"'
           {
             error-message
               "
@@ -1603,7 +1839,7 @@ module ietf-eth-tran-service {
    <figure anchor="ETHtypeYANGCode" title="" suppress-title="true" align="left" alt="" width="" height="">
     <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
  <![CDATA[ 
-<CODE BEGINS> file "ietf-eth-tran-types@2021-07-07.yang"
+<CODE BEGINS> file "ietf-eth-tran-types@2023-12-15.yang"
 module ietf-eth-tran-types {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-types";
@@ -1620,12 +1856,9 @@ module ietf-eth-tran-types {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo.ietf@gmail.com);
-        Anton Snitser (antons@sedonasys.com);
+        Anton Snitser (asnizar@cisco.com);
         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Yunbin Xu (xuyunbin@caict.ac.cn);
-        Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (xufeng.liu.ietf@gmail.com);
-        Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+        Chaode Yu (yuchaode@huawei.com);
     ";
 
   description
@@ -1645,7 +1878,7 @@ module ietf-eth-tran-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2021-07-07 {
+  revision 2023-12-15 {
     description
       "version -05 as a WG draft";
     reference
@@ -1912,7 +2145,8 @@ module ietf-eth-tran-types {
     }
     leaf coupling-flag {
       type boolean;
-      /* Need to indicate that Coupling Flag is defined only for MEF 10
+      /* Need to indicate that Coupling Flag is defined only for 
+         MEF 10
 
       must
         '../bw-profile-type = "mef-10-bwp"'
@@ -1936,14 +2170,16 @@ module ietf-eth-tran-types {
 
   identity access-role {
     description
-    "Indicating whether the access is a working or protection access.";
+    "Indicating whether the access is a working or protection
+    access.";
   }
 
   identity root-primary {
     base access-role;
     description
-      "Designates the primary root UNI of an E-Tree service, and may also
-	   designates the UNI access role of E-LINE and E-LAN service.";
+      "Designates the primary root UNI of an E-Tree service, and may
+      also designates the UNI access role of E-LINE and E-LAN
+      service.";
   }
 
   identity root-backup {
@@ -1965,7 +2201,8 @@ module ietf-eth-tran-types {
 
   identity encapsulation-type {
     description
-    "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
+    "Indicating how the service is encapsulated (to PW), e.g, raw or
+    tag. ";
   }
 
   grouping pw-segement-bandwidth-profile-grouping {
@@ -2074,7 +2311,7 @@ module ietf-eth-tran-types {
  <figure anchor="OtherClientYANGCode" title="" suppress-title="true" align="left" alt="" width="" height="">
 <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
  <![CDATA[ 
-<CODE BEGINS> file "ietf-trans-client-service@2021-01-11.yang"
+<CODE BEGINS> file "ietf-trans-client-service@2023-12-15.yang"
  module ietf-trans-client-service {
    /* TODO: FIXME */
      yang-version 1.1;
@@ -2082,6 +2319,14 @@ module ietf-eth-tran-types {
    namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-service";
    prefix "clntsvc";
 
+  import ietf-network {
+    prefix "nw";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
+  import ietf-network-topology {
+    prefix "nt";
+    reference "RFC8345 - A YANG Data Model for Network Topologies";
+  }
    import ietf-te-types {
      prefix "te-types";
      reference "RFC 8776 - Traffic Engineering Common YANG Types";
@@ -2111,12 +2356,9 @@ module ietf-eth-tran-types {
          Haomian Zheng (zhenghaomian@huawei.com);
          Aihua Guo (aihuaguo.ietf@gmail.com);
          Italo Busi (italo.busi@huawei.com);
-         Anton Snitser (antons@sedonasys.com);
+         Anton Snitser (asnizar@cisco.com);
          Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-         Yunbin Xu (xuyunbin@caict.ac.cn);
-         Yang Zhao (zhaoyangyjy@chinamobile.com);
-         Xufeng Liu (Xufeng_Liu@jabil.com);
-         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+         Chaode Yu (yuchaode@huawei.com);
      ";
 
    description
@@ -2136,7 +2378,7 @@ module ietf-eth-tran-types {
       This version of this YANG module is part of RFC XXXX; see
       the RFC itself for full legal notices.";
 
-   revision 2021-01-11 {
+  revision 2023-12-15 {
      description
        "version -04 as a WG document";
      reference
@@ -2153,15 +2395,26 @@ module ietf-eth-tran-types {
      leaf access-node-id {
        type te-types:te-node-id;
        description
-         "The identifier of the access node in the underlying
-          transport network topology.";
+        "The identifier of the access node in the TE topology.";
+    }
+    leaf access-node-uri {
+      type nw:node-id;
+      description
+        "The identifier of the access node in the network.";
      }
 
      leaf access-ltp-id {
        type te-types:te-tp-id;
        description
-         "The TE link termination point identifier, used together with
-          access-node-id to identify the access LTP.";
+        "The TE link termination point identifier in TE topology, used
+        together with access-node-id to identify the access LTP.";
+    }
+    leaf access-ltp-uri {
+      type nt:tp-id;
+      description
+        "The link termination point identifier in network topology,
+        used together with access-node-uri to identify the access
+        LTP";
      }
 
      leaf client-signal {
@@ -2171,8 +2424,37 @@ module ietf-eth-tran-types {
        description
          "Identify the client signal type associated with this port";
      }
+  }
+  grouping pm-state-grouping {
+    leaf latency {
+      description "latency value of the E2E client signal service";
+      type uint32;
+      units microsecond;
+    }
+  }
+  grouping error-info-grouping {
+    leaf error-code {
+      description "error code";
+      type uint16;
+    }
      
-
+    leaf error-description {
+      description "detail message of error";
+      type string;
+    }
+    leaf error-timestamp {
+      description "the date and time error is happened";
+      type yang:date-and-time;
+    }
+  }
+  grouping alarm-shreshold-grouping {
+    leaf latency-threshold {
+      description "a threshold for the E2E client signal service's
+      latency. Once the latency value exceed this threshold, an alarm
+      should be triggered.";
+      type uint32;
+      units microsecond;
+    }
    }
 
    grouping client-svc-tunnel-parameters {
@@ -2199,6 +2481,11 @@ module ietf-eth-tran-types {
        type string;
        description
          "Name of the p2p transport network client signals.";
+    }
+    leaf user-label {
+      type string;
+      description
+        "Alias of the p2p transport network client signals.";
      }
 
      leaf client-svc-descr {
@@ -2239,6 +2526,20 @@ module ietf-eth-tran-types {
        uses client-svc-access-parameters;
      }
      
+    container pm-state {
+      config false;
+      description "PM data of E2E client signal";
+      uses pm-state-grouping;
+    }
+    container error-info {
+      config false;
+      description "error messages of configuration";
+      uses error-info-grouping;
+    }
+    container alarm-shreshold {
+      description "threshold configuration for the E2E client signal";
+      uses alarm-shreshold-grouping;
+    }
      leaf direction {
        type identityref {
          base clntsvc-types:direction;
@@ -2336,7 +2637,7 @@ module ietf-eth-tran-types {
  <figure anchor="OtherClientYANGType" title="" suppress-title="true" align="left" alt="" width="" height="">
 <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
  <![CDATA[ 
-<CODE BEGINS> file "ietf-trans-client-svc-types@2019-11-03.yang"
+<CODE BEGINS> file "ietf-trans-client-svc-types@2023-12-15.yang"
 
 module ietf-trans-client-svc-types {
   namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
@@ -2350,12 +2651,9 @@ module ietf-trans-client-svc-types {
          Haomian Zheng (zhenghaomian@huawei.com);
          Aihua Guo (aihuaguo.ietf@gmail.com);
          Italo Busi (italo.busi@huawei.com);
-         Anton Snitser (antons@sedonasys.com);
+         Anton Snitser (asnizar@cisco.com);
          Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-         Yunbin Xu (xuyunbin@caict.ac.cn);
-         Yang Zhao (zhaoyangyjy@chinamobile.com);
-         Xufeng Liu (Xufeng_Liu@jabil.com);
-         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
+         Chaode Yu (yuchaode@huawei.com);
      ";
 
    description
@@ -2375,7 +2673,7 @@ module ietf-trans-client-svc-types {
       This version of this YANG module is part of RFC XXXX; see
       the RFC itself for full legal notices.";
 
-   revision 2019-11-03 {
+   revision 2023-12-15 {
      description
        "version -01 as a WG document";
      reference
@@ -2555,18 +2853,44 @@ module ietf-trans-client-svc-types {
  <!--  Acknowledgements END  -->
 
  <section anchor="Contributor" title="Contributors" toc="default">
-  
+
   <t>
-  Yanlei Zheng
+  Yunbin Xu
   <vspace blankLines="0" /> 
-  China Unicom
+  CAICT
   <vspace blankLines="0" /> 
-  Email: zhengyl@dimpt.com
-  <!-- zhengyanlei@chinaunicom.cn -->
+  Email: xuyunbin@caict.ac.cn
   <vspace blankLines="0" /> 
   </t>
   
-    <t>
+  <t>
+  Yang Zhao
+  <vspace blankLines="0" /> 
+  China Mobile
+  <vspace blankLines="0" /> 
+  Email: zhaoyangyjy@chinamobile.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Xufeng Liu
+  <vspace blankLines="0" /> 
+  Volta Networks
+  <vspace blankLines="0" /> 
+  Email: xufeng.liu.ietf@gmail.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Giuseppe Fioccola
+  <vspace blankLines="0" /> 
+  Huawei Technologies
+  <vspace blankLines="0" /> 
+  Email: giuseppe.fioccola@huawei.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
   Zhe Liu
   <vspace blankLines="0" /> 
   Huawei Technologies, 
@@ -2621,6 +2945,16 @@ module ietf-trans-client-svc-types {
   <?rfc include="reference.I-D.ietf-ccamp-otn-tunnel-model"?>
   <?rfc include="reference.I-D.ietf-ccamp-l1csm-yang"?>
   <?rfc include="reference.I-D.ietf-ccamp-layer1-types"?>
+  <reference anchor="ITU-T_G.875" >
+    <front>
+      <title>Optical transport network: Protocol-neutral management information model for the network element view</title>
+      <author >
+        <organization>International Telecommunication Union</organization>
+      </author>
+      <date year="2020" month="June"/>
+    </front>
+    <seriesInfo name="ITU-T Recommendation G.875" value=""/>
+  </reference>
  </references>
  <!--  Normative END  -->
 
