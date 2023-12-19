@@ -133,7 +133,7 @@
       type yang:date-and-time;
     }
   }
-  grouping alarm-shreshold-grouping {
+  grouping alarm-threshold-grouping {
     leaf latency-threshold {
       description "a threshold for the E2E client signal service's
       latency. Once the latency value exceed this threshold, an alarm
@@ -222,9 +222,9 @@
       description "error messages of configuration";
       uses error-info-grouping;
     }
-    container alarm-shreshold {
+    container alarm-threshold {
       description "threshold configuration for the E2E client signal";
-      uses alarm-shreshold-grouping;
+      uses alarm-threshold-grouping;
     }
      leaf direction {
        type identityref {
