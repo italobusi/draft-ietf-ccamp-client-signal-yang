@@ -3434,8 +3434,6 @@ Internet-Draft          Client Signals YANG Model          December 2023
    Giuseppe Fioccola Huawei Technologies Email:
    giuseppe.fioccola@huawei.com
 
-   Yanlei Zheng China Unicom Email: zhengyanlei@chinaunicom.cn
-
    Zhe Liu Huawei Technologies, Email: liuzhe123@huawei.com
 
    Sergio Belotti Nokia, Email: sergio.belotti@nokia.com
