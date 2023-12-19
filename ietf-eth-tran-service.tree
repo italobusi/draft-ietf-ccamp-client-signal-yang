@@ -155,7 +155,7 @@ module: ietf-eth-tran-service
          |                       +--rw tag-type?      etht-types:eth-tag-type
          |                       +--rw vlan-value?    etht-types:vlanid
          |                       +--rw default-pcp?   uint8
-         +--rw alarm-shreshold
+         +--rw alarm-threshold
          |  +--rw latency-threshold?   uint32
          +--rw underlay
          |  +--rw (technology)?
