@@ -483,7 +483,7 @@ maintenance engineer recognize the network issues in time.
 ### Generic Requirements
 
 States have been defined to retrieve the status of the delivered
-services.  A few generic states defined in {{!RFC8776}} are reused in
+services.  A few generic states defined in {{!I-D.ietf-teas-rfc8776-update}} are reused in
 this document.  These states include the operational state and the
 provisioning state.
 
@@ -649,7 +649,7 @@ messages.
 ## The ETH Service YANG Code
 
 This module imports typedefs and modules from {{!RFC6991}}, {{!RFC8294}},
-{{!RFC8776}}.
+{{!I-D.ietf-teas-rfc8776-update}}.
 
 ~~~~ yang
 {::include ./ietf-eth-tran-service.yang}
@@ -669,7 +669,7 @@ This module references a few documents including {{?RFC2697}},
 ## Other Client Signal YANG Code
 
 This module imports typedefs and modules from {{!RFC6991}},
-{{!I-D.ietf-ccamp-otn-tunnel-model}}, {{!RFC8776}}.
+{{!I-D.ietf-ccamp-otn-tunnel-model}}, {{!I-D.ietf-teas-rfc8776-update}}.
 
 ~~~~ yang
 {::include ./ietf-trans-client-service.yang}
