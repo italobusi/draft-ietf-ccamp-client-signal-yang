@@ -1,59 +1,80 @@
 module ietf-trans-client-svc-types {
-  namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
-  prefix "clntsvc-types";
+  yang-version 1.1;
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
+  prefix clnt-types;
 
   organization
      "Internet Engineering Task Force (IETF) CCAMP WG";
-   contact
-     "
-       ID-draft editor:
-         Haomian Zheng (zhenghaomian@huawei.com);
-         Aihua Guo (aihuaguo.ietf@gmail.com);
-         Italo Busi (italo.busi@huawei.com);
-         Anton Snitser (asnizar@cisco.com);
-         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-         Chaode Yu (yuchaode@huawei.com);
-     ";
+  contact
+    "WG Web: <https://datatracker.ietf.org/wg/ccamp/>
+     WG List: <mailto:ccamp@ietf.org>
 
-   description
-     "This module defines a YANG data model for describing
-      transport network client types. The model fully conforms
-      to the Network Management Datastore Architecture (NMDA).
+     Editor: Haomian Zheng
+             <mailto:zhenghaomian@huawei.com>
 
-      Copyright (c) 2019 IETF Trust and the persons
-      identified as authors of the code.  All rights reserved.
+     Editor: Aihua Guo
+             <mailto:aihuaguo.ietf@gmail.com>
 
-      Redistribution and use in source and binary forms, with or
-      without modification, is permitted pursuant to, and subject
-      to the license terms contained in, the Simplified BSD License
-      set forth in Section 4.c of the IETF Trust's Legal Provisions
-      Relating to IETF Documents
-      (https://trustee.ietf.org/license-info).
-      This version of this YANG module is part of RFC XXXX; see
-      the RFC itself for full legal notices.";
+     Editor: Italo Busi
+             <mailto:italo.busi@huawei.com>
 
-   revision 2023-12-15 {
-     description
-       "version -01 as a WG document";
-     reference
-       "draft-ietf-ccamp-client-signal-yang";
-   }
+     Editor: Anton Snitser
+             <mailto:asnizar@cisco.com>
+
+     Editor: Francesco Lazzeri
+             <mailto:francesco.lazzeri@ericsson.com>
+
+     Editor: Chaode Yu
+             <mailto:yuchaode@huawei.com>";
+
+  description
+    "This module defines a collection of common YANG identity
+    definitions for describing Costant Bit Rate (CBR) transport
+    network clients.
+
+    Copyright (c) 2024 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision 2024-01-11 {
+    description
+      "Initial Version";
+    reference
+      "RFC XXXX: A YANG Data Model for Transport Network Client
+      Signals";
+  }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
+
+  /*
+   * Identities
+   */
 
   identity direction {
     description
       "Direction information of Client Signal.";
   }
 
-  identity bidirectional {
-    base direction;
-    description
-      "Client Signal is bi-directional.";
-  }
+    identity bidirectional {
+      base direction;
+      description
+        "Client Signal is bi-directional.";
+    }
 
-  identity unidirectional {
-    base direction;
-    description
-      "Client Signal is uni-directional.";
-  }
-
+    identity unidirectional {
+      base direction;
+      description
+        "Client Signal is uni-directional.";
+    }
 }

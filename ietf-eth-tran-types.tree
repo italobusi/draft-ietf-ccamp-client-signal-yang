@@ -1,0 +1,25 @@
+module: ietf-eth-tran-types
+
+  grouping etht-bandwidth-profiles:
+    +-- bandwidth-profile-type?   etht-types:bandwidth-profile-type
+    +-- CIR?                      uint64
+    +-- CBS?                      uint64
+    +-- EIR?                      uint64
+    +-- EBS?                      uint64
+    +-- color-aware?              boolean
+    +-- coupling-flag?            boolean
+  grouping pw-segement-bandwidth-profile-grouping:
+    +-- bandwidth-profile-type?   etht-types:bandwidth-profile-type
+    +-- CIR?                      uint64
+    +-- CBS?                      uint64
+    +-- EIR?                      uint64
+    +-- EBS?                      uint64
+  grouping eth-bandwidth:
+    +-- eth-bandwidth?   uint64
+  grouping eth-label-restriction:
+    +-- tag-type?   etht-types:eth-tag-type
+    +-- priority?   uint8
+  grouping eth-label:
+    +-- vlanid?   etht-types:vlanid
+  grouping eth-label-step:
+    +-- eth-step?   uint16

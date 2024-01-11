@@ -185,21 +185,25 @@ are prefixed using the standard prefix associated with the
 corresponding YANG imported modules, including {{!RFC6991}}, {{!RFC8294}}
 and {{!I-D.ietf-ccamp-otn-tunnel-model}}, which are shown as follow.
 
-| Prefix      | YANG module               | Reference
-| yang        | ietf-yang-types           | {{!RFC6991}}
-| te-types    | ietf-te-types             | \[RFC YYYY]
-| rt-types    | ietf-routing-types        | {{!RFC8294}}
-| l1-types    | ietf-layer1-types         | \[RFC ZZZZ]
-| etht-types  | ietf-eth-tran-types       | RFC XXXX
-| clntsvc     | ietf-trans-client-service | RFC XXXX
-| ethtsvc     | ietf-eth-tran-service     | RFC XXXX
-|clntsvc-types|ietf-trans-client-svc-types| RFC XXXX
+| Prefix      | YANG module                 | Reference
+| yang        | ietf-yang-types             | {{!RFC6991}}
+| rt-types    | ietf-routing-types          | {{!RFC8294}}
+| te-types    | ietf-te-types               | \[RFCYYYY]
+| l1-types    | ietf-layer1-types           | \[RFCZZZZ]
+| nw          | ietf-network                | {{!RFC8345}}
+| nt          | ietf-network-topology       | {{!RFC8345}}
+| te          | ietf-te                     | \[RFCKKKK]
+| clnt-types  | ietf-trans-client-svc-types | RFC XXXX
+| etht-types  | ietf-eth-tran-types         | RFC XXXX
+| clnt-svc    | ietf-trans-client-service   | RFC XXXX
+| etht-svc    | ietf-eth-tran-service       | RFC XXXX
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
 
-RFC Editor Note: Please replace XXXX with the number assigned to the
-RFC once this draft becomes an RFC.  Please replace YYYY with the RFC
-numbers assigned to {{!I-D.ietf-teas-rfc8776-update}}.  Please replace
-ZZZZ with the RFC numbers assigned to {{!I-D.ietf-ccamp-layer1-types}}.
+RFC Editor Note:
+Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+Please replace YYYY with the RFC numbers assigned to {{!I-D.ietf-teas-rfc8776-update}}.
+Please replace ZZZZ with the RFC numbers assigned to {{!I-D.ietf-ccamp-layer1-types}}.
+Please replace KKKK with the RFC numbers assigned to {{!I-D.ietf-teas-yang-te}}.
 
 ## Terminology and Notations
 
@@ -654,7 +658,7 @@ This module imports typedefs and modules from {{!RFC6991}}, {{!RFC8294}},
 ~~~~ yang
 {::include ./ietf-eth-tran-service.yang}
 ~~~~
-{: #fig-eth-svc-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-service@2023-12-15.yang"}
+{: #fig-eth-svc-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-service@2024-01-11.yang"}
 
 ## YANG Code for ETH type
 
@@ -664,7 +668,7 @@ This module references a few documents including {{?RFC2697}},
 ~~~~ yang
 {::include ./ietf-eth-tran-types.yang}
 ~~~~
-{: #fig-eth-types-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-types@2023-12-15.yang"}
+{: #fig-eth-types-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-types@2024-01-11.yang"}
 
 ## Other Client Signal YANG Code
 
@@ -674,7 +678,7 @@ This module imports typedefs and modules from {{!RFC6991}},
 ~~~~ yang
 {::include ./ietf-trans-client-service.yang}
 ~~~~
-{: #fig-cbr-svc-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-service@2023-12-15.yang"}
+{: #fig-cbr-svc-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-service@2024-01-11.yang"}
 
 ## Other Client Signal Types YANG Code
 
@@ -683,7 +687,7 @@ This module defines the types for other client signal types.
 ~~~~ yang
 {::include ./ietf-trans-client-svc-types.yang}
 ~~~~
-{: #fig-cbr-types-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-svc-types@2023-12-15.yang"}
+{: #fig-cbr-types-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-svc-types@2024-01-11.yang"}
 
 # Implementation Status
 
