@@ -112,9 +112,9 @@ Table of Contents
      5.4.  Other Client Signal Types YANG Code
    6.  Implementation Status
      6.1.  Usage of the ETH Service YANG Model on ONAP
-   7.  IANA Considerations
-   8.  Manageability Considerations
-   9.  Security Considerations
+   7.  Manageability Considerations
+   8.  Security Considerations
+   9.  IANA Considerations
    10. References
      10.1.  Normative References
      10.2.  Informative References
@@ -2864,7 +2864,28 @@ Table of Contents
 
    *  Contact: henry.yu1@huawei.com
 
-7.  IANA Considerations
+7.  Manageability Considerations
+
+   TBD
+
+8.  Security Considerations
+
+   The data following the model defined in this document is exchanged
+   via, for example, the interface between an orchestrator and a network
+   domain controller.
+
+   The YANG module defined in this document can be accessed via the
+   RESTCONF protocol defined in [RFC8040], or maybe via the NETCONF
+   protocol [RFC6241].
+
+   There are a number of data nodes defined in the YANG module which are
+   writable/creatable/deletable (i.e., config true, which is the
+   default).  These data nodes may be considered sensitive or vulnerable
+   in some network environments.  Write operations (e.g., POST) to these
+   data nodes without proper protection can have a negative effect on
+   network operations.
+
+9.  IANA Considerations
 
    It is proposed that IANA should assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
@@ -2911,27 +2932,6 @@ Table of Contents
    prefix:       clntsvc-types
    reference:    RFC XXXX: A YANG Data Model for Transport
                            Network Client Signals
-
-8.  Manageability Considerations
-
-   TBD
-
-9.  Security Considerations
-
-   The data following the model defined in this document is exchanged
-   via, for example, the interface between an orchestrator and a network
-   domain controller.
-
-   The YANG module defined in this document can be accessed via the
-   RESTCONF protocol defined in [RFC8040], or maybe via the NETCONF
-   protocol [RFC6241].
-
-   There are a number of data nodes defined in the YANG module which are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., POST) to these
-   data nodes without proper protection can have a negative effect on
-   network operations.
 
 10.  References
 

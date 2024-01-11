@@ -738,6 +738,27 @@ CCVPN%28Cross+Domain+and+Cross+Layer+VPN%29+USE+CASE
 
 - Contact: henry.yu1@huawei.com
 
+# Manageability Considerations
+
+TBD
+
+# Security Considerations
+
+The data following the model defined in this document is exchanged
+via, for example, the interface between an orchestrator and a network
+domain controller.
+
+The YANG module defined in this document can be accessed via the
+RESTCONF protocol defined in {{!RFC8040}}, or maybe via the NETCONF
+protocol {{!RFC6241}}.
+
+There are a number of data nodes defined in the YANG module which are
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., POST) to these
+data nodes without proper protection can have a negative effect on
+network operations.
+
 # IANA Considerations
 
 It is proposed that IANA should assign new URIs from the "IETF XML
@@ -789,27 +810,6 @@ Names registry {{!RFC6020}}.
    reference:    RFC XXXX: A YANG Data Model for Transport
                            Network Client Signals
 ~~~~
-
-# Manageability Considerations
-
-TBD
-
-# Security Considerations
-
-The data following the model defined in this document is exchanged
-via, for example, the interface between an orchestrator and a network
-domain controller.
-
-The YANG module defined in this document can be accessed via the
-RESTCONF protocol defined in {{!RFC8040}}, or maybe via the NETCONF
-protocol {{!RFC6241}}.
-
-There are a number of data nodes defined in the YANG module which are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., POST) to these
-data nodes without proper protection can have a negative effect on
-network operations.
 
 --- back
 
