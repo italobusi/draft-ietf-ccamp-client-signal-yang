@@ -635,9 +635,9 @@ messages.
 ## YANG Tree for Ethernet Service
 
 ~~~~ ascii-art
-{::include ./ietf-eth-tran-service.tree}
+{::include ./ietf-eth-tran-service-tree.txt}
 ~~~~
-{: #fig-eth-svc-tree artwork-name="ietf-eth-tran-service.tree"}
+{: #fig-eth-svc-tree artwork-name="ietf-eth-tran-service-tree.txt"}
 
 {: #cbr-svc-tree}
 
