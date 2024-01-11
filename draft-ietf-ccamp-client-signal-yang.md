@@ -46,10 +46,6 @@ author:
     org: Cisco
     email: asnizar@cisco.com
   -
-    name: Francesco Lazzeri
-    org: Ericsson
-    email: francesco.lazzeri@ericsson.com
-  -
     name: Chaode Yu
     org: Huawei Technologies
     email: yuchaode@huawei.com
@@ -819,6 +815,8 @@ network operations.
 
 # Acknowledgments
 {:numbered="false"}
+
+We would like to acknowledge the contribution from Francesco Lazzeri to the initial versions of this document, before it has been adopted by CCAMP WG.
 
 We would like to thank Igor Bryskin and Daniel King for their
 comments and discussions.

@@ -21,9 +21,6 @@ module ietf-eth-tran-types {
      Editor: Anton Snitser
              <mailto:asnizar@cisco.com>
 
-     Editor: Francesco Lazzeri
-             <mailto:francesco.lazzeri@ericsson.com>
-
      Editor: Chaode Yu
              <mailto:yuchaode@huawei.com>";
 

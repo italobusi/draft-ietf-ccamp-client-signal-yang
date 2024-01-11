@@ -10,8 +10,6 @@ Expires: 15 July 2024                                          Futurewei
                                                      Huawei Technologies
                                                               A. Snitser
                                                                    Cisco
-                                                              F. Lazzeri
-                                                                Ericsson
                                                                    C. Yu
                                                      Huawei Technologies
                                                          12 January 2024
@@ -983,9 +981,6 @@ Table of Contents
         Editor: Anton Snitser
                 <mailto:asnizar@cisco.com>
 
-        Editor: Francesco Lazzeri
-                <mailto:francesco.lazzeri@ericsson.com>
-
         Editor: Chaode Yu
                 <mailto:yuchaode@huawei.com>";
 
@@ -1931,9 +1926,6 @@ Table of Contents
         Editor: Anton Snitser
                 <mailto:asnizar@cisco.com>
 
-        Editor: Francesco Lazzeri
-                <mailto:francesco.lazzeri@ericsson.com>
-
         Editor: Chaode Yu
                 <mailto:yuchaode@huawei.com>";
 
@@ -2456,9 +2448,6 @@ Table of Contents
         Editor: Anton Snitser
                 <mailto:asnizar@cisco.com>
 
-        Editor: Francesco Lazzeri
-                <mailto:francesco.lazzeri@ericsson.com>
-
         Editor: Chaode Yu
                 <mailto:yuchaode@huawei.com>";
 
@@ -2764,9 +2753,6 @@ Table of Contents
 
         Editor: Anton Snitser
                 <mailto:asnizar@cisco.com>
-
-        Editor: Francesco Lazzeri
-                <mailto:francesco.lazzeri@ericsson.com>
 
         Editor: Chaode Yu
                 <mailto:yuchaode@huawei.com>";
@@ -3110,6 +3096,10 @@ Table of Contents
 
 Acknowledgments
 
+   We would like to acknowledge the contribution from Francesco Lazzeri
+   to the initial versions of this document, before it has been adopted
+   by CCAMP WG.
+
    We would like to thank Igor Bryskin and Daniel King for their
    comments and discussions.
 
@@ -3182,11 +3172,6 @@ Authors' Addresses
    Anton Snitser
    Cisco
    Email: asnizar@cisco.com
-
-
-   Francesco Lazzeri
-   Ericsson
-   Email: francesco.lazzeri@ericsson.com
 
 
    Chaode Yu
