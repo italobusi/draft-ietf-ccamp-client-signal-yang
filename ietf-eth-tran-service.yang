@@ -96,7 +96,7 @@ module ietf-eth-tran-service {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision 2024-01-27 {
+  revision 2024-01-11 {
     description
       "Initial Version";
     reference
