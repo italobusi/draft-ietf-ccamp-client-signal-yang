@@ -46,10 +46,6 @@ author:
     org: Cisco
     email: asnizar@cisco.com
   -
-    name: Francesco Lazzeri
-    org: Ericsson
-    email: francesco.lazzeri@ericsson.com
-  -
     name: Chaode Yu
     org: Huawei Technologies
     email: yuchaode@huawei.com
@@ -185,21 +181,25 @@ are prefixed using the standard prefix associated with the
 corresponding YANG imported modules, including {{!RFC6991}}, {{!RFC8294}}
 and {{!I-D.ietf-ccamp-otn-tunnel-model}}, which are shown as follow.
 
-| Prefix      | YANG module               | Reference
-| yang        | ietf-yang-types           | {{!RFC6991}}
-| te-types    | ietf-te-types             | \[RFC YYYY]
-| rt-types    | ietf-routing-types        | {{!RFC8294}}
-| l1-types    | ietf-layer1-types         | \[RFC ZZZZ]
-| etht-types  | ietf-eth-tran-types       | RFC XXXX
-| clntsvc     | ietf-trans-client-service | RFC XXXX
-| ethtsvc     | ietf-eth-tran-service     | RFC XXXX
-|clntsvc-types|ietf-trans-client-svc-types| RFC XXXX
+| Prefix      | YANG module                 | Reference
+| yang        | ietf-yang-types             | {{!RFC6991}}
+| rt-types    | ietf-routing-types          | {{!RFC8294}}
+| te-types    | ietf-te-types               | \[RFCYYYY]
+| l1-types    | ietf-layer1-types           | \[RFCZZZZ]
+| nw          | ietf-network                | {{!RFC8345}}
+| nt          | ietf-network-topology       | {{!RFC8345}}
+| te          | ietf-te                     | \[RFCKKKK]
+| clnt-types  | ietf-trans-client-svc-types | RFC XXXX
+| etht-types  | ietf-eth-tran-types         | RFC XXXX
+| clnt-svc    | ietf-trans-client-service   | RFC XXXX
+| etht-svc    | ietf-eth-tran-service       | RFC XXXX
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
 
-RFC Editor Note: Please replace XXXX with the number assigned to the
-RFC once this draft becomes an RFC.  Please replace YYYY with the RFC
-numbers assigned to {{!I-D.ietf-teas-rfc8776-update}}.  Please replace
-ZZZZ with the RFC numbers assigned to {{!I-D.ietf-ccamp-layer1-types}}.
+RFC Editor Note:
+Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+Please replace YYYY with the RFC numbers assigned to {{!I-D.ietf-teas-rfc8776-update}}.
+Please replace ZZZZ with the RFC numbers assigned to {{!I-D.ietf-ccamp-layer1-types}}.
+Please replace KKKK with the RFC numbers assigned to {{!I-D.ietf-teas-yang-te}}.
 
 ## Terminology and Notations
 
@@ -483,7 +483,7 @@ maintenance engineer recognize the network issues in time.
 ### Generic Requirements
 
 States have been defined to retrieve the status of the delivered
-services.  A few generic states defined in {{!RFC8776}} are reused in
+services.  A few generic states defined in {{!I-D.ietf-teas-rfc8776-update}} are reused in
 this document.  These states include the operational state and the
 provisioning state.
 
@@ -631,9 +631,9 @@ messages.
 ## YANG Tree for Ethernet Service
 
 ~~~~ ascii-art
-{::include ./ietf-eth-tran-service.tree}
+{::include ./ietf-eth-tran-service-tree.txt}
 ~~~~
-{: #fig-eth-svc-tree artwork-name="ietf-eth-tran-service.tree"}
+{: #fig-eth-svc-tree artwork-name="ietf-eth-tran-service-tree.txt"}
 
 {: #cbr-svc-tree}
 
@@ -649,12 +649,12 @@ messages.
 ## The ETH Service YANG Code
 
 This module imports typedefs and modules from {{!RFC6991}}, {{!RFC8294}},
-{{!RFC8776}}.
+{{!I-D.ietf-teas-rfc8776-update}}.
 
 ~~~~ yang
 {::include ./ietf-eth-tran-service.yang}
 ~~~~
-{: #fig-eth-svc-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-service@2023-12-15.yang"}
+{: #fig-eth-svc-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-service@2024-01-11.yang"}
 
 ## YANG Code for ETH type
 
@@ -664,17 +664,17 @@ This module references a few documents including {{?RFC2697}},
 ~~~~ yang
 {::include ./ietf-eth-tran-types.yang}
 ~~~~
-{: #fig-eth-types-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-types@2023-12-15.yang"}
+{: #fig-eth-types-yang sourcecode-markers="true" sourcecode-name="ietf-eth-tran-types@2024-01-11.yang"}
 
 ## Other Client Signal YANG Code
 
 This module imports typedefs and modules from {{!RFC6991}},
-{{!I-D.ietf-ccamp-otn-tunnel-model}}, {{!RFC8776}}.
+{{!I-D.ietf-ccamp-otn-tunnel-model}}, {{!I-D.ietf-teas-rfc8776-update}}.
 
 ~~~~ yang
 {::include ./ietf-trans-client-service.yang}
 ~~~~
-{: #fig-cbr-svc-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-service@2023-12-15.yang"}
+{: #fig-cbr-svc-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-service@2024-01-11.yang"}
 
 ## Other Client Signal Types YANG Code
 
@@ -683,7 +683,7 @@ This module defines the types for other client signal types.
 ~~~~ yang
 {::include ./ietf-trans-client-svc-types.yang}
 ~~~~
-{: #fig-cbr-types-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-svc-types@2023-12-15.yang"}
+{: #fig-cbr-types-yang sourcecode-markers="true" sourcecode-name="ietf-trans-client-svc-types@2024-01-11.yang"}
 
 # Implementation Status
 
@@ -738,6 +738,27 @@ CCVPN%28Cross+Domain+and+Cross+Layer+VPN%29+USE+CASE
 
 - Contact: henry.yu1@huawei.com
 
+# Manageability Considerations
+
+TBD
+
+# Security Considerations
+
+The data following the model defined in this document is exchanged
+via, for example, the interface between an orchestrator and a network
+domain controller.
+
+The YANG module defined in this document can be accessed via the
+RESTCONF protocol defined in {{!RFC8040}}, or maybe via the NETCONF
+protocol {{!RFC6241}}.
+
+There are a number of data nodes defined in the YANG module which are
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., POST) to these
+data nodes without proper protection can have a negative effect on
+network operations.
+
 # IANA Considerations
 
 It is proposed that IANA should assign new URIs from the "IETF XML
@@ -790,31 +811,12 @@ Names registry {{!RFC6020}}.
                            Network Client Signals
 ~~~~
 
-# Manageability Considerations
-
-TBD
-
-# Security Considerations
-
-The data following the model defined in this document is exchanged
-via, for example, the interface between an orchestrator and a network
-domain controller.
-
-The YANG module defined in this document can be accessed via the
-RESTCONF protocol defined in {{!RFC8040}}, or maybe via the NETCONF
-protocol {{!RFC6241}}.
-
-There are a number of data nodes defined in the YANG module which are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., POST) to these
-data nodes without proper protection can have a negative effect on
-network operations.
-
 --- back
 
 # Acknowledgments
 {:numbered="false"}
+
+We would like to acknowledge the contribution from Francesco Lazzeri to the initial versions of this document, before it has been adopted by CCAMP WG.
 
 We would like to thank Igor Bryskin and Daniel King for their
 comments and discussions.
