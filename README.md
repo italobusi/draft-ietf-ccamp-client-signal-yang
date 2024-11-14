@@ -1,20 +1,17 @@
 # A YANG Data Model for Transport Network Client Signals
 
-Use this repository as a template if you want to start working on
-[IETF](https://www.ietf.org/) documents. [Click here to create a new repository using the
-template](https://github.com/martinthomson/internet-draft-template/generate).
-Make sure to check "Include all branches", or you will need to enable GitHub Pages manually.
+This is the working area for the IETF [CCAMP Working Group](https://datatracker.ietf.org/wg/ccamp/documents/) Internet-Draft, "A YANG Data Model for Transport Network Client Signals".
 
-* [Editor's Copy](https://italobusi.github.io/draft-ietf-ccamp-client-signal-yang/#go.draft-ietf-ccamp-client-signal-yang.html)
+* [Editor's Copy](https://ietf-ccamp-wg.github.io/draft-ietf-ccamp-client-signal-yang/#go.draft-ietf-ccamp-client-signal-yang.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-client-signal-yang)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-client-signal-yang)
-* [Compare Editor's Copy to Working Group Draft](https://italobusi.github.io/draft-ietf-ccamp-client-signal-yang/#go.draft-ietf-ccamp-client-signal-yang.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-ccamp-wg.github.io/draft-ietf-ccamp-client-signal-yang/#go.draft-ietf-ccamp-client-signal-yang.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/italobusi/draft-ietf-ccamp-client-signal-yang/blob/main-fork/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-client-signal-yang/blob//CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
