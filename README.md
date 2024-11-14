@@ -1,6 +1,9 @@
 # A YANG Data Model for Transport Network Client Signals
 
-This is the working area for the IETF [CCAMP Working Group](https://datatracker.ietf.org/wg/ccamp/documents/) Internet-Draft, "A YANG Data Model for Transport Network Client Signals".
+Use this repository as a template if you want to start working on
+[IETF](https://www.ietf.org/) documents. [Click here to create a new repository using the
+template](https://github.com/martinthomson/internet-draft-template/generate).
+Make sure to check "Include all branches", or you will need to enable GitHub Pages manually.
 
 * [Editor's Copy](https://italobusi.github.io/draft-ietf-ccamp-client-signal-yang/#go.draft-ietf-ccamp-client-signal-yang.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-client-signal-yang)
