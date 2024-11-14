@@ -9,7 +9,6 @@
 <meta content="Aihua Guo" name="author">
 <meta content="Italo Busi" name="author">
 <meta content="Anton Snitser" name="author">
-<meta content="Francesco Lazzeri" name="author">
 <meta content="Chaode Yu" name="author">
 <meta content="
        A transport network is a server-layer network to provide connectivity
@@ -25,26 +24,25 @@ during configuration procedure.  More specifically, several client
 signal (of transport network) models including ETH, STM-n, FC and so
 on, are defined in this draft. 
     " name="description">
-<meta content="xml2rfc 3.19.0" name="generator">
+<meta content="xml2rfc 3.24.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ccamp-client-signal-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.0
-    Python 3.11.6
+  xml2rfc 3.24.0
+    Python 3.12.7
     ConfigArgParse 1.7
-    google-i18n-address 3.1.0
+    google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.1.0
+    Jinja2 3.1.4
+    lxml 5.3.0
+    platformdirs 4.3.6
     pycountry 22.3.5
     PyYAML 6.0.1
-    requests 2.31.0
-    setuptools 68.2.2
-    six 1.16.0
-    wcwidth 0.2.12
+    requests 2.32.3
+    setuptools 70.3.0
+    wcwidth 0.2.13
 -->
 <link href="draft-ietf-ccamp-client-signal-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -180,31 +178,6 @@ on, are defined in this draft.
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -221,6 +194,77 @@ on, are defined in this draft.
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -233,6 +277,7 @@ on, are defined in this draft.
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -251,8 +296,8 @@ body {
 
 /* headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -660,6 +705,12 @@ sub, sup {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
 }
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+  }
+}
 #toc nav ul {
   margin: 0 0.5em 0 0;
   padding: 0;
@@ -1043,11 +1094,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Client Signals YANG Model</td>
-<td class="right">January 2024</td>
+<td class="right">November 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Zheng, et al.</td>
-<td class="center">Expires 11 July 2024</td>
+<td class="center">Expires 18 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1060,12 +1111,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-client-signal-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-08" class="published">8 January 2024</time>
+<time datetime="2024-11-14" class="published">14 November 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-11">11 July 2024</time></dd>
+<dd class="expires"><time datetime="2025-05-18">18 May 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1083,10 +1134,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div class="author">
       <div class="author-name">A. Snitser</div>
 <div class="org">Cisco</div>
-</div>
-<div class="author">
-      <div class="author-name">F. Lazzeri</div>
-<div class="org">Ericsson</div>
 </div>
 <div class="author">
       <div class="author-name">C. Yu</div>
@@ -1146,7 +1193,7 @@ on, are defined in this draft.<a href="#section-abstract-2" class="pilcrow">¶</
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1270,13 +1317,13 @@ on, are defined in this draft.<a href="#section-abstract-2" class="pilcrow">¶</
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
@@ -1383,11 +1430,6 @@ and <span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">te-types</td>
-              <td class="text-left" rowspan="1" colspan="1">ietf-te-types</td>
-              <td class="text-left" rowspan="1" colspan="1">[RFC YYYY]</td>
-            </tr>
-            <tr>
               <td class="text-left" rowspan="1" colspan="1">rt-types</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-routing-types</td>
               <td class="text-left" rowspan="1" colspan="1">
@@ -1395,9 +1437,38 @@ and <span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf
 </td>
             </tr>
             <tr>
+              <td class="text-left" rowspan="1" colspan="1">te-types</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-te-types</td>
+              <td class="text-left" rowspan="1" colspan="1">[RFCYYYY]</td>
+            </tr>
+            <tr>
               <td class="text-left" rowspan="1" colspan="1">l1-types</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-layer1-types</td>
-              <td class="text-left" rowspan="1" colspan="1">[RFC ZZZZ]</td>
+              <td class="text-left" rowspan="1" colspan="1">[RFCZZZZ]</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">nw</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-network</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">nt</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-network-topology</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">te</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-te</td>
+              <td class="text-left" rowspan="1" colspan="1">[RFCKKKK]</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">clnt-types</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-trans-client-svc-types</td>
+              <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">etht-types</td>
@@ -1405,27 +1476,23 @@ and <span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf
               <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">clntsvc</td>
+              <td class="text-left" rowspan="1" colspan="1">clnt-svc</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-trans-client-service</td>
               <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">ethtsvc</td>
+              <td class="text-left" rowspan="1" colspan="1">etht-svc</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-eth-tran-service</td>
-              <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
-            </tr>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">clntsvc-types</td>
-              <td class="text-left" rowspan="1" colspan="1">ietf-trans-client-svc-types</td>
               <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
             </tr>
           </tbody>
         </table>
 </div>
-<p id="section-2.1-3">RFC Editor Note: Please replace XXXX with the number assigned to the
-RFC once this draft becomes an RFC.  Please replace YYYY with the RFC
-numbers assigned to <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>.  Please replace
-ZZZZ with the RFC numbers assigned to <span>[<a href="#I-D.ietf-ccamp-layer1-types" class="cite xref">I-D.ietf-ccamp-layer1-types</a>]</span>.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">RFC Editor Note:
+Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+Please replace YYYY with the RFC numbers assigned to <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>.
+Please replace ZZZZ with the RFC numbers assigned to <span>[<a href="#I-D.ietf-ccamp-layer1-types" class="cite xref">I-D.ietf-ccamp-layer1-types</a>]</span>.
+Please replace KKKK with the RFC numbers assigned to <span>[<a href="#I-D.ietf-teas-yang-te" class="cite xref">I-D.ietf-teas-yang-te</a>]</span>.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology-and-notations">
@@ -1774,7 +1841,7 @@ maintenance engineer recognize the network issues in time.<a href="#section-3.2.
 <a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-generic-requirements" class="section-name selfRef">Generic Requirements</a>
           </h4>
 <p id="section-3.3.1-1">States have been defined to retrieve the status of the delivered
-services.  A few generic states defined in <span>[<a href="#RFC8776" class="cite xref">RFC8776</a>]</span> are reused in
+services.  A few generic states defined in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span> are reused in
 this document.  These states include the operational state and the
 provisioning state.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-ascii-art art-text artwork" id="section-3.3.1-2">
@@ -1953,216 +2020,244 @@ messages.<a href="#section-3.3.4-1" class="pilcrow">¶</a></p>
 <figure id="figure-5">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-4.1-1.1">
 <pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 module: ietf-eth-tran-service
-   +--rw etht-svc
-      +--rw globals
-      |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
-      |     +--rw bandwidth-profile-name    string
-      |     +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-      |     +--rw CIR?                      uint64
-      |     +--rw CBS?                      uint64
-      |     +--rw EIR?                      uint64
-      |     +--rw EBS?                      uint64
-      |     +--rw color-aware?              boolean
-      |     +--rw coupling-flag?            boolean
-      +--rw etht-svc-instances* [etht-svc-name]
-         +--rw etht-svc-name             string
-         +--rw etht-svc-title?           string
-         +--rw user-label?               string
-         +--rw etht-svc-descr?           string
-         +--rw etht-svc-customer?        string
-         +--rw etht-svc-type?            etht-types:service-type
-         +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
-         +--rw te-topology-identifier
-         |  +--rw provider-id?   te-types:te-global-id
-         |  +--rw client-id?     te-types:te-global-id
-         |  +--rw topology-id?   te-types:te-topology-id
-         +--rw resilience
-         |  +--rw protection
-         |  |  +--rw protection-type?                identityref
-         |  |  +--rw protection-reversion-disable?   boolean
-         |  |  +--rw hold-off-time?                  uint32
-         |  |  +--rw wait-to-revert?                 uint16
-         |  |  +--rw aps-signal-id?                  uint8
-         |  +--rw restoration
-         |     +--rw restoration-type?                identityref
-         |     +--rw restoration-scheme?              identityref
-         |     +--rw restoration-reversion-disable?   boolean
-         |     +--rw hold-off-time?                   uint32
-         |     +--rw wait-to-restore?                 uint16
-         |     +--rw wait-to-revert?                  uint16
-         +--rw etht-svc-end-points* [etht-svc-end-point-name]
-         |  +--rw etht-svc-end-point-name             string
-         |  +--rw etht-svc-end-point-id?              string
-         |  +--rw etht-svc-end-point-descr?           string
-         |  +--rw topology-role?                      identityref
-         |  +--rw resilience
-         |  +--rw etht-svc-access-points* [access-point-id]
-         |  |  +--rw access-point-id    string
-         |  |  +--rw access-node-id?    te-types:te-node-id
-         |  |  +--rw access-node-uri?   nw:node-id
-         |  |  +--rw access-ltp-id?     te-types:te-tp-id
-         |  |  +--rw access-ltp-uri?    nt:tp-id
-         |  |  +--rw access-role?       identityref
-         |  |  +--rw pm-config
-         |  |  |  +--rw pm-enable?             boolean
-         |  |  |  +--rw sending-rate-high?     uint64
-         |  |  |  +--rw sending-rate-low?      uint64
-         |  |  |  +--rw receiving-rate-high?   uint64
-         |  |  |  +--rw receiving-rate-low?    uint64
-         |  |  +--ro state
-         |  |  |  +--ro operational-state?    identityref
-         |  |  |  +--ro provisioning-state?   identityref
-         |  |  +--ro performance?       identityref
-         |  +--rw service-classification-type?        identityref
-         |  +--rw (service-classification)?
-         |  |  +--:(port-classification)
-         |  |  +--:(vlan-classification)
-         |  |     +--rw outer-tag!
-         |  |     |  +--rw tag-type?     etht-types:eth-tag-classify
-         |  |     |  +--rw (individual-bundling-vlan)?
-         |  |     |     +--:(individual-vlan)
-         |  |     |     |  +--rw vlan-value?   etht-types:vlanid
-         |  |     |     +--:(vlan-bundling)
-         |  |     |        +--rw vlan-range?   etht-types:vid-range-type
-         |  |     +--rw second-tag!
-         |  |        +--rw tag-type?     etht-types:eth-tag-classify
-         |  |        +--rw (individual-bundling-vlan)?
-         |  |           +--:(individual-vlan)
-         |  |           |  +--rw vlan-value?   etht-types:vlanid
-         |  |           +--:(vlan-bundling)
-         |  |              +--rw vlan-range?   etht-types:vid-range-type
-         |  +--rw split-horizon-group?                string
-         |  +--rw (direction)?
-         |  |  +--:(symmetrical)
-         |  |  |  +--rw ingress-egress-bandwidth-profile
-         |  |  |     +--rw (style)?
-         |  |  |        +--:(named)
-         |  |  |        |  +--rw bandwidth-profile-name?   leafref
-         |  |  |        +--:(value)
-         |  |  |           +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |  |           +--rw CIR?                      uint64
-         |  |  |           +--rw CBS?                      uint64
-         |  |  |           +--rw EIR?                      uint64
-         |  |  |           +--rw EBS?                      uint64
-         |  |  |           +--rw color-aware?              boolean
-         |  |  |           +--rw coupling-flag?            boolean
-         |  |  +--:(asymmetrical)
-         |  |     +--rw ingress-bandwidth-profile
-         |  |     |  +--rw (style)?
-         |  |     |     +--:(named)
-         |  |     |     |  +--rw bandwidth-profile-name?   leafref
-         |  |     |     +--:(value)
-         |  |     |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |     |        +--rw CIR?                      uint64
-         |  |     |        +--rw CBS?                      uint64
-         |  |     |        +--rw EIR?                      uint64
-         |  |     |        +--rw EBS?                      uint64
-         |  |     |        +--rw color-aware?              boolean
-         |  |     |        +--rw coupling-flag?            boolean
-         |  |     +--rw egress-bandwidth-profile
-         |  |        +--rw (style)?
-         |  |           +--:(named)
-         |  |           |  +--rw bandwidth-profile-name?   leafref
-         |  |           +--:(value)
-         |  |              +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |              +--rw CIR?                      uint64
-         |  |              +--rw CBS?                      uint64
-         |  |              +--rw EIR?                      uint64
-         |  |              +--rw EBS?                      uint64
-         |  |              +--rw color-aware?              boolean
-         |  |              +--rw coupling-flag?            boolean
-         |  +--rw vlan-operations
-         |     +--rw (direction)?
-         |        +--:(symmetrical)
-         |        |  +--rw symmetrical-operation
-         |        |     +--rw pop-tags?    uint8
-         |        |     +--rw push-tags
-         |        |        +--rw outer-tag!
-         |        |        |  +--rw tag-type?      etht-types:eth-tag-type
-         |        |        |  +--rw vlan-value?    etht-types:vlanid
-         |        |        |  +--rw default-pcp?   uint8
-         |        |        +--rw second-tag!
-         |        |           +--rw tag-type?      etht-types:eth-tag-type
-         |        |           +--rw vlan-value?    etht-types:vlanid
-         |        |           +--rw default-pcp?   uint8
-         |        +--:(asymmetrical)
-         |           +--rw asymmetrical-operation
-         |              +--rw ingress
-         |              |  +--rw pop-tags?    uint8
-         |              |  +--rw push-tags
-         |              |     +--rw outer-tag!
-         |              |     |  +--rw tag-type?      etht-types:eth-tag-type
-         |              |     |  +--rw vlan-value?    etht-types:vlanid
-         |              |     |  +--rw default-pcp?   uint8
-         |              |     +--rw second-tag!
-         |              |        +--rw tag-type?      etht-types:eth-tag-type
-         |              |        +--rw vlan-value?    etht-types:vlanid
-         |              |        +--rw default-pcp?   uint8
-         |              +--rw egress
-         |                 +--rw pop-tags?    uint8
-         |                 +--rw push-tags
-         |                    +--rw outer-tag!
-         |                    |  +--rw tag-type?      etht-types:eth-tag-type
-         |                    |  +--rw vlan-value?    etht-types:vlanid
-         |                    |  +--rw default-pcp?   uint8
-         |                    +--rw second-tag!
-         |                       +--rw tag-type?      etht-types:eth-tag-type
-         |                       +--rw vlan-value?    etht-types:vlanid
-         |                       +--rw default-pcp?   uint8
-         +--rw alarm-threshold
-         |  +--rw latency-threshold?   uint32
-         +--rw underlay
-         |  +--rw (technology)?
-         |  |  +--:(native-ethernet)
-         |  |  |  +--rw eth-tunnels* [name]
-         |  |  |     +--rw name              leafref
-         |  |  |     +--rw encoding?         identityref
-         |  |  |     +--rw switching-type?   identityref
-         |  |  +--:(frame-base)
-         |  |  |  +--rw otn-tunnels* [name]
-         |  |  |     +--rw name              leafref
-         |  |  |     +--rw encoding?         identityref
-         |  |  |     +--rw switching-type?   identityref
-         |  |  +--:(mpls-tp)
-         |  |     +--rw pw
-         |  |        +--rw pw-id?                       string
-         |  |        +--rw pw-name?                     string
-         |  |        +--rw transmit-label?              rt-types:mpls-label
-         |  |        +--rw receive-label?               rt-types:mpls-label
-         |  |        +--rw encapsulation-type?          identityref
-         |  |        +--ro oper-status?                 identityref
-         |  |        +--rw ingress-bandwidth-profile
-         |  |        |  +--rw (style)?
-         |  |        |     +--:(named)
-         |  |        |     |  +--rw bandwidth-profile-name?   leafref
-         |  |        |     +--:(value)
-         |  |        |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
-         |  |        |        +--rw CIR?                      uint64
-         |  |        |        +--rw CBS?                      uint64
-         |  |        |        +--rw EIR?                      uint64
-         |  |        |        +--rw EBS?                      uint64
-         |  |        +--rw pw-paths* [path-id]
-         |  |           +--rw path-id       uint8
-         |  |           +--rw tp-tunnels* [name]
-         |  |              +--rw name    string
-         |  +--rw src-split-horizon-group?   string
-         |  +--rw dst-split-horizon-group?   string
-         +--rw admin-status?             identityref
-         +--ro state
-            +--ro operational-state?    identityref
-            +--ro provisioning-state?   identityref
-            +--ro creation-time?        yang:date-and-time
-            +--ro last-updated-time?    yang:date-and-time
-            +--ro created-by?           string
-            +--ro last-updated-by?      string
-            +--ro owned-by?             string
-            +--ro pm-state
-            |  +--ro latency?   uint32
-            +--ro error-info
-               +--ro error-code?          uint16
-               +--ro error-description?   string
-               +--ro error-timestamp?     yang:date-and-time
+  +--rw etht-svc
+     +--rw globals
+     |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
+     |     +--rw bandwidth-profile-name    string
+     |     +--rw bandwidth-profile-type?
+     |     |       etht-types:bandwidth-profile-type
+     |     +--rw CIR?                      uint64
+     |     +--rw CBS?                      uint64
+     |     +--rw EIR?                      uint64
+     |     +--rw EBS?                      uint64
+     |     +--rw color-aware?              boolean
+     |     +--rw coupling-flag?            boolean
+     +--rw etht-svc-instances* [etht-svc-name]
+        +--rw etht-svc-name             string
+        +--rw etht-svc-title?           string
+        +--rw user-label?               string
+        +--rw etht-svc-descr?           string
+        +--rw etht-svc-customer?        string
+        +--rw etht-svc-type?            etht-types:service-type
+        +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
+        +--rw te-topology-identifier
+        |  +--rw provider-id?   te-global-id
+        |  +--rw client-id?     te-global-id
+        |  +--rw topology-id?   te-topology-id
+        +--rw resilience
+        |  +--rw protection
+        |  |  +--rw protection-type?                identityref
+        |  |  +--rw protection-reversion-disable?   boolean
+        |  |  +--rw hold-off-time?                  uint32
+        |  |  +--rw wait-to-revert?                 uint16
+        |  |  +--rw aps-signal-id?                  uint8
+        |  +--rw restoration
+        |     +--rw restoration-type?                identityref
+        |     +--rw restoration-scheme?              identityref
+        |     +--rw restoration-reversion-disable?   boolean
+        |     +--rw hold-off-time?                   uint32
+        |     +--rw wait-to-restore?                 uint16
+        |     +--rw wait-to-revert?                  uint16
+        +--rw etht-svc-end-points* [etht-svc-end-point-name]
+        |  +--rw etht-svc-end-point-name                   string
+        |  +--rw etht-svc-end-point-id?                    string
+        |  +--rw etht-svc-end-point-descr?                 string
+        |  +--rw topology-role?
+        |  |       identityref
+        |  +--rw resilience
+        |  +--rw etht-svc-access-points* [access-point-id]
+        |  |  +--rw access-point-id    string
+        |  |  +--rw access-node-id?    te-types:te-node-id
+        |  |  +--rw access-node-uri?   nw:node-id
+        |  |  +--rw access-ltp-id?     te-types:te-tp-id
+        |  |  +--rw access-ltp-uri?    nt:tp-id
+        |  |  +--rw access-role?       identityref
+        |  |  +--rw pm-config
+        |  |  |  +--rw pm-enable?             boolean
+        |  |  |  +--rw sending-rate-high?     uint64
+        |  |  |  +--rw sending-rate-low?      uint64
+        |  |  |  +--rw receiving-rate-high?   uint64
+        |  |  |  +--rw receiving-rate-low?    uint64
+        |  |  +--ro state
+        |  |  |  +--ro operational-state?    identityref
+        |  |  |  +--ro provisioning-state?   identityref
+        |  |  +--ro performance?       identityref
+        |  +--rw service-classification-type?
+        |  |       identityref
+        |  +--rw (service-classification)?
+        |  |  +--:(port-classification)
+        |  |  +--:(vlan-classification)
+        |  |     +--rw outer-tag!
+        |  |     |  +--rw tag-type?
+        |  |     |  |       etht-types:eth-tag-classify
+        |  |     |  +--rw (individual-bundling-vlan)?
+        |  |     |     +--:(individual-vlan)
+        |  |     |     |  +--rw vlan-value?   etht-types:vlanid
+        |  |     |     +--:(vlan-bundling)
+        |  |     |        +--rw vlan-range?
+        |  |     |                etht-types:vid-range-type
+        |  |     +--rw second-tag!
+        |  |        +--rw tag-type?
+        |  |        |       etht-types:eth-tag-classify
+        |  |        +--rw (individual-bundling-vlan)?
+        |  |           +--:(individual-vlan)
+        |  |           |  +--rw vlan-value?   etht-types:vlanid
+        |  |           +--:(vlan-bundling)
+        |  |              +--rw vlan-range?
+        |  |                      etht-types:vid-range-type
+        |  +--rw split-horizon-group?                      string
+        |  +--rw (direction)?
+        |  |  +--:(symmetrical)
+        |  |  |  +--rw ingress-egress-bandwidth-profile
+        |  |  |     +--rw (style)?
+        |  |  |        +--:(named)
+        |  |  |        |  +--rw bandwidth-profile-name?   leafref
+        |  |  |        +--:(value)
+        |  |  |           +--rw bandwidth-profile-type?
+        |  |  |           |       etht-types:bandwidth-profile-type
+        |  |  |           +--rw CIR?                      uint64
+        |  |  |           +--rw CBS?                      uint64
+        |  |  |           +--rw EIR?                      uint64
+        |  |  |           +--rw EBS?                      uint64
+        |  |  |           +--rw color-aware?              boolean
+        |  |  |           +--rw coupling-flag?            boolean
+        |  |  +--:(asymmetrical)
+        |  |     +--rw ingress-bandwidth-profile
+        |  |     |  +--rw (style)?
+        |  |     |     +--:(named)
+        |  |     |     |  +--rw bandwidth-profile-name?   leafref
+        |  |     |     +--:(value)
+        |  |     |        +--rw bandwidth-profile-type?
+        |  |     |        |       etht-types:bandwidth-profile-type
+        |  |     |        +--rw CIR?                      uint64
+        |  |     |        +--rw CBS?                      uint64
+        |  |     |        +--rw EIR?                      uint64
+        |  |     |        +--rw EBS?                      uint64
+        |  |     |        +--rw color-aware?              boolean
+        |  |     |        +--rw coupling-flag?            boolean
+        |  |     +--rw egress-bandwidth-profile
+        |  |        +--rw (style)?
+        |  |           +--:(named)
+        |  |           |  +--rw bandwidth-profile-name?   leafref
+        |  |           +--:(value)
+        |  |              +--rw bandwidth-profile-type?
+        |  |              |       etht-types:bandwidth-profile-type
+        |  |              +--rw CIR?                      uint64
+        |  |              +--rw CBS?                      uint64
+        |  |              +--rw EIR?                      uint64
+        |  |              +--rw EBS?                      uint64
+        |  |              +--rw color-aware?              boolean
+        |  |              +--rw coupling-flag?            boolean
+        |  +--rw vlan-operations
+        |     +--rw (direction)?
+        |        +--:(symmetrical)
+        |        |  +--rw symmetrical-operation
+        |        |     +--rw pop-tags?    uint8
+        |        |     +--rw push-tags
+        |        |        +--rw outer-tag!
+        |        |        |  +--rw tag-type?
+        |        |        |  |       etht-types:eth-tag-type
+        |        |        |  +--rw vlan-value?    etht-types:vlanid
+        |        |        |  +--rw default-pcp?   uint8
+        |        |        +--rw second-tag!
+        |        |           +--rw tag-type?
+        |        |           |       etht-types:eth-tag-type
+        |        |           +--rw vlan-value?    etht-types:vlanid
+        |        |           +--rw default-pcp?   uint8
+        |        +--:(asymmetrical)
+        |           +--rw asymmetrical-operation
+        |              +--rw ingress
+        |              |  +--rw pop-tags?    uint8
+        |              |  +--rw push-tags
+        |              |     +--rw outer-tag!
+        |              |     |  +--rw tag-type?
+        |              |     |  |       etht-types:eth-tag-type
+        |              |     |  +--rw vlan-value?
+        |              |     |  |       etht-types:vlanid
+        |              |     |  +--rw default-pcp?   uint8
+        |              |     +--rw second-tag!
+        |              |        +--rw tag-type?
+        |              |        |       etht-types:eth-tag-type
+        |              |        +--rw vlan-value?
+        |              |        |       etht-types:vlanid
+        |              |        +--rw default-pcp?   uint8
+        |              +--rw egress
+        |                 +--rw pop-tags?    uint8
+        |                 +--rw push-tags
+        |                    +--rw outer-tag!
+        |                    |  +--rw tag-type?
+        |                    |  |       etht-types:eth-tag-type
+        |                    |  +--rw vlan-value?
+        |                    |  |       etht-types:vlanid
+        |                    |  +--rw default-pcp?   uint8
+        |                    +--rw second-tag!
+        |                       +--rw tag-type?
+        |                       |       etht-types:eth-tag-type
+        |                       +--rw vlan-value?
+        |                       |       etht-types:vlanid
+        |                       +--rw default-pcp?   uint8
+        +--rw alarm-threshold
+        |  +--rw latency-threshold?   uint32
+        +--rw underlay
+        |  +--rw (technology)?
+        |  |  +--:(native-ethernet)
+        |  |  |  +--rw eth-tunnels* [name]
+        |  |  |     +--rw name
+        |  |  |     |       -&gt; /te:te/tunnels/tunnel/name
+        |  |  |     +--rw encoding?         identityref
+        |  |  |     +--rw switching-type?   identityref
+        |  |  +--:(frame-base)
+        |  |  |  +--rw otn-tunnels* [name]
+        |  |  |     +--rw name
+        |  |  |     |       -&gt; /te:te/tunnels/tunnel/name
+        |  |  |     +--rw encoding?         identityref
+        |  |  |     +--rw switching-type?   identityref
+        |  |  +--:(mpls-tp)
+        |  |     +--rw pw
+        |  |        +--rw pw-id?                       string
+        |  |        +--rw pw-name?                     string
+        |  |        +--rw transmit-label?
+        |  |        |       rt-types:mpls-label
+        |  |        +--rw receive-label?
+        |  |        |       rt-types:mpls-label
+        |  |        +--rw encapsulation-type?          identityref
+        |  |        +--ro oper-status?                 identityref
+        |  |        +--rw ingress-bandwidth-profile
+        |  |        |  +--rw (style)?
+        |  |        |     +--:(named)
+        |  |        |     |  +--rw bandwidth-profile-name?   leafref
+        |  |        |     +--:(value)
+        |  |        |        +--rw bandwidth-profile-type?
+        |  |        |        |       etht-types:bandwidth-profile-ty\
+pe
+        |  |        |        +--rw CIR?                      uint64
+        |  |        |        +--rw CBS?                      uint64
+        |  |        |        +--rw EIR?                      uint64
+        |  |        |        +--rw EBS?                      uint64
+        |  |        +--rw pw-paths* [path-id]
+        |  |           +--rw path-id       uint8
+        |  |           +--rw tp-tunnels* [name]
+        |  |              +--rw name    string
+        |  +--rw src-split-horizon-group?   string
+        |  +--rw dst-split-horizon-group?   string
+        +--rw admin-status?             identityref
+        +--ro state
+           +--ro operational-state?    identityref
+           +--ro provisioning-state?   identityref
+           +--ro creation-time?        yang:date-and-time
+           +--ro last-updated-time?    yang:date-and-time
+           +--ro created-by?           string
+           +--ro last-updated-by?      string
+           +--ro owned-by?             string
+           +--ro pm-state
+           |  +--ro latency?   uint32
+           +--ro error-info
+              +--ro error-code?          uint16
+              +--ro error-description?   string
+              +--ro error-timestamp?     yang:date-and-time
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a></figcaption></figure>
@@ -2179,49 +2274,49 @@ module: ietf-eth-tran-service
           <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2-1.1">
 <pre>
 module: ietf-trans-client-service
-   +--rw client-svc
-      +--rw client-svc-instances* [client-svc-name]
-         +--rw client-svc-name           string
-         +--rw client-svc-title?         string
-         +--rw user-label?               string
-         +--rw client-svc-descr?         string
-         +--rw client-svc-customer?      string
-         +--rw resilience
-         +--rw te-topology-identifier
-         |  +--rw provider-id?   te-types:te-global-id
-         |  +--rw client-id?     te-types:te-global-id
-         |  +--rw topology-id?   te-types:te-topology-id
-         +--rw admin-status?             identityref
-         +--rw src-access-ports
-         |  +--rw access-node-id?    te-types:te-node-id
-         |  +--rw access-node-uri?   nw:node-id
-         |  +--rw access-ltp-id?     te-types:te-tp-id
-         |  +--rw access-ltp-uri?    nt:tp-id
-         |  +--rw client-signal?     identityref
-         +--rw dst-access-ports
-         |  +--rw access-node-id?    te-types:te-node-id
-         |  +--rw access-node-uri?   nw:node-id
-         |  +--rw access-ltp-id?     te-types:te-tp-id
-         |  +--rw access-ltp-uri?    nt:tp-id
-         |  +--rw client-signal?     identityref
-         +--ro pm-state
-         |  +--ro latency?   uint32
-         +--ro error-info
-         |  +--ro error-code?          uint16
-         |  +--ro error-description?   string
-         |  +--ro error-timestamp?     yang:date-and-time
-         +--rw alarm-threshold
-         |  +--rw latency-threshold?   uint32
-         +--rw direction?                identityref
-         +--rw svc-tunnels* [tunnel-name]
-         |  +--rw tunnel-name    string
-         +--ro operational-state?        identityref
-         +--ro provisioning-state?       identityref
-         +--ro creation-time?            yang:date-and-time
-         +--ro last-updated-time?        yang:date-and-time
-         +--ro created-by?               string
-         +--ro last-updated-by?          string
-         +--ro owned-by?                 string
+  +--rw client-svc
+     +--rw client-svc-instances* [client-svc-name]
+        +--rw client-svc-name           string
+        +--rw client-svc-title?         string
+        +--rw user-label?               string
+        +--rw client-svc-descr?         string
+        +--rw client-svc-customer?      string
+        +--rw resilience
+        +--rw te-topology-identifier
+        |  +--rw provider-id?   te-global-id
+        |  +--rw client-id?     te-global-id
+        |  +--rw topology-id?   te-topology-id
+        +--rw admin-status?             identityref
+        +--rw src-access-ports
+        |  +--rw access-node-id?    te-types:te-node-id
+        |  +--rw access-node-uri?   nw:node-id
+        |  +--rw access-ltp-id?     te-types:te-tp-id
+        |  +--rw access-ltp-uri?    nt:tp-id
+        |  +--rw client-signal?     identityref
+        +--rw dst-access-ports
+        |  +--rw access-node-id?    te-types:te-node-id
+        |  +--rw access-node-uri?   nw:node-id
+        |  +--rw access-ltp-id?     te-types:te-tp-id
+        |  +--rw access-ltp-uri?    nt:tp-id
+        |  +--rw client-signal?     identityref
+        +--ro pm-state
+        |  +--ro latency?   uint32
+        +--ro error-info
+        |  +--ro error-code?          uint16
+        |  +--ro error-description?   string
+        |  +--ro error-timestamp?     yang:date-and-time
+        +--rw alarm-threshold
+        |  +--rw latency-threshold?   uint32
+        +--rw direction?                identityref
+        +--rw svc-tunnels* [tunnel-name]
+        |  +--rw tunnel-name    string
+        +--ro operational-state?        identityref
+        +--ro provisioning-state?       identityref
+        +--ro creation-time?            yang:date-and-time
+        +--ro last-updated-time?        yang:date-and-time
+        +--ro created-by?               string
+        +--ro last-updated-by?          string
+        +--ro owned-by?                 string
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a></figcaption></figure>
@@ -2241,93 +2336,120 @@ module: ietf-trans-client-service
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-the-eth-service-yang-code" class="section-name selfRef">The ETH Service YANG Code</a>
         </h3>
 <p id="section-5.1-1">This module imports typedefs and modules from <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8294" class="cite xref">RFC8294</a>]</span>,
-<span>[<a href="#RFC8776" class="cite xref">RFC8776</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <div id="fig-eth-svc-yang">
 <figure id="figure-7">
           <div class="breakable lang-yang sourcecode" id="section-5.1-2.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-eth-tran-service@2023-12-15.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-eth-tran-service@2024-01-11.yang"
 
 module ietf-eth-tran-service {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
-
-  prefix "ethtsvc";
+  prefix etht-svc;
 
   import ietf-yang-types {
-    prefix "yang";
-    reference "RFC 6991 - Common YANG Data Types";
-  }
-
-  import ietf-network {
-    prefix "nw";
-    reference "RFC8345 - A YANG Data Model for Network Topologies";
-  }
-  import ietf-network-topology {
-    prefix "nt";
-    reference "RFC8345 - A YANG Data Model for Network Topologies";
-  }
-  import ietf-te-types {
-    prefix "te-types";
-    reference "RFC 8776 - Traffic Engineering Common YANG Types";
-  }
-
-  import ietf-eth-tran-types {
-    prefix "etht-types";
-    reference "RFC XXXX - A YANG Data Model for Transport
-               Network Client Signals";
+    prefix yang;
+    reference
+      "RFC 6991: Common YANG Data Types";
   }
 
   import ietf-routing-types {
-    prefix "rt-types";
-    reference "RFC 8294 - Common YANG Data Types for the
-               Routing Area";
+    prefix rt-types;
+    reference
+      "RFC 8294: Common YANG Data Types for the Routing Area";
+  }
 
+  import ietf-te-types {
+    prefix te-types;
+    reference "RFCYYYY: Traffic Engineering Common YANG Types";
+  }
+  // RFC Editor: replace YYYY with the actual RFC number assigned
+  // to the RFC once draft-ietf-teas-rfc8776-update
+  // becomes an RFC, update date information and remove this note.
+
+  import ietf-network {
+    prefix nw;
+    reference
+      "RFC8345: A YANG Data Model for Network Topologies";
+  }
+
+  import ietf-network-topology {
+    prefix "nt";
+    reference
+      "RFC8345: A YANG Data Model for Network Topologies";
   }
 
   import ietf-te {
     prefix "te";
-    reference "RFC YYYY - A YANG Data Model for Traffic
-               Engineering Tunnels and Interfaces";
+    reference
+      "RFCKKKK: A YANG Data Model for Traffic Engineering Tunnels
+      and Interfaces";
   }
+  // RFC Editor: replace KKKK with the actual RFC number assigned
+  // to the RFC once draft-ietf-teas-yang-te
+  // becomes an RFC, update date information and remove this note.
+
+  import ietf-eth-tran-types {
+    prefix etht-types;
+    reference
+      "RFCXXXX: A YANG Data Model for Transport Network Client
+      Signals";
+  }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
-    "
-      WG List: &lt;mailto:ccamp@ietf.org&gt;
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;mailto:ccamp@ietf.org&gt;
 
-      ID-draft editor:
-        Haomian Zheng (zhenghaomian@huawei.com);
-        Italo Busi (italo.busi@huawei.com);
-        Aihua Guo (aihuaguo.ietf@gmail.com);
-        Anton Snitser (asnizar@cisco.com);
-        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Chaode Yu (yuchaode@huawei.com);
-    ";
+     Editor: Haomian Zheng
+             &lt;mailto:zhenghaomian@huawei.com&gt;
+
+     Editor: Aihua Guo
+             &lt;mailto:aihuaguo.ietf@gmail.com&gt;
+
+     Editor: Italo Busi
+             &lt;mailto:italo.busi@huawei.com&gt;
+
+     Editor: Anton Snitser
+             &lt;mailto:asnizar@cisco.com&gt;
+
+     Editor: Chaode Yu
+             &lt;mailto:yuchaode@huawei.com&gt;";
 
   description
     "This module defines a YANG data model for describing
-     the Ethernet services. The model fully conforms to the
-     Network Management Datastore Architecture (NMDA).
+    Ethernet transport network client services.
 
-     Copyright (c) 2021 IETF Trust and the persons
-     identified as authors of the code.  All rights reserved.
+    The model fully conforms to the Network Management
+    Datastore Architecture (NMDA).
 
-     Redistribution and use in source and binary forms, with or
-     without modification, is permitted pursuant to, and subject
-     to the license terms contained in, the Simplified BSD License
-     set forth in Section 4.c of the IETF Trust's Legal Provisions
-     Relating to IETF Documents
-     (https://trustee.ietf.org/license-info).
-     This version of this YANG module is part of RFC XXXX; see
-     the RFC itself for full legal notices.";
+    Copyright (c) 2024 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
 
-  revision 2023-12-15 {
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision 2024-01-11 {
     description
-      "version -04 as an WG document";
+      "Initial Version";
     reference
-      "draft-ietf-ccamp-client-signal-yang";
+      "RFC XXXX: A YANG Data Model for Transport Network Client
+      Signals";
   }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
 
   /*
    * Groupings
@@ -2355,7 +2477,6 @@ module ietf-eth-tran-service {
             "VLAN ID value.";
         }
       }
-
       case vlan-bundling {
         leaf vlan-range {
           type etht-types:vid-range-type;
@@ -2400,27 +2521,24 @@ module ietf-eth-tran-service {
     description
       "A grouping which represents VLAN operations.";
 
-      leaf pop-tags {
+    leaf pop-tags {
       type uint8 {
         range "1..2";
       }
       description
         "The number of VLAN tags to pop (or swap if used in
-         conjunction with push-tags)";
+        conjunction with push-tags)";
     }
     container push-tags {
       description
         "The VLAN tags to push (or swap if used in
          conjunction with pop-tags)";
-
       container outer-tag {
         presence
           "Indicates existence of the outermost VLAN tag to
            push/swap";
-
         description
           "The outermost VLAN tag to push/swap.";
-
         uses vlan-write;
       }
       container second-tag {
@@ -2428,7 +2546,6 @@ module ietf-eth-tran-service {
         '../outer-tag/tag-type = "etht-types:s-vlan-tag-type" and ' +
         'tag-type = "etht-types:c-vlan-tag-type"'
         {
-
           error-message
             "
               When pushing/swapping two tags, the outermost tag must
@@ -2443,14 +2560,11 @@ module ietf-eth-tran-service {
               C-VLAN.
             ";
         }
-
         presence
           "Indicates existence of a second outermost VLAN tag to
            push/swap";
-
         description
           "The second outermost VLAN tag to push/swap.";
-
         uses vlan-write;
       }
     }
@@ -2464,15 +2578,14 @@ module ietf-eth-tran-service {
     choice style {
       description
         "Whether the bandwidth profile is named or defined by value";
-
       case named {
         description
           "Named bandwidth profile.";
         leaf bandwidth-profile-name {
           type leafref {
-             path "/ethtsvc:etht-svc/ethtsvc:globals/"
-             + "ethtsvc:named-bandwidth-profiles/"
-             + "ethtsvc:bandwidth-profile-name";
+             path "/etht-svc:etht-svc/etht-svc:globals/"
+             + "etht-svc:named-bandwidth-profiles/"
+             + "etht-svc:bandwidth-profile-name";
              }
           description
             "Name of the bandwidth profile.";
@@ -2557,35 +2670,32 @@ module ietf-eth-tran-service {
       description
         "Indicate the role of access, e.g., working or protection. ";
     }
-
     container pm-config {
       uses pm-config-grouping;
       description
       "This grouping is used to set the threshold value for
       performance monitoring. ";
     }
-
     container state {
       config false;
       description
-      "The state is used to monitor the status of service. ";
+        "The state is used to monitor the status of service. ";
       leaf operational-state {
         type identityref {
           base te-types:tunnel-state-type;
         }
         description
-        "Indicating the operational state of client signal. ";
+          "Indicating the operational state of client signal. ";
       }
       leaf provisioning-state {
         type identityref {
           base te-types:lsp-state-type;
         }
         description
-        "Indicating the provisional state of client signal,
-        especially when there is a change, i.e., revise, create. ";
+          "Indicating the provisional state of client signal,
+          especially when there is a change, i.e., revise, create. ";
       }
     }
-
     leaf performance {
       type identityref {
         base etht-types:performance;
@@ -2594,17 +2704,15 @@ module ietf-eth-tran-service {
       description
         "Performance Monitoring for the service. ";
     }
-
-
   }
 
   grouping etht-svc-tunnel-parameters {
     description
       "ETH services tunnel parameters.";
+
     choice technology {
       description
         "Service multiplexing is optional and flexible.";
-
       case native-ethernet {
         /*
          placeholder to support proprietary multiplexing
@@ -2617,7 +2725,6 @@ module ietf-eth-tran-service {
           uses tunnels-grouping;
         }
       }
-
       case frame-base {
         list otn-tunnels {
           key name;
@@ -2626,7 +2733,6 @@ module ietf-eth-tran-service {
           uses tunnels-grouping;
         }
       }
-
       case mpls-tp {
         container pw {
           description
@@ -2635,19 +2741,21 @@ module ietf-eth-tran-service {
         }
       }
     }
-
-/*
- * Open issue: can we constraints it to be used only with mp services?
- */
+    /*
+    * Open issue:
+    *   can we constraints it to be used only with mp services?
+    */
     leaf src-split-horizon-group {
       type string;
       description
-      "Identify a split horizon group at the Tunnel source TTP";
+        "Identify a split horizon group at the source Tunnel
+        Termination Point (TTP).";
     }
     leaf dst-split-horizon-group {
       type string;
       description
-      "Identify a split horizon group at the Tunnel destination TTP";
+        "Identify a split horizon group at the destination Tunnel
+        Termination Point (TTP).";
     }
   }
 
@@ -2716,7 +2824,6 @@ module ietf-eth-tran-service {
       description
         "Name of the ETH service.";
     }
-
     leaf etht-svc-title {
       type string;
       description
@@ -2727,46 +2834,39 @@ module ietf-eth-tran-service {
       description
         "Alias of the ETH service.";
     }
-
     leaf etht-svc-descr {
       type string;
       description
         "Description of the ETH service.";
     }
-
     leaf etht-svc-customer {
       type string;
       description
         "Customer of the ETH service.";
     }
-
-     leaf etht-svc-type {
+    leaf etht-svc-type {
       type etht-types:service-type;
       description
         "Type of ETH service (p2p, mp2mp or rmp).";
       /* Add default as p2p */
     }
-
-     leaf etht-svc-lifecycle {
+    leaf etht-svc-lifecycle {
       type etht-types:lifecycle-status;
       description
         "Lifecycle state of ETH service.";
       /* Add default as installed  */
     }
     uses te-types:te-topology-identifier;
-
     uses resilience-grouping;
-
     list etht-svc-end-points {
       key etht-svc-end-point-name;
       description
         "The logical end point for the ETH service. ";
       uses etht-svc-end-point-grouping;
     }
-
-
     container alarm-threshold {
-      description "threshold configuration for the E2E client signal";
+      description
+        "threshold configuration for the E2E client signal";
       uses alarm-threshold-grouping;
     }
     container underlay {
@@ -2775,7 +2875,6 @@ module ietf-eth-tran-service {
         ETH service. ";
       uses etht-svc-tunnel-parameters;
     }
-
     leaf admin-status {
       type identityref {
         base te-types:tunnel-admin-state-type;
@@ -2790,17 +2889,19 @@ module ietf-eth-tran-service {
       "State parameters for Ethernet services.";
 
     leaf operational-state {
-    type identityref {
+      type identityref {
         base te-types:tunnel-state-type;
       }
       default te-types:tunnel-state-up;
-    description "ETH service operational state.";
+      description
+        "ETH service operational state.";
     }
     leaf provisioning-state {
       type identityref {
         base te-types:lsp-state-type;
       }
-      description "ETH service provisioning state.";
+      description
+        "ETH service provisioning state.";
     }
     leaf creation-time {
       type yang:date-and-time;
@@ -2812,7 +2913,6 @@ module ietf-eth-tran-service {
       description
         "Time of ETH service last update.";
     }
-
     leaf created-by {
        type string;
        description
@@ -2841,79 +2941,47 @@ module ietf-eth-tran-service {
        uses error-info-grouping;
      }
   }
+
   grouping pm-state-grouping {
+    description
+      "Performance Monitoring (PM) state attributes";
     leaf latency {
+      type uint32;
+      units microsecond;
       description
         "latency value of the E2E Ethernet service";
-      type uint32;
-      units microsecond;
     }
   }
+
   grouping error-info-grouping {
+    description
+      "Error information parameters";
+
     leaf error-code {
-      description "error code";
       type uint16;
+      description "error code";
     }
     leaf error-description {
-      description "detail message of error";
       type string;
+      description "detail message of error";
     }
     leaf error-timestamp {
-      description "the date and time error is happened";
       type yang:date-and-time;
+      description "the date and time error is happened";
     }
   }
+
   grouping alarm-threshold-grouping {
+    description
+      "Alarm threshold parameters.";
     leaf latency-threshold {
-      description "a threshold for the E2E client signal service's
-      latency. Once the latency value exceed this threshold, an alarm
-      should be triggered.";
       type uint32;
       units microsecond;
+      description
+        "a threshold for the E2E client signal service's
+        latency. Once the latency value exceed this threshold,
+        an alarm should be triggered.";
      }
-  }
-
-  /*
-   * Data nodes
-   */
-
-  container etht-svc {
-    description
-      "ETH services.";
-
-    container globals {
-      description
-        "Globals Ethernet configuration data container";
-      list named-bandwidth-profiles {
-        key bandwidth-profile-name;
-        description
-          "List of named bandwidth profiles used by
-           Ethernet services.";
-
-        leaf bandwidth-profile-name {
-          type string;
-          description
-            "Name of the bandwidth profile.";
-        }
-        uses etht-types:etht-bandwidth-profiles;
-      }
-    }
-
-    list etht-svc-instances {
-      key etht-svc-name;
-      description
-        "The list of p2p ETH service instances";
-
-      uses etht-svc-instance-config;
-
-      container state {
-        config false;
-        description
-          "Ethernet Service states.";
-
-        uses etht-svc-instance-state;
-      }
-    }
   }
 
   grouping resilience-grouping {
@@ -2931,49 +2999,46 @@ module ietf-eth-tran-service {
   grouping etht-svc-end-point-grouping {
     description
       "Grouping for the end point configuration.";
+
     leaf etht-svc-end-point-name {
       type string;
       description
-      "The name of the logical end point of ETH service. ";
+        "The name of the logical end point of ETH service. ";
     }
-
     leaf etht-svc-end-point-id {
       type string;
       description
-      "The identifier of the logical end point of ETH service.";
+        "The identifier of the logical end point of ETH service.";
     }
-
     leaf etht-svc-end-point-descr {
       type string;
       description
-      "The description of the logical end point of ETH service. ";
+        "The description of the logical end point of ETH service. ";
     }
-
     leaf topology-role {
       type identityref {
         base etht-types:topology-role;
       }
       description
-      "Indicating the underlay topology role,
-      e.g., hub,spoke, any-to-any ";
+        "Indicating the underlay topology role,
+        e.g., hub,spoke, any-to-any ";
     }
-
     container resilience {
       description
-      "Placeholder for resilience configuration, for future study. ";
+        "Placeholder for resilience configuration, for future
+        study.";
     }
-
     list etht-svc-access-points {
       key access-point-id;
       min-elements "1";
-/*
-  Open Issue:
-    Is it possible to limit the max-elements only for p2p services?
-      max-elements "2";
-*/
+      /*
+        Open Issue:
+          Is it possible to limit the max-elements only for p2p
+          services?
+            max-elements "2";
+      */
       description
         "List of the ETH trasport services access point instances.";
-
       leaf access-point-id {
         type string;
         description
@@ -2981,7 +3046,6 @@ module ietf-eth-tran-service {
       }
       uses etht-svc-access-parameters;
     }
-
     leaf service-classification-type {
       type identityref {
         base etht-types:service-classification-type;
@@ -2989,22 +3053,18 @@ module ietf-eth-tran-service {
       description
         "Service classification type.";
     }
-
     choice service-classification {
       description
         "Access classification can be port-based or
          VLAN based.";
-
       case port-classification {
         /* no additional information */
       }
-
       case vlan-classification {
         container outer-tag {
           presence "The outermost VLAN tag exists";
           description
             "Classifies traffic using the outermost VLAN tag.";
-
           uses vlan-classification;
         }
         container second-tag {
@@ -3027,25 +3087,22 @@ module ietf-eth-tran-service {
               ";
           }
           presence "The second outermost VLAN tag exists";
-
           description
-            "Classifies traffic using the second outermost VLAN tag.";
-
+            "Classifies traffic using the second outermost VLAN
+            tag.";
           uses vlan-classification;
         }
       }
     }
-
-/*
- * Open issue: can we constraints it to be used only with mp services?
- */
+    /*
+    * Open issue:
+    *   can we constraints it to be used only with mp services?
+    */
     leaf split-horizon-group {
       type string;
       description "Identify a split horizon group";
     }
-
     uses bandwidth-profiles;
-
     container vlan-operations {
       description
         "Configuration of VLAN operations.";
@@ -3082,30 +3139,27 @@ module ietf-eth-tran-service {
   grouping pm-config-grouping {
     description
       "Grouping used for Performance Monitoring Configuration. ";
+
     leaf pm-enable {
       type boolean;
       description
       "Whether to enable the performance monitoring.";
     }
-
     leaf sending-rate-high {
       type uint64;
       description
       "The upperbound of sending rate.";
     }
-
     leaf sending-rate-low {
       type uint64;
       description
       "The lowerbound of sending rate.";
     }
-
     leaf receiving-rate-high {
       type uint64;
       description
       "The upperbound of receiving rate.";
     }
-
     leaf receiving-rate-low {
       type uint64;
       description
@@ -3116,30 +3170,27 @@ module ietf-eth-tran-service {
   grouping pw-segment-grouping {
     description
       "Grouping used for PW configuration. ";
+
     leaf pw-id {
       type string;
       description
-      "The Identifier information of pseudowire. ";
+        "The Identifier information of pseudowire. ";
     }
-
     leaf pw-name {
       type string;
       description
-      "The name information of pseudowire.";
+        "The name information of pseudowire.";
     }
-
     leaf transmit-label {
       type rt-types:mpls-label;
       description
-      "Transmit label information in PW. ";
+        "Transmit label information in PW. ";
     }
-
     leaf receive-label {
       type rt-types:mpls-label;
       description
-      "Receive label information in PW. ";
+        "Receive label information in PW. ";
     }
-
     leaf encapsulation-type {
       type identityref {
         base etht-types:encapsulation-type;
@@ -3147,7 +3198,6 @@ module ietf-eth-tran-service {
       description
         "The encapsulation type, raw or tag. ";
     }
-
     leaf oper-status {
       type identityref {
         base te-types:tunnel-state-type;
@@ -3156,25 +3206,20 @@ module ietf-eth-tran-service {
       description
         "The operational state of the PW segment. ";
     }
-
     container ingress-bandwidth-profile {
       description
         "Bandwidth Profile for ingress. ";
       uses pw-segment-named-or-value-bandwidth-profile;
     }
-
     list pw-paths {
       key path-id;
       description
         "A list of pw paths. ";
-
       leaf path-id {
         type uint8;
         description
           "The identifier of pw paths. ";
-
       }
-
       list tp-tunnels {
         key name;
         description
@@ -3183,10 +3228,9 @@ module ietf-eth-tran-service {
           type string;
           description
             "Names of TP Tunnel underlay";
-          }
+        }
       }
     }
-
   }
 
   grouping pw-segment-named-or-value-bandwidth-profile {
@@ -3194,6 +3238,7 @@ module ietf-eth-tran-service {
       "A grouping to configure a bandwdith profile either by
        referencing a named bandwidth profile or by
        configuring the values of the bandwidth profile attributes.";
+
     choice style {
       description
         "Whether the bandwidth profile is named or defined by value";
@@ -3202,9 +3247,9 @@ module ietf-eth-tran-service {
           "Named bandwidth profile.";
         leaf bandwidth-profile-name {
           type leafref {
-            path "/ethtsvc:etht-svc/ethtsvc:globals/"
-            + "ethtsvc:named-bandwidth-profiles/"
-            + "ethtsvc:bandwidth-profile-name";
+            path "/etht-svc:etht-svc/etht-svc:globals/"
+            + "etht-svc:named-bandwidth-profiles/"
+            + "etht-svc:bandwidth-profile-name";
           }
           description
             "Name of the bandwidth profile.";
@@ -3243,6 +3288,46 @@ module ietf-eth-tran-service {
       reference "RFC3945";
     }
   }
+
+  /*
+   * Data nodes
+   */
+
+  container etht-svc {
+    description
+      "ETH services.";
+
+    container globals {
+      description
+        "Globals Ethernet configuration data container";
+      list named-bandwidth-profiles {
+        key bandwidth-profile-name;
+        description
+          "List of named bandwidth profiles used by
+           Ethernet services.";
+
+        leaf bandwidth-profile-name {
+          type string;
+          description
+            "Name of the bandwidth profile.";
+        }
+        uses etht-types:etht-bandwidth-profiles;
+      }
+    }
+    list etht-svc-instances {
+      key etht-svc-name;
+      description
+        "The list of p2p ETH service instances";
+
+      uses etht-svc-instance-config;
+      container state {
+        config false;
+        description
+          "Ethernet Service states.";
+        uses etht-svc-instance-state;
+      }
+    }
+  }
 }
 
 &lt;CODE ENDS&gt;</pre>
@@ -3261,52 +3346,62 @@ module ietf-eth-tran-service {
 <div id="fig-eth-types-yang">
 <figure id="figure-8">
           <div class="breakable lang-yang sourcecode" id="section-5.2-2.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-eth-tran-types@2023-12-15.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-eth-tran-types@2024-01-11.yang"
 
 module ietf-eth-tran-types {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-types";
-
-  prefix "etht-types";
+  prefix etht-types;
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
-    "
-      WG List: &lt;mailto:ccamp@ietf.org&gt;
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;mailto:ccamp@ietf.org&gt;
 
-      ID-draft editor:
-        Haomian Zheng (zhenghaomian@huawei.com);
-        Italo Busi (italo.busi@huawei.com);
-        Aihua Guo (aihuaguo.ietf@gmail.com);
-        Anton Snitser (asnizar@cisco.com);
-        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Chaode Yu (yuchaode@huawei.com);
-    ";
+     Editor: Haomian Zheng
+             &lt;mailto:zhenghaomian@huawei.com&gt;
+
+     Editor: Aihua Guo
+             &lt;mailto:aihuaguo.ietf@gmail.com&gt;
+
+     Editor: Italo Busi
+             &lt;mailto:italo.busi@huawei.com&gt;
+
+     Editor: Anton Snitser
+             &lt;mailto:asnizar@cisco.com&gt;
+
+     Editor: Chaode Yu
+             &lt;mailto:yuchaode@huawei.com&gt;";
 
   description
-    "This module defines the ETH types.
-     The model fully conforms to the Network Management
-     Datastore Architecture (NMDA).
+    "This module defines a collection of common YANG identity, data
+    type and grouping definitions for describing Ethernet transport
+    network clients.
 
-     Copyright (c) 2019 IETF Trust and the persons
-     identified as authors of the code.  All rights reserved.
+    Copyright (c) 2024 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
 
-     Redistribution and use in source and binary forms, with or
-     without modification, is permitted pursuant to, and subject
-     to the license terms contained in, the Simplified BSD License
-     set forth in Section 4.c of the IETF Trust's Legal Provisions
-     Relating to IETF Documents
-     (https://trustee.ietf.org/license-info).
-     This version of this YANG module is part of RFC XXXX; see
-     the RFC itself for full legal notices.";
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
 
-  revision 2023-12-15 {
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision 2024-01-11 {
     description
-      "version -05 as a WG draft";
+      "Initial Version";
     reference
-      "draft-ietf-ccamp-client-signal-yang";
+      "RFC XXXX: A YANG Data Model for Transport Network Client
+      Signals";
   }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
 
   /*
    * Identities
@@ -3317,138 +3412,188 @@ module ietf-eth-tran-types {
       "ETH VLAN tag type.";
   }
 
-  identity c-vlan-tag-type {
-    base eth-vlan-tag-type;
-    description
-      "802.1Q Customer VLAN";
-  }
+    identity c-vlan-tag-type {
+      base eth-vlan-tag-type;
+      description
+        "802.1Q Customer VLAN";
+    }
 
-  identity s-vlan-tag-type {
-    base eth-vlan-tag-type;
-    description
-      "802.1Q Service VLAN (QinQ)";
-  }
+    identity s-vlan-tag-type {
+      base eth-vlan-tag-type;
+      description
+        "802.1Q Service VLAN (QinQ)";
+    }
 
   identity service-classification-type {
     description
       "Service classification.";
   }
 
-  identity port-classification {
-    base service-classification-type;
-    description
-      "Port classification.";
-  }
+    identity port-classification {
+      base service-classification-type;
+      description
+        "Port classification.";
+    }
 
-  identity vlan-classification {
-    base service-classification-type;
-    description
-      "VLAN classification.";
-  }
+    identity vlan-classification {
+      base service-classification-type;
+      description
+        "VLAN classification.";
+    }
 
-  identity eth-vlan-tag-classify {
-    description
-      "VLAN tag classification.";
-  }
+    identity eth-vlan-tag-classify {
+      description
+        "VLAN tag classification.";
+    }
 
-  identity classify-c-vlan {
-    base eth-vlan-tag-classify;
-    description
-      "Classify 802.1Q Customer VLAN tag.
-       Only C-tag type is accepted";
-  }
+      identity classify-c-vlan {
+        base eth-vlan-tag-classify;
+        description
+          "Classify 802.1Q Customer VLAN tag.
+          Only C-tag type is accepted";
+      }
 
-  identity classify-s-vlan {
-    base eth-vlan-tag-classify;
-    description
-      "Classify 802.1Q Service VLAN (QinQ) tag.
-       Only S-tag type is accepted";
-  }
+      identity classify-s-vlan {
+        base eth-vlan-tag-classify;
+        description
+          "Classify 802.1Q Service VLAN (QinQ) tag.
+          Only S-tag type is accepted";
+      }
 
-  identity classify-s-or-c-vlan {
-    base eth-vlan-tag-classify;
-    description
-      "Classify S-VLAN or C-VLAN tag-classify.
-       Either tag is accepted";
-  }
+      identity classify-s-or-c-vlan {
+        base eth-vlan-tag-classify;
+        description
+          "Classify S-VLAN or C-VLAN tag-classify.
+          Either tag is accepted";
+      }
 
   identity bandwidth-profile-type {
     description
       "Bandwidth Profile Types";
   }
 
-  identity mef-10-bwp {
-    base bandwidth-profile-type;
-    description
-      "MEF 10 Bandwidth Profile";
-  }
+    identity mef-10-bwp {
+      base bandwidth-profile-type;
+      description
+        "MEF 10 Bandwidth Profile";
+    }
 
-  identity rfc-2697-bwp {
-    base bandwidth-profile-type;
-    description
-      "RFC 2697 Bandwidth Profile";
-  }
+    identity rfc-2697-bwp {
+      base bandwidth-profile-type;
+      description
+        "RFC 2697 Bandwidth Profile";
+    }
 
-  identity rfc-2698-bwp {
-    base bandwidth-profile-type;
-    description
-      "RFC 2698 Bandwidth Profile";
-  }
+    identity rfc-2698-bwp {
+      base bandwidth-profile-type;
+      description
+        "RFC 2698 Bandwidth Profile";
+    }
 
-  identity rfc-4115-bwp {
-    base bandwidth-profile-type;
-    description
-      "RFC 4115 Bandwidth Profile";
-  }
+    identity rfc-4115-bwp {
+      base bandwidth-profile-type;
+      description
+        "RFC 4115 Bandwidth Profile";
+    }
 
   identity service-type {
     description
       "Type of Ethernet service.";
   }
 
-  identity p2p-svc {
-    base service-type;
-    description
-      "Ethernet point-to-point service (EPL, EVPL).";
-  }
+    identity p2p-svc {
+      base service-type;
+      description
+        "Ethernet point-to-point service (EPL, EVPL).";
+    }
 
-  identity rmp-svc {
-    base service-type;
-    description
-      "Ethernet rooted-multitpoint service (E-TREE, EP-TREE).";
-  }
+    identity rmp-svc {
+      base service-type;
+      description
+        "Ethernet rooted-multitpoint service (E-TREE, EP-TREE).";
+    }
 
-  identity mp2mp-svc {
-    base service-type;
-    description
-      "Ethernet multipoint-to-multitpoint service (E-LAN, EP-LAN).";
-  }
+    identity mp2mp-svc {
+      base service-type;
+      description
+        "Ethernet multipoint-to-multitpoint service
+        (E-LAN, EP-LAN).";
+    }
 
   identity lifecycle-status {
     description
       "Lifecycle Status.";
   }
 
-  identity installed {
-    base lifecycle-status;
+    identity installed {
+      base lifecycle-status;
+      description
+        "Installed.";
+    }
+
+    identity planned {
+      base lifecycle-status;
+      description
+        "Planned.";
+    }
+
+    identity pending-removal {
+      base lifecycle-status;
+      description
+        "Pending Removal.";
+    }
+
+  identity topology-role {
     description
-      "Installed.";
+      "The role of underlay topology: e.g., hub, spoke,
+      any-to-any.";
   }
 
-  identity planned {
-    base lifecycle-status;
+  identity resilience {
     description
-      "Planned.";
+    "Placeholder for resilience information in data plane,
+    for future study. ";
   }
 
-  identity pending-removal {
-    base lifecycle-status;
+  identity access-role {
     description
-      "Pending Removal.";
+    "Indicating whether the access is a working or protection
+    access.";
+  }
+
+    identity root-primary {
+      base access-role;
+      description
+        "Designates the primary root UNI of an E-Tree service, and
+        may also designates the UNI access role of E-LINE and E-LAN
+        service.";
+    }
+
+    identity root-backup {
+      base access-role;
+      description
+        "Designates the backup root UNI of an E-Tree service.";
+    }
+
+    identity leaf-access {
+      base access-role;
+      description
+        "Designates the leaf UNI of an E-Tree service.";
+    }
+
+  identity performance {
+    description
+    "Placeholder for performance information, for future study.";
+  }
+
+  identity encapsulation-type {
+    description
+    "Indicating how the service is encapsulated (to PW), e.g, raw or
+    tag. ";
   }
 
   /*
-   * Type Definitions
+   * Data Types
    */
 
   typedef eth-tag-type {
@@ -3516,7 +3661,7 @@ module ietf-eth-tran-types {
   }
 
   /*
-   * Grouping Definitions
+   * Groupings
    */
 
   grouping etht-bandwidth-profiles {
@@ -3579,58 +3724,10 @@ module ietf-eth-tran-types {
     }
   }
 
-  identity topology-role {
-    description
-      "The role of underlay topology: e.g., hub, spoke,
-      any-to-any.";
-  }
-
-  identity resilience {
-    description
-    "Placeholder for resilience information in data plane,
-    for future study. ";
-  }
-
-  identity access-role {
-    description
-    "Indicating whether the access is a working or protection
-    access.";
-  }
-
-  identity root-primary {
-    base access-role;
-    description
-      "Designates the primary root UNI of an E-Tree service, and may
-      also designates the UNI access role of E-LINE and E-LAN
-      service.";
-  }
-
-  identity root-backup {
-    base access-role;
-    description
-      "Designates the backup root UNI of an E-Tree service.";
-  }
-
-  identity leaf-access {
-    base access-role;
-    description
-      "Designates the leaf UNI of an E-Tree service.";
-  }
-
-  identity performance {
-    description
-    "Placeholder for performance information, for future study.";
-  }
-
-  identity encapsulation-type {
-    description
-    "Indicating how the service is encapsulated (to PW), e.g, raw or
-    tag. ";
-  }
-
   grouping pw-segement-bandwidth-profile-grouping {
     description
-      "bandwidth profile grouping for PW segment. ";
+      "bandwidth profile grouping for PW segment.";
+
     leaf bandwidth-profile-type {
       type etht-types:bandwidth-profile-type;
       description
@@ -3669,51 +3766,53 @@ module ietf-eth-tran-types {
           In case of RFC 2698, PBS = CBS + EBS";
     }
   }
-      grouping eth-bandwidth {
+
+  grouping eth-bandwidth {
+    description
+      "Available bandwith for ethernet.";
+    leaf eth-bandwidth {
+      type uint64{
+        range "0..10000000000";
+      }
+      units "Kbps";
       description
-        "Available bandwith for ethernet.";
-      leaf eth-bandwidth {
-        type uint64{
-          range "0..10000000000";
-        }
-        units "Kbps";
+        "Available bandwith value expressed in kilobits per second";
+    }
+  }
+
+  grouping eth-label-restriction {
+    description
+      "Label Restriction for ethernet.";
+    leaf tag-type {
+      type etht-types:eth-tag-type;
+      description "VLAN tag type.";
+    }
+    leaf priority {
+      type uint8;
+      description "priority.";
+    }
+  }
+
+  grouping eth-label {
+    description
+      "Label for ethernet.";
+    leaf vlanid {
+      type etht-types:vlanid;
         description
-          "Available bandwith value expressed in kilobits per second";
-      }
+          "VLAN tag id.";
     }
+  }
 
-    grouping eth-label-restriction {
-      description
-        "Label Restriction for ethernet.";
-      leaf tag-type {
-        type etht-types:eth-tag-type;
-        description "VLAN tag type.";
-      }
-      leaf priority {
-        type uint8;
-        description "priority.";
-      }
-    }
-    grouping eth-label {
-      description
-        "Label for ethernet.";
-      leaf vlanid {
-        type etht-types:vlanid;
-          description
-            "VLAN tag id.";
-      }
-    }
-
-    grouping eth-label-step {
-      description "Label step for Ethernet VLAN";
-      leaf eth-step {
-        type uint16 {
-          range "1..4095";
+  grouping eth-label-step {
+    description "Label step for Ethernet VLAN";
+    leaf eth-step {
+      type uint16 {
+        range "1..4095";
       }
       default 1;
       description
         "Label step which represent possible increments for
-         an Ethernet VLAN tag.";
+        an Ethernet VLAN tag.";
       reference
         "IEEE 802.1ad: Provider Bridges.";
     }
@@ -3732,108 +3831,135 @@ module ietf-eth-tran-types {
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-other-client-signal-yang-co" class="section-name selfRef">Other Client Signal YANG Code</a>
         </h3>
 <p id="section-5.3-1">This module imports typedefs and modules from <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>,
-<span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf-ccamp-otn-tunnel-model</a>]</span>, <span>[<a href="#RFC8776" class="cite xref">RFC8776</a>]</span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf-ccamp-otn-tunnel-model</a>]</span>, <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <div id="fig-cbr-svc-yang">
 <figure id="figure-9">
           <div class="breakable lang-yang sourcecode" id="section-5.3-2.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-trans-client-service@2023-12-15.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-trans-client-service@2024-01-11.yang"
 
- module ietf-trans-client-service {
-   /* TODO: FIXME */
-     yang-version 1.1;
+module ietf-trans-client-service {
+  yang-version 1.1;
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-trans-client-service";
+  prefix clnt-svc;
 
-   namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-service";
-   prefix "clntsvc";
+  import ietf-yang-types {
+    prefix yang;
+    reference "RFC 6991: Common YANG Data Types";
+  }
+
+  import ietf-te-types {
+    prefix te-types;
+    reference "RFCYYYY: Traffic Engineering Common YANG Types";
+  }
+  // RFC Editor: replace YYYY with the actual RFC number assigned
+  // to the RFC once draft-ietf-teas-rfc8776-update
+  // becomes an RFC, update date information and remove this note.
+
+  import ietf-layer1-types {
+    prefix l1-types;
+    reference "RFCZZZZ: A YANG Data Model for Layer 1 Types";
+  }
+  // RFC Editor: replace ZZZZ with the actual RFC number assigned
+  // to the RFC once draft-ietf-ccamp-layer1-types
+  // becomes an RFC, update date information and remove this note.
 
   import ietf-network {
-    prefix "nw";
-    reference "RFC8345 - A YANG Data Model for Network Topologies";
+    prefix nw;
+    reference "RFC8345: A YANG Data Model for Network Topologies";
   }
+
   import ietf-network-topology {
-    prefix "nt";
-    reference "RFC8345 - A YANG Data Model for Network Topologies";
+    prefix nt;
+    reference "RFC8345: A YANG Data Model for Network Topologies";
   }
-   import ietf-te-types {
-     prefix "te-types";
-     reference "RFC 8776 - Traffic Engineering Common YANG Types";
-   }
-
-   import ietf-layer1-types {
-     prefix "layer1-types";
-     reference "RFC ZZZZ - A YANG Data Model for Layer 1 Types";
-   }
-
-   import ietf-yang-types {
-     prefix "yang";
-     reference "RFC 6991 - Common YANG Data Types";
-   }
 
   import ietf-trans-client-svc-types {
-    prefix "clntsvc-types";
-    reference "RFC XXXX - A YANG Data Model for
-               Transport Network Client Signals";
+    prefix clnt-types;
+    reference
+      "RFCXXXX: A YANG Data Model for Transport Network Client
+      Signals";
   }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
 
-   organization
-     "Internet Engineering Task Force (IETF) CCAMP WG";
-   contact
-     "
-       ID-draft editor:
-         Haomian Zheng (zhenghaomian@huawei.com);
-         Aihua Guo (aihuaguo.ietf@gmail.com);
-         Italo Busi (italo.busi@huawei.com);
-         Anton Snitser (asnizar@cisco.com);
-         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-         Chaode Yu (yuchaode@huawei.com);
-     ";
+  organization
+    "Internet Engineering Task Force (IETF) CCAMP WG";
+  contact
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;mailto:ccamp@ietf.org&gt;
 
-   description
-     "This module defines a YANG data model for describing
-      transport network client services. The model fully conforms
-      to the Network Management Datastore Architecture (NMDA).
+     Editor: Haomian Zheng
+             &lt;mailto:zhenghaomian@huawei.com&gt;
 
-      Copyright (c) 2021 IETF Trust and the persons
-      identified as authors of the code.  All rights reserved.
+     Editor: Aihua Guo
+             &lt;mailto:aihuaguo.ietf@gmail.com&gt;
 
-      Redistribution and use in source and binary forms, with or
-      without modification, is permitted pursuant to, and subject
-      to the license terms contained in, the Simplified BSD License
-      set forth in Section 4.c of the IETF Trust's Legal Provisions
-      Relating to IETF Documents
-      (https://trustee.ietf.org/license-info).
-      This version of this YANG module is part of RFC XXXX; see
-      the RFC itself for full legal notices.";
+     Editor: Italo Busi
+             &lt;mailto:italo.busi@huawei.com&gt;
 
-  revision 2023-12-15 {
-     description
-       "version -04 as a WG document";
-     reference
-       "draft-ietf-ccamp-client-signal-yang";
-   }
+     Editor: Anton Snitser
+             &lt;mailto:asnizar@cisco.com&gt;
 
-   /*
-    * Groupings
-    */
-   grouping client-svc-access-parameters {
-     description
-       "Transport network client signals access parameters";
+     Editor: Chaode Yu
+             &lt;mailto:yuchaode@huawei.com&gt;";
 
-     leaf access-node-id {
-       type te-types:te-node-id;
-       description
+  description
+    "This module defines a YANG data model for describing
+    transport network client services.
+
+    The model fully conforms to the Network Management
+    Datastore Architecture (NMDA).
+
+    Copyright (c) 2024 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision 2024-01-11 {
+    description
+      "Initial Version";
+    reference
+      "RFC XXXX: A YANG Data Model for Transport Network Client
+      Signals";
+  }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
+
+  /*
+   * Groupings
+   */
+
+  grouping client-svc-access-parameters {
+    description
+      "Transport network client signals access parameters";
+
+    leaf access-node-id {
+      type te-types:te-node-id;
+      description
         "The identifier of the access node in the TE topology.";
     }
     leaf access-node-uri {
       type nw:node-id;
       description
         "The identifier of the access node in the network.";
-     }
-
-     leaf access-ltp-id {
-       type te-types:te-tp-id;
-       description
-        "The TE link termination point identifier in TE topology, used
-        together with access-node-id to identify the access LTP.";
+    }
+    leaf access-ltp-id {
+      type te-types:te-tp-id;
+      description
+        "The TE link termination point identifier in TE topology,
+        used together with access-node-id to identify the access
+        Link Termination Point (LTP).";
     }
     leaf access-ltp-uri {
       type nt:tp-id;
@@ -3841,117 +3967,118 @@ module ietf-eth-tran-types {
         "The link termination point identifier in network topology,
         used together with access-node-uri to identify the access
         LTP";
-     }
-
-     leaf client-signal {
-       type identityref {
-         base layer1-types:client-signal;
-       }
-       description
-         "Identify the client signal type associated with this port";
-     }
+    }
+    leaf client-signal {
+      type identityref {
+        base l1-types:client-signal;
+      }
+      description
+        "Identify the client signal type associated with this port";
+    }
   }
+
   grouping pm-state-grouping {
+    description
+      "Performance Monitoring (PM) state attributes";
     leaf latency {
-      description "latency value of the E2E client signal service";
       type uint32;
       units microsecond;
+      description
+        "latency value of the E2E client signal service";
     }
   }
-  grouping error-info-grouping {
-    leaf error-code {
-      description "error code";
-      type uint16;
-    }
 
+  grouping error-info-grouping {
+    description
+      "Error information parameters";
+    leaf error-code {
+      type uint16;
+      description "error code";
+    }
     leaf error-description {
-      description "detail message of error";
       type string;
+      description "detail message of error";
     }
     leaf error-timestamp {
-      description "the date and time error is happened";
       type yang:date-and-time;
+      description "the date and time error is happened";
     }
   }
+
   grouping alarm-threshold-grouping {
+    description
+      "Alarm threshold parameters.";
     leaf latency-threshold {
-      description "a threshold for the E2E client signal service's
-      latency. Once the latency value exceed this threshold, an alarm
-      should be triggered.";
       type uint32;
       units microsecond;
+      description
+        "a threshold for the E2E client signal service's
+        latency. Once the latency value exceed this threshold,
+        an alarm should be triggered.";
     }
-   }
+  }
 
-   grouping client-svc-tunnel-parameters {
-     description
-       "Transport network client signals tunnel parameters";
+  grouping client-svc-tunnel-parameters {
+    description
+      "Transport network client signals tunnel parameters";
 
-     leaf tunnel-name {
-       type string;
-       description
-         "TE tunnel instance name.";
-     }
-   }
+    leaf tunnel-name {
+      type string;
+      description
+        "TE tunnel instance name.";
+    }
+  }
 
-   grouping  client-svc-instance-config {
-     description
-       "Configuration parameters for client services.";
-     leaf client-svc-name {
-       type string;
-       description
-         "Identifier of the p2p transport network client signals.";
-     }
+  grouping  client-svc-instance-config {
+    description
+      "Configuration parameters for client services.";
 
-     leaf client-svc-title {
-       type string;
-       description
-         "Name of the p2p transport network client signals.";
+    leaf client-svc-name {
+      type string;
+      description
+        "Identifier of the p2p transport network client signals.";
+    }
+    leaf client-svc-title {
+      type string;
+      description
+        "Name of the p2p transport network client signals.";
     }
     leaf user-label {
       type string;
       description
         "Alias of the p2p transport network client signals.";
-     }
-
-     leaf client-svc-descr {
-       type string;
-       description
-         "Description of the transport network client signals.";
-     }
-
-     leaf client-svc-customer {
-       type string;
-       description
-         "Customer of the transport network client signals.";
-     }
-
-     container resilience {
-       description "Place holder for resilience functionalities";
-     }
-
-     uses te-types:te-topology-identifier;
-
-     leaf admin-status {
-       type identityref {
-         base te-types:tunnel-admin-state-type;
-       }
-       default te-types:tunnel-admin-state-up;
-       description "Client signals administrative state.";
-     }
-
-     container src-access-ports {
-       description
-         "Source access port of a client signal.";
-       uses client-svc-access-parameters;
-     }
-
-     container dst-access-ports {
-       description
-         "Destination access port of a client signal.";
-       uses client-svc-access-parameters;
-     }
-
+    }
+    leaf client-svc-descr {
+      type string;
+      description
+        "Description of the transport network client signals.";
+    }
+    leaf client-svc-customer {
+      type string;
+      description
+        "Customer of the transport network client signals.";
+    }
+    container resilience {
+      description "Place holder for resilience functionalities";
+    }
+    uses te-types:te-topology-identifier;
+    leaf admin-status {
+      type identityref {
+        base te-types:tunnel-admin-state-type;
+      }
+      default te-types:tunnel-admin-state-up;
+      description "Client signals administrative state.";
+    }
+    container src-access-ports {
+      description
+        "Source access port of a client signal.";
+      uses client-svc-access-parameters;
+    }
+    container dst-access-ports {
+      description
+        "Destination access port of a client signal.";
+      uses client-svc-access-parameters;
+    }
     container pm-state {
       config false;
       description "PM data of E2E client signal";
@@ -3963,92 +4090,91 @@ module ietf-eth-tran-types {
       uses error-info-grouping;
     }
     container alarm-threshold {
-      description "threshold configuration for the E2E client signal";
+      description
+        "threshold configuration for the E2E client signal";
       uses alarm-threshold-grouping;
     }
-     leaf direction {
-       type identityref {
-         base clntsvc-types:direction;
-       }
-       description "Uni-dir or Bi-dir for the client signal.";
-     }
+    leaf direction {
+      type identityref {
+        base clnt-types:direction;
+      }
+      description "Uni-dir or Bi-dir for the client signal.";
+    }
+    list svc-tunnels {
+      key tunnel-name;
+      description
+        "List of the TE Tunnels supporting the client signal.";
+      uses client-svc-tunnel-parameters;
+    }
+  }
 
-     list svc-tunnels {
-       key tunnel-name;
-       description
-         "List of the TE Tunnels supporting the client signal.";
-       uses client-svc-tunnel-parameters;
-     }
-   }
+  grouping  client-svc-instance-state {
+    description
+      "State parameters for client services.";
+    leaf operational-state {
+      type identityref {
+        base te-types:tunnel-state-type;
+      }
+      config false;
+      description "Client signal operational state.";
+    }
+    leaf provisioning-state {
+      type identityref {
+        base te-types:lsp-state-type;
+      }
+      config false;
+      description "Client signal provisioning state.";
+    }
+    leaf creation-time {
+      type yang:date-and-time;
+      config false;
+      description "The time of the client signal be created.";
+    }
+    leaf last-updated-time {
+      type yang:date-and-time;
+      config false;
+      description "The time of the client signal's latest update.";
+    }
+    leaf created-by {
+      type string;
+      config false;
+      description
+        "The client signal is created by whom,
+        can be a system or staff ID.";
+    }
+    leaf last-updated-by {
+      type string;
+      config false;
+      description
+        "The client signal is last updated by whom,
+        can be a system or staff ID.";
+    }
+    leaf owned-by {
+      type string;
+      config false;
+      description
+        "The client signal is owned by whom,
+        can be a system ID.";
+    }
+  }
 
-   grouping  client-svc-instance-state {
-     description
-       "State parameters for client services.";
-     leaf operational-state {
-       type identityref {
-             base te-types:tunnel-state-type;
-       }
-       config false;
-       description "Client signal operational state.";
-     }
-     leaf provisioning-state {
-       type identityref {
-             base te-types:lsp-state-type;
-       }
-       config false;
-       description "Client signal provisioning state.";
-     }
-     leaf creation-time {
-       type yang:date-and-time;
-       config false;
-       description "The time of the client signal be created.";
-     }
-     leaf last-updated-time {
-       type yang:date-and-time;
-       config false;
-       description "The time of the client signal's latest update.";
-     }
-     leaf created-by {
-       type string;
-       config false;
-       description
-         "The client signal is created by whom,
-          can be a system or staff ID.";
-     }
-     leaf last-updated-by {
-       type string;
-       config false;
-       description
-         "The client signal is last updated by whom,
-          can be a system or staff ID.";
-     }
-     leaf owned-by {
-       type string;
-       config false;
-       description
-         "The client signal is owned by whom,
-          can be a system ID.";
-     }
-   }
+  /*
+   * Data nodes
+   */
 
-   /*
-    * Data nodes
-    */
+  container client-svc {
+    description
+      "Transport client services.";
 
-   container client-svc {
-     description
-       "Transport client services.";
-
-     list client-svc-instances {
-       key client-svc-name;
-       description
-         "The list of p2p transport client service instances";
-
-           uses client-svc-instance-config;
-           uses client-svc-instance-state;
-     }
-   }
- }
+    list client-svc-instances {
+      key client-svc-name;
+      description
+        "The list of p2p transport client service instances";
+      uses client-svc-instance-config;
+      uses client-svc-instance-state;
+    }
+  }
+}
 
 &lt;CODE ENDS&gt;</pre>
 </div>
@@ -4065,66 +4191,84 @@ module ietf-eth-tran-types {
 <div id="fig-cbr-types-yang">
 <figure id="figure-10">
           <div class="breakable lang-yang sourcecode" id="section-5.4-2.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-trans-client-svc-types@2023-12-15.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-trans-client-svc-types@2024-01-11.yang"
 
 module ietf-trans-client-svc-types {
-  namespace "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
-  prefix "clntsvc-types";
+  yang-version 1.1;
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types";
+  prefix clnt-types;
 
   organization
      "Internet Engineering Task Force (IETF) CCAMP WG";
-   contact
-     "
-       ID-draft editor:
-         Haomian Zheng (zhenghaomian@huawei.com);
-         Aihua Guo (aihuaguo.ietf@gmail.com);
-         Italo Busi (italo.busi@huawei.com);
-         Anton Snitser (asnizar@cisco.com);
-         Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-         Chaode Yu (yuchaode@huawei.com);
-     ";
+  contact
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;mailto:ccamp@ietf.org&gt;
 
-   description
-     "This module defines a YANG data model for describing
-      transport network client types. The model fully conforms
-      to the Network Management Datastore Architecture (NMDA).
+     Editor: Haomian Zheng
+             &lt;mailto:zhenghaomian@huawei.com&gt;
 
-      Copyright (c) 2019 IETF Trust and the persons
-      identified as authors of the code.  All rights reserved.
+     Editor: Aihua Guo
+             &lt;mailto:aihuaguo.ietf@gmail.com&gt;
 
-      Redistribution and use in source and binary forms, with or
-      without modification, is permitted pursuant to, and subject
-      to the license terms contained in, the Simplified BSD License
-      set forth in Section 4.c of the IETF Trust's Legal Provisions
-      Relating to IETF Documents
-      (https://trustee.ietf.org/license-info).
-      This version of this YANG module is part of RFC XXXX; see
-      the RFC itself for full legal notices.";
+     Editor: Italo Busi
+             &lt;mailto:italo.busi@huawei.com&gt;
 
-   revision 2023-12-15 {
-     description
-       "version -01 as a WG document";
-     reference
-       "draft-ietf-ccamp-client-signal-yang";
-   }
+     Editor: Anton Snitser
+             &lt;mailto:asnizar@cisco.com&gt;
+
+     Editor: Chaode Yu
+             &lt;mailto:yuchaode@huawei.com&gt;";
+
+  description
+    "This module defines a collection of common YANG identity
+    definitions for describing Costant Bit Rate (CBR) transport
+    network clients.
+
+    Copyright (c) 2024 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision 2024-01-11 {
+    description
+      "Initial Version";
+    reference
+      "RFC XXXX: A YANG Data Model for Transport Network Client
+      Signals";
+  }
+  // RFC Editor: replace XXXX with the actual RFC number assigned
+  // to the RFC once this draft
+  // becomes an RFC, update date information and remove this note.
+
+  /*
+   * Identities
+   */
 
   identity direction {
     description
       "Direction information of Client Signal.";
   }
 
-  identity bidirectional {
-    base direction;
-    description
-      "Client Signal is bi-directional.";
-  }
+    identity bidirectional {
+      base direction;
+      description
+        "Client Signal is bi-directional.";
+    }
 
-  identity unidirectional {
-    base direction;
-    description
-      "Client Signal is uni-directional.";
-  }
-
+    identity unidirectional {
+      base direction;
+      description
+        "Client Signal is uni-directional.";
+    }
 }
 
 &lt;CODE ENDS&gt;</pre>
@@ -4202,14 +4346,41 @@ CCVPN%28Cross+Domain+and+Cross+Layer+VPN%29+USE+CASE<a href="#section-6.1-2.3.1"
 </div>
 </section>
 </div>
-<div id="iana-considerations">
+<div id="manageability-considerations">
 <section id="section-7">
-      <h2 id="name-iana-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      <h2 id="name-manageability-consideration">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
       </h2>
-<p id="section-7-1">It is proposed that IANA should assign new URIs from the "IETF XML
-Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as follows:<a href="#section-7-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-ascii-art art-text artwork" id="section-7-2">
+<p id="section-7-1">TBD<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-8">
+      <h2 id="name-security-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-8-1">The data following the model defined in this document is exchanged
+via, for example, the interface between an orchestrator and a network
+domain controller.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">The YANG module defined in this document can be accessed via the
+RESTCONF protocol defined in <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>, or maybe via the NETCONF
+protocol <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">There are a number of data nodes defined in the YANG module which are
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., POST) to these
+data nodes without proper protection can have a negative effect on
+network operations.<a href="#section-8-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-9">
+      <h2 id="name-iana-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-9-1">It is proposed that IANA should assign new URIs from the "IETF XML
+Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as follows:<a href="#section-9-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-9-2">
 <pre>
          URI: urn:ietf:params:xml:ns:yang:ietf-eth-tran-service
          Registrant Contact: The IESG
@@ -4226,11 +4397,11 @@ Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as fol
          URI: urn:ietf:params:xml:ns:yang:ietf-trans-client-svc-types
          Registrant Contact: The IESG
          XML: N/A; the requested URI is an XML namespace.
-</pre><a href="#section-7-2" class="pilcrow">¶</a>
+</pre><a href="#section-9-2" class="pilcrow">¶</a>
 </div>
-<p id="section-7-3">This document registers following YANG modules in the YANG Module
-Names registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-ascii-art art-text artwork" id="section-7-4">
+<p id="section-9-3">This document registers following YANG modules in the YANG Module
+Names registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<a href="#section-9-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-9-4">
 <pre>
    name:         ietf-eth-tran-service
    namespace:    urn:ietf:params:xml:ns:yang:ietf-eth-tran-service
@@ -4255,37 +4426,11 @@ Names registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<
    prefix:       clntsvc-types
    reference:    RFC XXXX: A YANG Data Model for Transport
                            Network Client Signals
-</pre><a href="#section-7-4" class="pilcrow">¶</a>
+</pre><a href="#section-9-4" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="manageability-considerations">
-<section id="section-8">
-      <h2 id="name-manageability-consideration">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
-      </h2>
-<p id="section-8-1">TBD<a href="#section-8-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="security-considerations">
-<section id="section-9">
-      <h2 id="name-security-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
-      </h2>
-<p id="section-9-1">The data following the model defined in this document is exchanged
-via, for example, the interface between an orchestrator and a network
-domain controller.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">The YANG module defined in this document can be accessed via the
-RESTCONF protocol defined in <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>, or maybe via the NETCONF
-protocol <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>.<a href="#section-9-2" class="pilcrow">¶</a></p>
-<p id="section-9-3">There are a number of data nodes defined in the YANG module which are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., POST) to these
-data nodes without proper protection can have a negative effect on
-network operations.<a href="#section-9-3" class="pilcrow">¶</a></p>
-</section>
-</div>
+<div id="sec-combined-references">
 <section id="section-10">
       <h2 id="name-references">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
@@ -4298,23 +4443,27 @@ network operations.<a href="#section-9-3" class="pilcrow">¶</a></p>
 <dl class="references">
 <dt id="I-D.ietf-ccamp-l1csm-yang">[I-D.ietf-ccamp-l1csm-yang]</dt>
         <dd>
-<span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Lee, K.</span>, <span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">de Dios, O. G.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"A YANG Data Model for L1 Connectivity Service Model (L1CSM)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-l1csm-yang-23</span>, <time datetime="2023-04-03" class="refDate">3 April 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-23">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-23</a>&gt;</span>. </dd>
+<span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Lee, K.</span>, <span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">de Dios, O. G.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"A YANG Data Model for L1 Connectivity Service Model (L1CSM)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-l1csm-yang-26</span>, <time datetime="2024-04-11" class="refDate">11 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-26">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-26</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-ccamp-layer1-types">[I-D.ietf-ccamp-layer1-types]</dt>
         <dd>
-<span class="refAuthor">Zheng, H.</span> and <span class="refAuthor">I. Busi</span>, <span class="refTitle">"A YANG Data Model for Layer 1 Types"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-layer1-types-16</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-layer1-types-16">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-layer1-types-16</a>&gt;</span>. </dd>
+<span class="refAuthor">Zheng, H.</span> and <span class="refAuthor">I. Busi</span>, <span class="refTitle">"Common YANG Data Types for Layer 1 Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-layer1-types-18</span>, <time datetime="2024-02-23" class="refDate">23 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-layer1-types-18">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-layer1-types-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-ccamp-otn-topo-yang">[I-D.ietf-ccamp-otn-topo-yang]</dt>
         <dd>
-<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Belotti, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Optical Transport Network Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-topo-yang-17</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-17">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-17</a>&gt;</span>. </dd>
+<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Belotti, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Optical Transport Network Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-topo-yang-20</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-20">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-20</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-ccamp-otn-tunnel-model">[I-D.ietf-ccamp-otn-tunnel-model]</dt>
         <dd>
-<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Y. Xu</span>, <span class="refTitle">"OTN Tunnel YANG Model"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-tunnel-model-20</span>, <time datetime="2023-11-24" class="refDate">24 November 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-20">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-20</a>&gt;</span>. </dd>
+<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Y. Xu</span>, <span class="refTitle">"OTN Tunnel YANG Model"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-tunnel-model-21</span>, <time datetime="2024-06-06" class="refDate">6 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-21">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-21</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-rfc8776-update">[I-D.ietf-teas-rfc8776-update]</dt>
         <dd>
-<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc8776-update-07</span>, <time datetime="2023-09-15" class="refDate">15 September 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-07">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc8776-update-14</span>, <time datetime="2024-11-04" class="refDate">4 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-14">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-14</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-teas-yang-te">[I-D.ietf-teas-yang-te]</dt>
+        <dd>
+<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V. P.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"A YANG Data Model for Traffic Engineering Tunnels, Label Switched Paths and Interfaces"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-yang-te-37</span>, <time datetime="2024-10-09" class="refDate">9 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-37">https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-37</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T_G.875">[ITU-T_G.875]</dt>
         <dd>
@@ -4348,9 +4497,9 @@ network operations.<a href="#section-9-3" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Hopps, C.</span>, and <span class="refAuthor">L. Berger</span>, <span class="refTitle">"Common YANG Data Types for the Routing Area"</span>, <span class="seriesInfo">RFC 8294</span>, <span class="seriesInfo">DOI 10.17487/RFC8294</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8294">https://www.rfc-editor.org/rfc/rfc8294</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8776">[RFC8776]</dt>
+<dt id="RFC8345">[RFC8345]</dt>
       <dd>
-<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="seriesInfo">RFC 8776</span>, <span class="seriesInfo">DOI 10.17487/RFC8776</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8776">https://www.rfc-editor.org/rfc/rfc8776</a>&gt;</span>. </dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4421,13 +4570,15 @@ network operations.<a href="#section-9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
+</div>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">We would like to thank Igor Bryskin and Daniel King for their
-comments and discussions.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">We would like to acknowledge the contribution from Francesco Lazzeri to the initial versions of this document, before it has been adopted by CCAMP WG.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">We would like to thank Igor Bryskin and Daniel King for their
+comments and discussions.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
@@ -4544,14 +4695,6 @@ comments and discussions.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:asnizar@cisco.com" class="email">asnizar@cisco.com</a>
-</div>
-</address>
-<address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Francesco Lazzeri</span></div>
-<div dir="auto" class="left"><span class="org">Ericsson</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:francesco.lazzeri@ericsson.com" class="email">francesco.lazzeri@ericsson.com</a>
 </div>
 </address>
 <address class="vcard">
