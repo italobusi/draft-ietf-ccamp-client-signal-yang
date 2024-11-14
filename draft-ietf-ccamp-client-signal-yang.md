@@ -818,5 +818,4 @@ Names registry {{!RFC6020}}.
 
 We would like to acknowledge the contribution from Francesco Lazzeri to the initial versions of this document, before it has been adopted by CCAMP WG.
 
-We would like to thank Igor Bryskin and Daniel King for their
-comments and discussions.
+We would like to thank Igor Bryskin and Daniel King for their comments and discussions.
